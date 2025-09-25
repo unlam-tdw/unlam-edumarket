@@ -1,0 +1,37 @@
+.main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1em 0.5em;
+}
+
+.main__content {
+    text-align: center;
+    max-width: 75em;
+    width: 100%;
+}
+
+.main__content h1 {
+    font-size: 2em;
+}
+
+@media screen and (min-width: 47em) {
+    .main {
+        padding: 1.5em 1em;
+    }
+    
+    .main__content h1 {
+        font-size: 2.5em;
+    }
+}
+
+@media screen and (min-width: 60em) {
+    .main {
+        padding: 2em 1em;
+    }
+    
+    .main__content h1 {
+        font-size: 3em;
+    }
+}
