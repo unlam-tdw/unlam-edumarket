@@ -40,7 +40,182 @@
 
     <!-- Main Content -->
     <main class="main">
-        <H1>Carrito</H1>
+        <section class="cart">
+            <div class="cart__header">
+                <h1 class="cart__title">Mi Carrito</h1>
+                <p class="cart__info">3 cursos en tu carrito</p>
+            </div>
+            
+            <div class="cart__content">
+                <div class="cart__items">
+                    <div class="cart__item">
+                        <div class="cart__item__image">
+                            <img class="cart__item__img" 
+                                 src="https://img-c.udemycdn.com/course/240x135/1565838_e54e_18.jpg" 
+                                 alt="Curso de JavaScript">
+                        </div>
+                        <div class="cart__item__details">
+                            <h3 class="cart__item__title">JavaScript Fundamentos</h3>
+                            <p class="cart__item__duration">45 horas de contenido</p>
+                            <a class="cart__item__link" href="../detalle/index.html">Ver detalle</a>
+                        </div>
+                        <div class="cart__item__price">
+                            <span class="cart__item__amount">$25.-</span>
+                        </div>
+                        <div class="cart__item__actions">
+                            <button class="cart__item__remove" type="button">🗑️</button>
+                        </div>
+                    </div>
+                    
+                    <div class="cart__item">
+                        <div class="cart__item__image">
+                            <img class="cart__item__img" 
+                                 src="https://img-c.udemycdn.com/course/240x135/1565838_e54e_18.jpg" 
+                                 alt="Curso de Python">
+                        </div>
+                        <div class="cart__item__details">
+                            <h3 class="cart__item__title">Python para Principiantes</h3>
+                            <p class="cart__item__duration">60 horas de contenido</p>
+                            <a class="cart__item__link" href="../detalle/index.html">Ver detalle</a>
+                        </div>
+                        <div class="cart__item__price">
+                            <span class="cart__item__amount">$40.-</span>
+                        </div>
+                        <div class="cart__item__actions">
+                            <button class="cart__item__remove" type="button">🗑️</button>
+                        </div>
+                    </div>
+                    
+                    <div class="cart__item">
+                        <div class="cart__item__image">
+                            <img class="cart__item__img" 
+                                 src="https://img-c.udemycdn.com/course/240x135/1565838_e54e_18.jpg" 
+                                 alt="Curso de React">
+                        </div>
+                        <div class="cart__item__details">
+                            <h3 class="cart__item__title">React Avanzado</h3>
+                            <p class="cart__item__duration">50 horas de contenido</p>
+                            <a class="cart__item__link" href="../detalle/index.html">Ver detalle</a>
+                        </div>
+                        <div class="cart__item__price">
+                            <span class="cart__item__amount">$35.-</span>
+                        </div>
+                        <div class="cart__item__actions">
+                            <button class="cart__item__remove" type="button">🗑️</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cart__summary">
+                    <div class="cart__summary__content">
+                        <h2 class="cart__summary__title">Resumen del pedido</h2>
+                        
+                        <div class="cart__summary__details">
+                            <div class="cart__summary__line">
+                                <span class="cart__summary__label">Subtotal (3 cursos):</span>
+                                <span class="cart__summary__value">$100.-</span>
+                            </div>
+                            <div class="cart__summary__line">
+                                <span class="cart__summary__label">Descuento:</span>
+                                <span class="cart__summary__value cart__summary__value--discount">-$10.-</span>
+                            </div>
+                            <div class="cart__summary__line cart__summary__line--total">
+                                <span class="cart__summary__label">Total:</span>
+                                <span class="cart__summary__value cart__summary__value--total">$90.-</span>
+                            </div>
+                        </div>
+                        
+                        <div class="cart__summary__actions">
+                            <button class="cart__summary__btn cart__summary__btn--primary" type="button">
+                                Proceder al pago
+                            </button>
+                            <a class="cart__summary__btn cart__summary__btn--secondary" href="../index.html">
+                                Seguir comprando
+                            </a>
+                        </div>
+                        
+                        <div class="cart__summary__payment">
+                            <h3 class="cart__summary__payment__title">Métodos de pago aceptados</h3>
+                            <div class="cart__summary__payment__methods">
+                                <img class="cart__summary__payment__icon" 
+                                     src="https://www.svgrepo.com/show/449177/payment-visa.svg" 
+                                     alt="Visa">
+                                <img class="cart__summary__payment__icon" 
+                                     src="https://www.svgrepo.com/show/449174/payment-mastercard.svg" 
+                                     alt="Mastercard">
+                                <img class="cart__summary__payment__icon" 
+                                     src="https://www.svgrepo.com/show/449173/payment-paypal.svg" 
+                                     alt="PayPal">
+                                <img class="cart__summary__payment__icon" 
+                                     src="https://www.svgrepo.com/show/449171/payment-google-wallet.svg" 
+                                     alt="Google Wallet">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cart__recommendations">
+                <h2 class="cart__recommendations__title">También te puede interesar</h2>
+                <ul class="cart__recommendations__list">
+                    <li class="cart__recommendations__item">
+                        <article class="cart__recommendations__card">
+                            <div class="cart__recommendations__card__top">
+                                <img class="cart__recommendations__card__img" 
+                                     src="https://img-c.udemycdn.com/course/240x135/1565838_e54e_18.jpg" 
+                                     alt="Curso de CSS">
+                                <div class="cart__recommendations__card__tag">
+                                    <span class="cart__recommendations__card__price">$20.-</span>
+                                </div>
+                            </div>
+                            <div class="cart__recommendations__card__content">
+                                <div class="cart__recommendations__card__info">
+                                    <div class="cart__recommendations__card__duration">
+                                        <span class="cart__recommendations__card__duration__number">30</span>
+                                        <span class="cart__recommendations__card__duration__text">hs</span>
+                                    </div>
+                                    <div class="cart__recommendations__card__details">
+                                        <h3 class="cart__recommendations__card__title">CSS Moderno</h3>
+                                        <a class="cart__recommendations__card__link" href="../detalle/index.html">Ver detalle</a>
+                                    </div>
+                                </div>
+                                <div class="cart__recommendations__card__actions">
+                                    <a class="cart__recommendations__card__btn" href="">Agregar al carrito</a>
+                                </div>
+                            </div>
+                        </article>
+                    </li>
+                    
+                    <li class="cart__recommendations__item">
+                        <article class="cart__recommendations__card">
+                            <div class="cart__recommendations__card__top">
+                                <img class="cart__recommendations__card__img" 
+                                     src="https://img-c.udemycdn.com/course/240x135/1565838_e54e_18.jpg" 
+                                     alt="Curso de Node.js">
+                                <div class="cart__recommendations__card__tag">
+                                    <span class="cart__recommendations__card__price">$45.-</span>
+                                </div>
+                            </div>
+                            <div class="cart__recommendations__card__content">
+                                <div class="cart__recommendations__card__info">
+                                    <div class="cart__recommendations__card__duration">
+                                        <span class="cart__recommendations__card__duration__number">55</span>
+                                        <span class="cart__recommendations__card__duration__text">hs</span>
+                                    </div>
+                                    <div class="cart__recommendations__card__details">
+                                        <h3 class="cart__recommendations__card__title">Node.js Backend</h3>
+                                        <a class="cart__recommendations__card__link" href="../detalle/index.html">Ver detalle</a>
+                                    </div>
+                                </div>
+                                <div class="cart__recommendations__card__actions">
+                                    <a class="cart__recommendations__card__btn" href="">Agregar al carrito</a>
+                                </div>
+                            </div>
+                        </article>
+                    </li>
+                </ul>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
