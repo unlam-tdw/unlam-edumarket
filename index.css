@@ -13,7 +13,7 @@ ol {
 }
 
 *:visited {
-  color: #000;
+  color: var(--black);
 }
 
 .main {
@@ -54,7 +54,7 @@ ol {
   justify-content: center;
   align-items: center;
   width: 100%;
-  background-color: brown;
+  background-color: var(--auburn);  
 }
 
 .main__pasos {
@@ -69,7 +69,7 @@ ol {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: brown;
+  background-color: var(--auburn);
   padding: 2em;
 }
 
@@ -99,7 +99,7 @@ ol {
 .main__cursos__list__item__card {
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
+  border: 1px solid var(--black);
   padding: 1em;
   gap: 0.75em;
 }
@@ -120,12 +120,12 @@ ol {
   position: absolute;
   right: 0;
   bottom: 15%;
-  background: #000;
+  background: var(--black);
   padding: 0.25em;
 }
 
 .main__cursos__list__item__card__top__tag__price {
-  color: #fff;
+  color: var(--whihte);
 }
 
 .main__cursos__list__item__card__bottom {
@@ -176,8 +176,8 @@ ol {
 }
 
 .main__cursos__list__item__card__bottom__buy__btn {
-  background-color: brown;
-  color: white;
+  background-color: var(--auburn);
+  color: var(--whihte);
   padding: 0.4em;
   border-radius: 5px;
 }
@@ -213,7 +213,7 @@ ol {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: mediumturquoise;
+  background-color: var(--sky-blue);
   border-radius: 5px;
   padding: 0.5em;
 }

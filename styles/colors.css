@@ -1,9 +1,11 @@
+/* use https://www.color-name.com/ to get the color name */
 :root {
     --whihte: #ffffff;
     --black: #000000;
-    --red: #ff4444;
+    --coral-red: #ff4444;
     --antique-white: #ffe8d1;
     --air-force-blue: #568ea3;
     --sky-blue: #68c3d4;
     --raw-umber: #826251;
+    --auburn: #a52a2a;
 }
