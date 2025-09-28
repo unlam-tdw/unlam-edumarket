@@ -1,6 +1,7 @@
 a {
   text-decoration: none;
   cursor: pointer;
+  color: var(--black);
 }
 
 button {
