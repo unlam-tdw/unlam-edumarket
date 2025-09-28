@@ -3,7 +3,6 @@
 @import "./styles/sections/header.css";
 @import "./styles/sections/main.css";
 @import "./styles/sections/footer.css";
-@import "./index.css";
 
 * {
   margin: 0;
