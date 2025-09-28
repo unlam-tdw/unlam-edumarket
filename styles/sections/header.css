@@ -33,7 +33,7 @@
 }
 
 .header__cart-btn {
-    border: none;
+    border: 1px solid var(--black);
     background-color: var(--air-force-blue);
     border-radius: 0.25em;
     color: var(--black);
@@ -51,7 +51,7 @@
     position: absolute;
     top: -0.4em;
     right: -0.4em;
-    background-color: var(--red);
+    background-color: var(--coral-red);
     color: white;
     border-radius: 50%;
     width: 1.2em;
@@ -118,6 +118,8 @@
     margin: 0 auto;
     padding: 0.75em 1em;
     text-align: center;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .header__nav-link {
@@ -127,6 +129,10 @@
     letter-spacing: 0.1em;  
     cursor: pointer;
     text-decoration: none;
+}
+
+.header__nav-link:visited {
+    color: var(--whihte);
 }
 
 @media screen and (min-width: 47em) {
