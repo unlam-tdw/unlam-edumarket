@@ -1,0 +1,207 @@
+.main {
+    width: 100%;
+    justify-content: center;
+    padding: 2em;
+    display: flex;
+    flex-direction: row;
+
+}
+
+.main__section {
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.main__section__img {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 0.1em solid gray;
+    background-color: lightgray;
+    height: 30em;
+    width: 30em;
+}
+
+.main__section__img__span {
+    position: absolute;
+    background-color: black;
+    color: whitesmoke;
+    top: 0em;
+    right: 0em;
+    padding: 0.5em 1em 0.5em 1em;
+}
+
+.main__section__form__input {
+    margin: 1em;
+    padding: 1em;
+    width: 95%;
+}
+
+.main__section__form__container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.main__section__form__container__label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.main__section__form__container__label__color__1 {
+    background-color: red;
+    border: 1px solid black;
+    height: 0.5em;
+    width: 0.5em;
+    padding: 0.5em;
+    margin: 1em;
+    border-radius: 50%;
+}
+
+.main__section__form__container__label__color__2 {
+    background-color: aquamarine;
+    border: 1px solid black;
+    height: 0.5em;
+    width: 0.5em;
+    padding: 0.5em;
+    margin: 1em;
+    border-radius: 50%;
+}
+
+.main__section__form__container__label__color__3 {
+    background-color: greenyellow;
+    border: 1px solid black;
+    height: 0.5em;
+    width: 0.5em;
+    padding: 0.5em;
+    margin: 1em;
+    border-radius: 50%;
+}
+
+.main__section__form__container__label__color__4 {
+    background-color: blueviolet;
+    border: 1px solid black;
+    height: 0.5em;
+    width: 0.5em;
+    padding: 0.5em;
+    margin: 1em;
+    border-radius: 50%;
+}
+
+.main__section__form__container__label__color__5 {
+    background-color: yellow;
+    border: 1px solid black;
+    height: 0.5em;
+    width: 0.5em;
+    padding: 0.5em;
+    margin: 1em;
+    border-radius: 50%;
+}
+
+
+.main__section__form__container {
+    margin: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+.main__section__form__label {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.main__section__form__label__input {
+    width: 80%;
+    margin-left: 1em;
+    padding: 0.5em;
+    margin-bottom: 1em;
+}
+
+
+.main__section__form__container__label__container {
+    position: relative;
+    width: 4em;
+    height: 3em;
+    border: 1px solid black;
+    margin: 0.5em;
+}
+
+.main__section__form__container__label__container__span__1 {
+    position: absolute;
+    background-color: black;
+    padding: 0.5em 0.8em;
+
+
+}
+
+.main__section__form__container__label__container__span__2 {
+    position: absolute;
+    background-color: black;
+    padding: 0.5em 0.8em;
+    left: 2.35em;
+
+
+}
+
+.main__section__form__container__label__container__span__3 {
+    position: absolute;
+    background-color: black;
+    padding: 0.5em 0.8em;
+    top: 1.9em;
+
+
+}
+
+
+.main__section__form__container__label__h1__1{
+    background-color: red;
+    height: 1em;
+    width: 1em;
+    margin: 1em;
+    border: 1px solid black;
+}
+.main__section__form__container__label__h1__2{
+    background-color: aquamarine;
+    height: 1em;
+    width: 1em;
+    margin: 1em;
+    border: 1px solid black;
+}
+.main__section__form__container__label__h1__3{
+    background-color: greenyellow;
+    height: 1em;
+    width: 1em;
+    margin: 1em;
+    border: 1px solid black;
+}
+.main__section__form__container__label__h1__4{
+    background-color: blueviolet;
+    height: 1em;
+    width: 1em;
+    margin: 1em;
+    border: 1px solid black;
+}
+.main__section__form__container__label__h1__5{
+    background-color: yellow;
+    height: 1em;
+    width: 1em;
+    margin: 1em;
+    border: 1px solid black;
+}
+
+.main__section__form__btn {
+    padding: 0.5em;
+    margin-top: 1em;
+    border-radius: 0.5em;
+}
