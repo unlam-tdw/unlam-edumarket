@@ -1,0 +1,50 @@
+form {
+    font-family: var(--alan-sans);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.contacto {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1em;
+
+}
+
+.contacto__formulario {}
+
+.contacto__info {}
+
+h3 {
+    font-family: var(--alan-sans);
+}
+
+p {
+    font-family: var(--alan-sans);
+    font-weight: bold;
+
+}
+
+/* Vista Tablet*/
+@media screen and (min-width: 47em) {
+
+    .contacto {
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+
+}
+
+/* Vista escritorio */
+@media screen and (min-width: 60em) {
+
+    .contacto {
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+
+
+}

@@ -18,10 +18,11 @@
             <div class="header__logo">
                 <img class="header__logo-img" src="../assets/logo.png" alt="Unlam EduMarket">
             </div>
-                <form action="../busqueda/index.html" method="GET" class="header__search">
-                    <input required id="search" name="query" type="text" class="header__search-input" placeholder="Buscar...">
-                    <button type="submit" class="header__search-btn">🔍</button>
-                </form>
+            <form action="../busqueda/index.html" method="GET" class="header__search">
+                <input required id="search" name="query" type="text" class="header__search-input"
+                    placeholder="Buscar...">
+                <button type="submit" class="header__search-btn">🔍</button>
+            </form>
             <div class="header__cart">
                 <a class="header__cart-btn" href="../carrito/index.html">
                     🛒
@@ -40,28 +41,88 @@
 
     <!-- Main Content -->
     <main class="main">
-        <H1>Contacto</H1>
+        <div class="contacto">
+            <section class="contacto__formulario">
+                <h3>¿Cómo podemos ayudarte?</h3>
+                <form action="./detalle.html" method="GET">
+                    <label for="nombre">Nombre:
+                        <input type="text" id="nombre" name="nombre" required />
+                    </label>
+                    <label for="apellido">Apellido:
+                        <input type="text" id="apellido" name="apellido" required />
+                    </label>
+                    <label for="email">Correo Electrónico:
+                        <input type="email" id="email" name="email" required />
+                    </label>
+                    <label for="telefono">Teléfono:
+                        <input type="tel" id="telefono" name="telefono" />
+                    </label>
+                    <label for="mensaje">Mensaje:
+                        <textarea id="mensaje" name="mensaje" rows="4" cols="30" required></textarea>
+                    </label>
+                    <button type="submit">Enviar</button>
+                </form>
+            </section>
+            <aside class="contacto__info">
+                <p>
+                    Dirección:
+                    Calle Los Aromos 1523, Barrio El Tala (5000) Córdoba, Argentina
+
+                    Teléfono:
+                    +54 351 478-9321
+                </p>
+            </aside>
+
+        </div>
+
     </main>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="footer__container">
             <div class="footer__section">
-                    <ul>
-                        <li><h3 class="footer__title"><a href="https://github.com/miliroggero" target="_blank">Milagros Roggero</a></h3></li>
-                        <li><h3 class="footer__title"><a href="https://github.com/valenvirzi" target="_blank">Valentin Virzi</a></h3></li>
-                        <li><h3 class="footer__title"><a href="https://github.com/fedemarsantillan" target="_blank">Federico Santillan</a></h3></li>
-                        <li><h3 class="footer__title"><a href="https://github.com/Mattee37" target="_blank">Mateo Maccarone</a></h3></li>
-                        <li><h3 class="footer__title"><a href="https://github.com/SantiagoMuse" target="_blank">Santiago Muse</a></h3></li>
-                    </ul>
+                <ul>
+                    <li>
+                        <h3 class="footer__title"><a href="https://github.com/miliroggero" target="_blank">Milagros
+                                Roggero</a></h3>
+                    </li>
+                    <li>
+                        <h3 class="footer__title"><a href="https://github.com/valenvirzi" target="_blank">Valentin
+                                Virzi</a></h3>
+                    </li>
+                    <li>
+                        <h3 class="footer__title"><a href="https://github.com/fedemarsantillan" target="_blank">Federico
+                                Santillan</a></h3>
+                    </li>
+                    <li>
+                        <h3 class="footer__title"><a href="https://github.com/Mattee37" target="_blank">Mateo
+                                Maccarone</a></h3>
+                    </li>
+                    <li>
+                        <h3 class="footer__title"><a href="https://github.com/SantiagoMuse" target="_blank">Santiago
+                                Muse</a></h3>
+                    </li>
+                </ul>
             </div>
             <div class="footer__section">
                 <ul>
-                    <li><h3 class="footer__title"><a href="../index.html">Inicio</a></h3></li>
-                    <li><h3 class="footer__title"><a href="../carrito/index.html">Carrito</a></h3></li>
-                    <li><h3 class="footer__title"><a href="../contacto/index.html">Contacto</a></h3></li>
-                    <li><h3 class="footer__title"><a href="../terminos-y-condiciones/index.html">Terminos y condiciones</a></h3></li>
-                    <li><h3 class="footer__title"><a href="../preguntas-frecuentes/index.html">Preguntas frecuentes</a></h3></li>
+                    <li>
+                        <h3 class="footer__title"><a href="../index.html">Inicio</a></h3>
+                    </li>
+                    <li>
+                        <h3 class="footer__title"><a href="../carrito/index.html">Carrito</a></h3>
+                    </li>
+                    <li>
+                        <h3 class="footer__title"><a href="../contacto/index.html">Contacto</a></h3>
+                    </li>
+                    <li>
+                        <h3 class="footer__title"><a href="../terminos-y-condiciones/index.html">Terminos y
+                                condiciones</a></h3>
+                    </li>
+                    <li>
+                        <h3 class="footer__title"><a href="../preguntas-frecuentes/index.html">Preguntas frecuentes</a>
+                        </h3>
+                    </li>
                 </ul>
             </div>
         </div>
