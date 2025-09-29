@@ -1,28 +1,49 @@
-form {
+.contacto {
     font-family: var(--alan-sans);
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.contacto__formulario form {
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    gap: 0.5em;
+    background-color: gainsboro;
 }
-
-.contacto {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1em;
-
-}
-
-.contacto__formulario {}
-
-.contacto__info {}
 
 h3 {
-    font-family: var(--alan-sans);
+    text-align: center;
+    padding: 0.30em;
+    background-color: var(--air-force-blue);
 }
 
-p {
-    font-family: var(--alan-sans);
+h4 {
+    padding: 0.60em;
+    text-align: center;
+
+}
+
+
+
+.contacto__formulario form label {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1em;
+    margin: 0.20em;
+}
+
+
+.contacto__info p {
     font-weight: bold;
+    text-align: center;
+    margin: 0.20em;
+}
+
+.contacto__info img {
+    width: 100%;
+    height: 15em;
 
 }
 
@@ -31,9 +52,8 @@ p {
 
     .contacto {
         grid-template-columns: repeat(2, 1fr);
-
+        gap: 1em;
     }
-
 
 }
 
