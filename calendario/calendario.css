@@ -1,0 +1,46 @@
+.calendario {
+    text-align: center;
+    width: 100%;
+}
+
+.calendario ol {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    list-style: none;
+    text-align: left;
+    margin: 1em;
+    background: var(--gainsboro);
+}
+
+.calendario li {
+    padding: 0.2em;
+    border: 0.1em solid black;
+}
+
+.dias {
+    background: var(--gainsboro);
+    font-weight: bold;
+    text-align: center;
+    background: var(--air-force-blue);
+
+
+}
+
+.otro_mes {
+    color: var(--philippine-silver);
+
+
+
+
+}
+
+/* Vista Tablet*/
+@media screen and (min-width: 47em) {}
+
+/* Vista escritorio */
+@media screen and (min-width: 60em) {
+
+    .calendario li {
+        padding: 2em;
+    }
+}
