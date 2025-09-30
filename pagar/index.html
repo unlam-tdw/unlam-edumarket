@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pagar - Unlam EduMarket">
+    <link rel="icon" href="../assets/favicon.ico">
+    <link rel="stylesheet" href="../globals.css">
+    <link rel="stylesheet" href="./pagar.css">
+    <title>Pagar | UNLaM EduMarket</title>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header__container">
+            <div class="header__logo">
+                <img class="header__logo-img" src="../assets/logo.png" alt="Unlam EduMarket">
+            </div>
+            <form action="../busqueda/index.html" method="GET" class="header__search">
+                <input required id="search" name="query" type="text" class="header__search-input"
+                    placeholder="Buscar...">
+                <button type="submit" class="header__search-btn">🔍</button>
+            </form>
+            <div class="header__cart">
+                <a class="header__cart-btn" href="../carrito/index.html">
+                    🛒
+                    <span class="header__cart-count">3</span>
+                </a>
+            </div>
+        </div>
+        <nav class="header__nav">
+            <div class="header__nav-container">
+                <a href="../index.html" class="header__nav-link">INICIO</a>
+                <a href="../carrito/index.html" class="header__nav-link">CARRITO</a>
+                <a href="../contacto/index.html" class="header__nav-link">CONTACTO</a>
+                <a href="../gift-card/index.html" class="header__nav-link">GIFT-CARD</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="pagar">
+            <div class="pagar__header">
+                <h1 class="pagar__title">FINALIZAR COMPRA</h1>
+                <p class="pagar__subtitle">Complete los datos para procesar su pago de forma segura</p>
+            </div>
+
+            <div class="pagar__content">
+                <section class="pagar__formulario">
+                    <h2 class="pagar__formulario__title">Datos de Pago</h2>
+                    <form class="pagar__form" action="../index.html" method="GET">
+                        <fieldset class="pagar__form__section">
+                            <legend class="pagar__form__section__title">Información Personal</legend>
+                            <div class="pagar__form__row">
+                                <div class="pagar__form__field">
+                                    <label for="nombre" class="pagar__form__label">Nombre completo *</label>
+                                    <input type="text" id="nombre" name="nombre" class="pagar__form__input" required>
+                                </div>
+                                <div class="pagar__form__field">
+                                    <label for="email" class="pagar__form__label">Email *</label>
+                                    <input type="email" id="email" name="email" class="pagar__form__input" required>
+                                </div>
+                            </div>
+                            <div class="pagar__form__row">
+                                <div class="pagar__form__field">
+                                    <label for="telefono" class="pagar__form__label">Teléfono</label>
+                                    <input type="tel" id="telefono" name="telefono" class="pagar__form__input">
+                                </div>
+                                <div class="pagar__form__field">
+                                    <label for="documento" class="pagar__form__label">DNI *</label>
+                                    <input type="text" id="documento" name="documento" class="pagar__form__input" required>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset class="pagar__form__section" id="datos-tarjeta">
+                            <legend class="pagar__form__section__title">Datos de la Tarjeta</legend>
+                            <div class="pagar__form__row">
+                                <div class="pagar__form__field">
+                                    <label for="numero_tarjeta" class="pagar__form__label">Número de tarjeta *</label>
+                                    <input type="text" id="numero_tarjeta" name="numero_tarjeta" 
+                                           class="pagar__form__input" placeholder="1234 5678 9012 3456" 
+                                           maxlength="19" required>
+                                </div>
+                                <div class="pagar__form__field pagar__form__field--small">
+                                    <label for="cvv" class="pagar__form__label">CVV *</label>
+                                    <input type="text" id="cvv" name="cvv" 
+                                           class="pagar__form__input" placeholder="123" 
+                                           maxlength="4" required>
+                                </div>
+                            </div>
+                            <div class="pagar__form__row">
+                                <div class="pagar__form__field">
+                                    <label for="nombre_tarjeta" class="pagar__form__label">Nombre en la tarjeta *</label>
+                                    <input type="text" id="nombre_tarjeta" name="nombre_tarjeta" 
+                                           class="pagar__form__input" required>
+                                </div>
+                                <div class="pagar__form__field pagar__form__field--small">
+                                    <label for="vencimiento" class="pagar__form__label">Vencimiento *</label>
+                                    <input type="text" id="vencimiento" name="vencimiento" 
+                                           class="pagar__form__input" placeholder="MM/AA" 
+                                           maxlength="5" required>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <div class="pagar__form__terms">
+                            <label class="pagar__form__terms__label">
+                                <input type="checkbox" class="pagar__form__checkbox" required>
+                                <span class="pagar__form__terms__text">
+                                    Acepto los <a href="../terminos-y-condiciones/index.html" target="_blank">términos y condiciones</a>
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="pagar__form__actions">
+                            <button type="submit" class="pagar__form__btn pagar__form__btn--primary">
+                                Procesar Pago - $25.000
+                            </button>
+                        </div>
+                    </form>
+                </section>
+            </div>
+
+            <section class="pagar__payment-info">
+                <h3 class="pagar__payment-info__title">Métodos de Pago Aceptados</h3>
+                <div class="pagar__payment-info__methods">
+                    <img class="pagar__payment-info__icon" 
+                         src="https://www.svgrepo.com/show/449177/payment-visa.svg" alt="Visa">
+                    <img class="pagar__payment-info__icon" 
+                         src="https://www.svgrepo.com/show/449174/payment-mastercard.svg" alt="Mastercard">
+                    <img class="pagar__payment-info__icon" 
+                         src="https://www.svgrepo.com/show/449173/payment-paypal.svg" alt="PayPal">
+                    <img class="pagar__payment-info__icon" 
+                         src="https://www.svgrepo.com/show/449171/payment-google-wallet.svg" alt="Google Wallet">
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer__container">
+            <div class="footer__section">
+                <ul>
+                    <li>
+                        <h3 class="footer__title"><a href="https://github.com/miliroggero" target="_blank">Milagros
+                                Roggero</a></h3>
+                    </li>
+                    <li>
+                        <h3 class="footer__title"><a href="https://github.com/valenvirzi" target="_blank">Valentin
+                                Virzi</a></h3>
+                    </li>
+                    <li>
+                        <h3 class="footer__title"><a href="https://github.com/fedemarsantillan" target="_blank">Federico
+                                Santillan</a></h3>
+                    </li>
+                    <li>
+                        <h3 class="footer__title"><a href="https://github.com/Mattee37" target="_blank">Mateo
+                                Maccarone</a></h3>
+                    </li>
+                    <li>
+                        <h3 class="footer__title"><a href="https://github.com/SantiagoMuse" target="_blank">Santiago
+                                Muse</a></h3>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer__section">
+                <ul>
+                    <li>
+                        <h3 class="footer__title"><a href="../index.html">Inicio</a></h3>
+                    </li>
+                    <li>
+                        <h3 class="footer__title"><a href="../carrito/index.html">Carrito</a></h3>
+                    </li>
+                    <li>
+                        <h3 class="footer__title"><a href="../contacto/index.html">Contacto</a></h3>
+                    </li>
+                    <li>
+                        <h3 class="footer__title"><a href="../gift-card/index.html">Gift Card</a>
+                        </h3>
+                    </li>
+                    <li>
+                        <h3 class="footer__title"><a href="../terminos-y-condiciones/index.html">Terminos y
+                                condiciones</a></h3>
+                    </li>
+                    <li>
+                        <h3 class="footer__title"><a href="../preguntas-frecuentes/index.html">Preguntas frecuentes</a>
+                        </h3>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer__copyright">
+            <p class="footer__copyright__text">© 2025 UNLaM. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
