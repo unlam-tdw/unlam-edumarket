@@ -1,0 +1,250 @@
+.main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*gap: 1.5em;*/
+    padding: 1em;
+
+}
+
+.main__section {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5em;
+    width: 100%;
+}
+
+.main__section__img {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 0.1em solid gray;
+    background-color: lightgray;
+    width: 100%;
+    height: 20em;
+    width: 20em;
+}
+
+.main__section__img__span {
+    position: absolute;
+    background-color: black;
+    color: whitesmoke;
+    top: 0em;
+    right: 0em;
+    padding: 0.5em 1em;
+}
+
+.main__section__form__input {
+    margin: 1em 0;
+    padding: 1em;
+    width: 100%;
+}
+
+.main__section__form__container {
+    margin: 1em 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1em;
+}
+
+.main__section__form__container__label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main__section__form__container__label__color__1 {
+    background-color: red;
+    border: 1px solid black;
+    height: 0.5em;
+    width: 0.5em;
+    padding: 0.5em;
+    margin: 1em;
+    border-radius: 50%;
+}
+
+.main__section__form__container__label__color__2 {
+    background-color: aquamarine;
+    border: 1px solid black;
+    height: 0.5em;
+    width: 0.5em;
+    padding: 0.5em;
+    margin: 1em;
+    border-radius: 50%;
+}
+
+.main__section__form__container__label__color__3 {
+    background-color: greenyellow;
+    border: 1px solid black;
+    height: 0.5em;
+    width: 0.5em;
+    padding: 0.5em;
+    margin: 1em;
+    border-radius: 50%;
+}
+
+.main__section__form__container__label__color__4 {
+    background-color: blueviolet;
+    border: 1px solid black;
+    height: 0.5em;
+    width: 0.5em;
+    padding: 0.5em;
+    margin: 1em;
+    border-radius: 50%;
+}
+
+.main__section__form__container__label__color__5 {
+    background-color: yellow;
+    border: 1px solid black;
+    height: 0.5em;
+    width: 0.5em;
+    padding: 0.5em;
+    margin: 1em;
+    border-radius: 50%;
+}
+
+
+.main__section__form__container {
+    margin: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+.main__section__form__label {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 1em 0;
+}
+
+.main__section__form__label__input {
+    width: 100%;
+    padding: 0.8em;
+    margin-top: 0.5em;
+}
+
+
+.main__section__form__container__label__container {
+    position: relative;
+    width: 4em;
+    height: 3em;
+    border: 1px solid black;
+    margin: 0.5em;
+}
+
+.main__section__form__container__label__container__span__1 {
+    position: absolute;
+    background-color: black;
+    padding: 0.5em 0.8em;
+
+
+}
+
+.main__section__form__container__label__container__span__2 {
+    position: absolute;
+    background-color: black;
+    padding: 0.5em 0.8em;
+    left: 2.35em;
+
+
+}
+
+.main__section__form__container__label__container__span__3 {
+    position: absolute;
+    background-color: black;
+    padding: 0.5em 0.8em;
+    top: 1.9em;
+
+
+}
+
+
+.main__section__form__container__label__h1__1 {
+    background-color: red;
+    height: 1em;
+    width: 1em;
+    margin: 1em;
+    border: 1px solid black;
+}
+
+.main__section__form__container__label__h1__2 {
+    background-color: aquamarine;
+    height: 1em;
+    width: 1em;
+    margin: 1em;
+    border: 1px solid black;
+}
+
+.main__section__form__container__label__h1__3 {
+    background-color: greenyellow;
+    height: 1em;
+    width: 1em;
+    margin: 1em;
+    border: 1px solid black;
+}
+
+.main__section__form__container__label__h1__4 {
+    background-color: blueviolet;
+    height: 1em;
+    width: 1em;
+    margin: 1em;
+    border: 1px solid black;
+}
+
+.main__section__form__container__label__h1__5 {
+    background-color: yellow;
+    height: 1em;
+    width: 1em;
+    margin: 1em;
+    border: 1px solid black;
+}
+
+.main__section__form__btn {
+    width: 100%;
+
+    padding: 1em;
+    margin-top: 1em;
+    border-radius: 0.5em;
+    background-color: #333;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/*En tablet se hacen dos columnas*/
+@media screen and (min-width: 47em) {
+    .main {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .main__section__img {
+        width: 25em;
+        height: 25em;
+    }
+
+}
+@media screen and (min-width: 60em) {
+
+    .main__section__img {/*imagen mas grande*/
+        width: 35em;
+        height: 35em;
+    }
+
+    .main__section__form__btn {
+        width: auto; /* en desktop no hace falta ocupar todo */
+        padding: 0.8em 2em;
+    }
+
+
+}

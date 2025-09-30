@@ -19,7 +19,7 @@
                 <img class="header__logo-img" src="../assets/logo.png" alt="Unlam EduMarket">
             </div>
                 <form action="../busqueda/index.html" method="GET" class="header__search">
-                    <input id="search" name="query" type="text" class="header__search-input" placeholder="Buscar...">
+                    <input required id="search" name="query" type="text" class="header__search-input" placeholder="Buscar...">
                     <button type="submit" class="header__search-btn">🔍</button>
                 </form>
             <div class="header__cart">
@@ -40,7 +40,318 @@
 
     <!-- Main Content -->
     <main class="main">
-        <H1>Detalle</H1>
+        <section class="course-detail">
+            <div class="course-detail__hero">
+                <div class="course-detail__hero__image">
+                    <img class="course-detail__hero__img" 
+                         src="https://img-c.udemycdn.com/course/480x270/1565838_e54e_18.jpg" 
+                         alt="Curso de Programación">
+                </div>
+                <div class="course-detail__hero__content">
+                    <h1 class="course-detail__hero__title">Desarrollo Full Stack con JavaScript</h1>
+                    <div class="course-detail__hero__info">
+                        <div class="course-detail__hero__item">
+                            <span class="course-detail__hero__label">Valor:</span>
+                            <span class="course-detail__hero__value">$120.-</span>
+                        </div>
+                        <div class="course-detail__hero__item">
+                            <span class="course-detail__hero__label">Tiempo de dedicación necesario:</span>
+                            <span class="course-detail__hero__value">80 horas</span>
+                        </div>
+                        <div class="course-detail__hero__item">
+                            <span class="course-detail__hero__label">Descripción del curso:</span>
+                            <span class="course-detail__hero__value">Aprende a desarrollar aplicaciones web completas desde cero usando JavaScript, Node.js, React y MongoDB. Domina tanto el frontend como el backend para convertirte en un desarrollador full stack profesional.</span>
+                        </div>
+                        <div class="course-detail__hero__item">
+                            <span class="course-detail__hero__label">Requisitos Previos:</span>
+                            <span class="course-detail__hero__value">Conocimientos básicos de HTML, CSS y lógica de programación</span>
+                        </div>
+                    </div>
+                    <button class="course-detail__hero__btn" type="button">INSCRIBIRSE</button>
+                </div>
+            </div>
+
+            <div class="course-detail__content">
+                <div class="course-detail__main">
+                    <section class="course-detail__curriculum">
+                        <h2 class="course-detail__section-title">CONTENIDOS POR CLASE</h2>
+                        <div class="course-detail__curriculum__content">
+                            <div class="course-detail__curriculum__intro">
+                                <span class="course-detail__curriculum__intro-text">FUNDAMENTOS DE PROGRAMACIÓN WEB</span>
+                            </div>
+                            
+                            <div class="course-detail__curriculum__modules">
+                                <details class="course-detail__curriculum__module" open>
+                                    <summary class="course-detail__curriculum__module__header">
+                                        <span class="course-detail__curriculum__module__title">MÓDULO 1: FRONTEND CON HTML, CSS Y JAVASCRIPT</span>
+                                        <span class="course-detail__curriculum__module__toggle">▼</span>
+                                    </summary>
+                                    <div class="course-detail__curriculum__module__content">
+                                        <div class="course-detail__curriculum__lesson">
+                                            <div class="course-detail__curriculum__lesson__icon">▶</div>
+                                            <div class="course-detail__curriculum__lesson__content">
+                                                <span class="course-detail__curriculum__lesson__title">M01-1 Estructura HTML semántica</span>
+                                                <span class="course-detail__curriculum__lesson__duration">30 min</span>
+                                            </div>
+                                        </div>
+                                        <div class="course-detail__curriculum__lesson">
+                                            <div class="course-detail__curriculum__lesson__icon">▶</div>
+                                            <div class="course-detail__curriculum__lesson__content">
+                                                <span class="course-detail__curriculum__lesson__title">M01-2 CSS Grid y Flexbox</span>
+                                                <span class="course-detail__curriculum__lesson__duration">45 min</span>
+                                            </div>
+                                        </div>
+                                        <div class="course-detail__curriculum__lesson">
+                                            <div class="course-detail__curriculum__lesson__icon">▶</div>
+                                            <div class="course-detail__curriculum__lesson__content">
+                                                <span class="course-detail__curriculum__lesson__title">M01-3 JavaScript ES6+ y DOM</span>
+                                                <span class="course-detail__curriculum__lesson__duration">50 min</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </details>
+                                
+                                <details class="course-detail__curriculum__module">
+                                    <summary class="course-detail__curriculum__module__header">
+                                        <span class="course-detail__curriculum__module__title">MÓDULO 2: REACT Y DESARROLLO FRONTEND AVANZADO</span>
+                                        <span class="course-detail__curriculum__module__toggle">▼</span>
+                                    </summary>
+                                    <div class="course-detail__curriculum__module__content">
+                                        <div class="course-detail__curriculum__lesson">
+                                            <div class="course-detail__curriculum__lesson__icon">▶</div>
+                                            <div class="course-detail__curriculum__lesson__content">
+                                                <span class="course-detail__curriculum__lesson__title">M02-1 Componentes y JSX</span>
+                                                <span class="course-detail__curriculum__lesson__duration">40 min</span>
+                                            </div>
+                                        </div>
+                                        <div class="course-detail__curriculum__lesson">
+                                            <div class="course-detail__curriculum__lesson__icon">▶</div>
+                                            <div class="course-detail__curriculum__lesson__content">
+                                                <span class="course-detail__curriculum__lesson__title">M02-2 Hooks y Estado</span>
+                                                <span class="course-detail__curriculum__lesson__duration">35 min</span>
+                                            </div>
+                                        </div>
+                                        <div class="course-detail__curriculum__lesson">
+                                            <div class="course-detail__curriculum__lesson__icon">▶</div>
+                                            <div class="course-detail__curriculum__lesson__content">
+                                                <span class="course-detail__curriculum__lesson__title">M02-3 Routing y Context API</span>
+                                                <span class="course-detail__curriculum__lesson__duration">45 min</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </details>
+                                
+                                <details class="course-detail__curriculum__module">
+                                    <summary class="course-detail__curriculum__module__header">
+                                        <span class="course-detail__curriculum__module__title">MÓDULO 3: BACKEND CON NODE.JS Y EXPRESS</span>
+                                        <span class="course-detail__curriculum__module__toggle">▼</span>
+                                    </summary>
+                                    <div class="course-detail__curriculum__module__content">
+                                        <div class="course-detail__curriculum__lesson">
+                                            <div class="course-detail__curriculum__lesson__icon">▶</div>
+                                            <div class="course-detail__curriculum__lesson__content">
+                                                <span class="course-detail__curriculum__lesson__title">M03-1 Servidor con Express.js</span>
+                                                <span class="course-detail__curriculum__lesson__duration">40 min</span>
+                                            </div>
+                                        </div>
+                                        <div class="course-detail__curriculum__lesson">
+                                            <div class="course-detail__curriculum__lesson__icon">▶</div>
+                                            <div class="course-detail__curriculum__lesson__content">
+                                                <span class="course-detail__curriculum__lesson__title">M03-2 APIs REST y Middleware</span>
+                                                <span class="course-detail__curriculum__lesson__duration">50 min</span>
+                                            </div>
+                                        </div>
+                                        <div class="course-detail__curriculum__lesson">
+                                            <div class="course-detail__curriculum__lesson__icon">▶</div>
+                                            <div class="course-detail__curriculum__lesson__content">
+                                                <span class="course-detail__curriculum__lesson__title">M03-3 Autenticación y Seguridad</span>
+                                                <span class="course-detail__curriculum__lesson__duration">35 min</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </details>
+                                
+                                <details class="course-detail__curriculum__module">
+                                    <summary class="course-detail__curriculum__module__header">
+                                        <span class="course-detail__curriculum__module__title">MÓDULO 4: BASE DE DATOS Y DESPLIEGUE</span>
+                                        <span class="course-detail__curriculum__module__toggle">▼</span>
+                                    </summary>
+                                    <div class="course-detail__curriculum__module__content">
+                                        <div class="course-detail__curriculum__lesson">
+                                            <div class="course-detail__curriculum__lesson__icon">▶</div>
+                                            <div class="course-detail__curriculum__lesson__content">
+                                                <span class="course-detail__curriculum__lesson__title">M04-1 MongoDB y Mongoose</span>
+                                                <span class="course-detail__curriculum__lesson__duration">45 min</span>
+                                            </div>
+                                        </div>
+                                        <div class="course-detail__curriculum__lesson">
+                                            <div class="course-detail__curriculum__lesson__icon">▶</div>
+                                            <div class="course-detail__curriculum__lesson__content">
+                                                <span class="course-detail__curriculum__lesson__title">M04-2 Testing y Debugging</span>
+                                                <span class="course-detail__curriculum__lesson__duration">30 min</span>
+                                            </div>
+                                        </div>
+                                        <div class="course-detail__curriculum__lesson">
+                                            <div class="course-detail__curriculum__lesson__icon">▶</div>
+                                            <div class="course-detail__curriculum__lesson__content">
+                                                <span class="course-detail__curriculum__lesson__title">M04-3 Despliegue en la nube</span>
+                                                <span class="course-detail__curriculum__lesson__duration">40 min</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </details>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="course-detail__sidebar">
+                    <section class="course-detail__instructor">
+                        <h2 class="course-detail__section-title">DOCENTE</h2>
+                        <div class="course-detail__instructor__content">
+                            <div class="course-detail__instructor__avatar">
+                                <img class="course-detail__instructor__img" 
+                                     src="https://img-c.udemycdn.com/course/240x135/1565838_e54e_18.jpg" 
+                                     alt="Foto del instructor">
+                            </div>
+                            <div class="course-detail__instructor__info">
+                                <h3 class="course-detail__instructor__name">Ana García Rodríguez</h3>
+                                <div class="course-detail__instructor__rating">
+                                    <div class="course-detail__instructor__stars">
+                                        <span class="course-detail__instructor__star course-detail__instructor__star--filled">★</span>
+                                        <span class="course-detail__instructor__star course-detail__instructor__star--filled">★</span>
+                                        <span class="course-detail__instructor__star course-detail__instructor__star--filled">★</span>
+                                        <span class="course-detail__instructor__star course-detail__instructor__star--filled">★</span>
+                                        <span class="course-detail__instructor__star">★</span>
+                                    </div>
+                                    <span class="course-detail__instructor__rating-text">4.0 de 5 estrellas</span>
+                                </div>
+                                <p class="course-detail__instructor__bio">
+                                    Desarrolladora Full Stack con más de 8 años de experiencia en JavaScript, React, Node.js y MongoDB. Ex-ingeniera de software en Google y Microsoft. Especialista en arquitectura de aplicaciones web escalables y mentora de más de 500 desarrolladores junior. Certificada en AWS y Azure.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <section class="course-detail__related">
+                <h2 class="course-detail__section-title">Cursos Relacionados</h2>
+                <ul class="course-detail__related__list">
+                    <li class="course-detail__related__item">
+                        <article class="course-detail__related__card">
+                            <div class="course-detail__related__card__top">
+                                <img class="course-detail__related__card__img" 
+                                     src="https://img-c.udemycdn.com/course/240x135/1565838_e54e_18.jpg" 
+                                     alt="Curso relacionado">
+                                <div class="course-detail__related__card__tag">
+                                    <span class="course-detail__related__card__price">$85.-</span>
+                                </div>
+                            </div>
+                            <div class="course-detail__related__card__content">
+                                <div class="course-detail__related__card__info">
+                                    <div class="course-detail__related__card__duration">
+                                        <span class="course-detail__related__card__duration__number">45</span>
+                                        <span class="course-detail__related__card__duration__text">hs</span>
+                                    </div>
+                                    <div class="course-detail__related__card__details">
+                                        <h3 class="course-detail__related__card__title">Python para Data Science</h3>
+                                        <a class="course-detail__related__card__link" href="./index.html">Ver detalle</a>
+                                    </div>
+                                </div>
+                                <div class="course-detail__related__card__actions">
+                                    <a class="course-detail__related__card__btn" href="">Comprar</a>
+                                </div>
+                            </div>
+                        </article>
+                    </li>
+                    
+                    <li class="course-detail__related__item">
+                        <article class="course-detail__related__card">
+                            <div class="course-detail__related__card__top">
+                                <img class="course-detail__related__card__img" 
+                                     src="https://img-c.udemycdn.com/course/240x135/1565838_e54e_18.jpg" 
+                                     alt="Curso relacionado">
+                                <div class="course-detail__related__card__tag">
+                                    <span class="course-detail__related__card__price">$95.-</span>
+                                </div>
+                            </div>
+                            <div class="course-detail__related__card__content">
+                                <div class="course-detail__related__card__info">
+                                    <div class="course-detail__related__card__duration">
+                                        <span class="course-detail__related__card__duration__number">70</span>
+                                        <span class="course-detail__related__card__duration__text">hs</span>
+                                    </div>
+                                    <div class="course-detail__related__card__details">
+                                        <h3 class="course-detail__related__card__title">DevOps con Docker y Kubernetes</h3>
+                                        <a class="course-detail__related__card__link" href="./index.html">Ver detalle</a>
+                                    </div>
+                                </div>
+                                <div class="course-detail__related__card__actions">
+                                    <a class="course-detail__related__card__btn" href="">Comprar</a>
+                                </div>
+                            </div>
+                        </article>
+                    </li>
+                    
+                    <li class="course-detail__related__item">
+                        <article class="course-detail__related__card">
+                            <div class="course-detail__related__card__top">
+                                <img class="course-detail__related__card__img" 
+                                     src="https://img-c.udemycdn.com/course/240x135/1565838_e54e_18.jpg" 
+                                     alt="Curso relacionado">
+                                <div class="course-detail__related__card__tag">
+                                    <span class="course-detail__related__card__price">$90.-</span>
+                                </div>
+                            </div>
+                            <div class="course-detail__related__card__content">
+                                <div class="course-detail__related__card__info">
+                                    <div class="course-detail__related__card__duration">
+                                        <span class="course-detail__related__card__duration__number">55</span>
+                                        <span class="course-detail__related__card__duration__text">hs</span>
+                                    </div>
+                                    <div class="course-detail__related__card__details">
+                                        <h3 class="course-detail__related__card__title">Desarrollo Móvil con React Native</h3>
+                                        <a class="course-detail__related__card__link" href="./index.html">Ver detalle</a>
+                                    </div>
+                                </div>
+                                <div class="course-detail__related__card__actions">
+                                    <a class="course-detail__related__card__btn" href="">Comprar</a>
+                                </div>
+                            </div>
+                        </article>
+                    </li>
+                    
+                    <li class="course-detail__related__item">
+                        <article class="course-detail__related__card">
+                            <div class="course-detail__related__card__top">
+                                <img class="course-detail__related__card__img" 
+                                     src="https://img-c.udemycdn.com/course/240x135/1565838_e54e_18.jpg" 
+                                     alt="Curso relacionado">
+                                <div class="course-detail__related__card__tag">
+                                    <span class="course-detail__related__card__price">$110.-</span>
+                                </div>
+                            </div>
+                            <div class="course-detail__related__card__content">
+                                <div class="course-detail__related__card__info">
+                                    <div class="course-detail__related__card__duration">
+                                        <span class="course-detail__related__card__duration__number">65</span>
+                                        <span class="course-detail__related__card__duration__text">hs</span>
+                                    </div>
+                                    <div class="course-detail__related__card__details">
+                                        <h3 class="course-detail__related__card__title">Machine Learning con TensorFlow</h3>
+                                        <a class="course-detail__related__card__link" href="./index.html">Ver detalle</a>
+                                    </div>
+                                </div>
+                                <div class="course-detail__related__card__actions">
+                                    <a class="course-detail__related__card__btn" href="">Comprar</a>
+                                </div>
+                            </div>
+                        </article>
+                    </li>
+                </ul>
+            </section>
+        </section>
     </main>
 
     <!-- Footer -->
