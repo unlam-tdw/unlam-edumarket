@@ -1,0 +1,67 @@
+.main {
+    display: block;
+    padding: 1.5em 1.5em;
+}
+
+.main H1 {
+    gap: 0.5em;
+    text-align: center;
+    background-color: var(--air-force-blue);
+    width: 100%;
+    border-radius: 5px;
+    line-height: 1em;
+    font-size: 2em;
+}
+
+.main ol {
+    list-style-position: inside;
+    line-height: 1.5em;
+}
+
+.main li {
+    font-size: 1.1em;
+    line-height: 1.5em;
+    color: var(--air-force-blue);
+}
+
+.main ul {
+    list-style-position: inside;
+    line-height: 2em;
+
+}
+
+.main ul li {
+    color: var(--black);
+    font-size: 1em;
+    padding: 0 1.5em;
+
+
+}
+
+/* Vista Tablet*/
+@media screen and (min-width: 47em) {
+
+    .main H1 {
+        gap: 0.5em;
+        line-height: 2em;
+    }
+
+
+
+}
+
+/* Vista escritorio */
+@media screen and (min-width: 60em) {
+
+    .main H1 {
+        gap: 0.5em;
+        line-height: 2em;
+    }
+
+    .main li {
+        font-size: 1.5em;
+        line-height: 2em;
+        color: var(--air-force-blue);
+    }
+
+}
