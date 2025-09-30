@@ -10,4 +10,18 @@
     --auburn: #a52a2a;
     --philippine-silver: #b3b3b3;
     --gainsboro: #DCDCDC;
+    
+    /* Colores adicionales encontrados en el proyecto */
+    --dark-gray: #555;
+    --medium-gray: #333;
+    --success-green: #4CAF50;
+    --dark-green: #036508;
+    --peach: #ffd6b3;
+    --light-gray: #D3D3D3;
+    --whitesmoke: #F5F5F5;
+    --aquamarine: #7FFFD4;
+    --greenyellow: #ADFF2F;
+    --blueviolet: #8A2BE2;
+    --yellow: #FFFF00;
+    --transparent: transparent;
 }
