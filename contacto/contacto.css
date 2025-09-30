@@ -9,7 +9,7 @@
     flex-direction: column;
     align-items: stretch;
     gap: 0.5em;
-    background-color: gainsboro;
+    background-color: var(--gainsboro);
 }
 
 h3 {
@@ -34,6 +34,19 @@ h4 {
     margin: 0.20em;
 }
 
+.contacto__formulario button {
+    padding: 1em;
+    border-radius: 0.25em;
+    font-weight: 600;
+    font-size: 0.9em;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    background-color: var(--air-force-blue);
+}
+
 
 .contacto__info p {
     font-weight: bold;
@@ -42,9 +55,8 @@ h4 {
 }
 
 .contacto__info img {
-    width: 100%;
-    height: 15em;
-
+    width: 80%;
+    margin: 0.5em 1.9em;
 }
 
 /* Vista Tablet*/
@@ -55,6 +67,10 @@ h4 {
         gap: 1em;
     }
 
+    .contacto__info img {
+        width: 80%;
+        margin: 0.5em 2.3em;
+    }
 }
 
 /* Vista escritorio */
@@ -65,6 +81,9 @@ h4 {
 
     }
 
-
+    .contacto__info img {
+        width: 80%;
+        margin: 0.5em 3.7em;
+    }
 
 }
