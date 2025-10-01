@@ -52,10 +52,10 @@
                 <h2 class="main__login__section__welcome__title">Bienvenido/a</h2>
                 <p class="main__login__section__welcome__p">Inicia sesión para ver tus cursos</p>
             </div>
-            <form class="main__login__section__form">
-                <input placeholder="Email" type="email">
-                <input placeholder="Password" type="password">
-                <a class="main__login__section__form__inputs__btn" href="../index.html">Iniciar Sesión</a>
+            <form class="main__login__section__form" action="../index.html" method="GET">
+                <input name="email" required placeholder="Email" type="email">
+                <input name="password" required placeholder="Password" type="password">
+                <button type="submit" class="main__login__section__form__inputs__btn" href="../index.html">Iniciar Sesión</button>
             </form>
 
         </section>

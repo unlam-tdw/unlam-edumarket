@@ -27,11 +27,13 @@
     object-fit: contain;
 }
 
+.header__user,
 .header__cart {
     order: 2;
     flex: 0 0 auto;
 }
 
+.header__user-btn,
 .header__cart-btn {
     border: 1px solid var(--black);
     background-color: var(--air-force-blue);
@@ -43,6 +45,7 @@
     padding: 0.25em;
 }
 
+.header__user-btn:hover,
 .header__cart-btn:hover {
     background-color: var(--sky-blue);
 }
