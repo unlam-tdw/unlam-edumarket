@@ -38,7 +38,7 @@ ol {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: transparent;
+  background-color: var(--transparent);
   height: 100%;
   border: 0;
 }
@@ -206,7 +206,7 @@ ol {
 }
 
 .main__payments__carousel__btn {
-  background-color: transparent;
+  background-color: var(--transparent);
   border: none;
 }
 

@@ -1,0 +1,344 @@
+
+.pagar {
+    padding: 1em;
+    max-width: 75em;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.pagar__header {
+    text-align: center;
+    padding-bottom: 1em;
+    border-bottom: 0.125em solid var(--air-force-blue);
+}
+
+.pagar__title {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 0.5em;
+    letter-spacing: 0.05em;
+}
+
+.pagar__subtitle {
+    font-size: 0.9em;
+    color: var(--raw-umber);
+    font-weight: 500;
+}
+
+.pagar__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.pagar__formulario {
+    background-color: var(--whihte);
+    border: 0.125em solid var(--air-force-blue);
+    border-radius: 0.5em;
+    padding: 1.5em;
+    box-shadow: 0 0.25em 0.5em var(--philippine-silver);
+}
+
+.pagar__formulario__title {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 1.5em;
+    text-align: center;
+    letter-spacing: 0.05em;
+}
+
+.pagar__form {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.pagar__form__section {
+    border: 0.0625em solid var(--gainsboro);
+    border-radius: 0.25em;
+    padding: 1.5em;
+    margin: 0;
+    background-color: var(--antique-white);
+}
+
+.pagar__form__section__title {
+    font-size: 1em;
+    font-weight: 600;
+    color: var(--black);
+    margin-bottom: 1em;
+    padding: 0 0.5em;
+    background-color: var(--antique-white);
+    letter-spacing: 0.05em;
+}
+
+.pagar__form__row {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-bottom: 1em;
+}
+
+.pagar__form__row:last-child {
+    margin-bottom: 0;
+}
+
+.pagar__form__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.pagar__form__label {
+    font-weight: 600;
+    color: var(--black);
+    font-size: 0.9em;
+}
+
+.pagar__form__input {
+    padding: 0.75em;
+    border: 0.125em solid var(--gainsboro);
+    border-radius: 0.25em;
+    background-color: var(--whihte);
+    color: var(--black);
+    font-size: 0.9em;
+    font-family: var(--alan-sans);
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.pagar__form__input:focus {
+    border-color: var(--air-force-blue);
+    box-shadow: 0 0 0 0.125em var(--sky-blue);
+}
+
+.pagar__form__input::placeholder {
+    color: var(--philippine-silver);
+}
+
+.pagar__form__terms {
+    background-color: var(--antique-white);
+    padding: 1em;
+    border-radius: 0.25em;
+    border: 0.0625em solid var(--gainsboro);
+}
+
+.pagar__form__terms__label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75em;
+    cursor: pointer;
+}
+
+.pagar__form__checkbox {
+    margin-top: 0.125em;
+    width: 1.2em;
+    height: 1.2em;
+    accent-color: var(--air-force-blue);
+    flex-shrink: 0;
+}
+
+.pagar__form__terms__text {
+    font-size: 0.85em;
+    color: var(--black);
+    line-height: 1.4;
+}
+
+.pagar__form__terms__text a {
+    color: var(--air-force-blue);
+    text-decoration: underline;
+}
+
+.pagar__form__terms__text a:hover {
+    color: var(--sky-blue);
+}
+
+.pagar__form__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding-top: 1em;
+    border-top: 0.125em solid var(--gainsboro);
+}
+
+.pagar__form__btn {
+    padding: 1em;
+    border-radius: 0.25em;
+    font-weight: 600;
+    font-size: 0.9em;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    font-family: var(--alan-sans);
+    transition: all 0.2s ease;
+}
+
+.pagar__form__btn--primary {
+    background-color: var(--auburn);
+    color: var(--whihte);
+}
+
+.pagar__form__btn--primary:hover {
+    background-color: var(--coral-red);
+    transform: translateY(-0.0625em);
+}
+
+.pagar__payment-info {
+    background-color: var(--air-force-blue);
+    border-radius: 0.5em;
+    padding: 1.5em;
+    text-align: center;
+}
+
+.pagar__payment-info__title {
+    font-size: 1em;
+    font-weight: 600;
+    color: var(--black);
+    margin-bottom: 1em;
+    letter-spacing: 0.05em;
+}
+
+.pagar__payment-info__methods {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    flex-wrap: wrap;
+}
+
+.pagar__payment-info__icon {
+    width: 2.5em;
+    height: auto;
+    filter: drop-shadow(0 0.125em 0.25em var(--philippine-silver));
+}
+
+@media screen and (min-width: 47em) {
+    .pagar {
+        padding: 1.5em;
+        gap: 2.5em;
+    }
+    
+    .pagar__title {
+        font-size: 1.75em;
+    }
+    
+    .pagar__subtitle {
+        font-size: 1em;
+    }
+    
+    .pagar__content {
+        flex-direction: column;
+        gap: 2em;
+        align-items: center;
+    }
+    
+    .pagar__formulario {
+        width: 100%;
+        max-width: 50em;
+    }
+    
+    .pagar__form__row {
+        flex-direction: row;
+        gap: 1.5em;
+    }
+    
+    .pagar__form__field--small {
+        flex: 0 1 8em;
+    }
+    
+    .pagar__form__actions {
+        flex-direction: row;
+        justify-content: center;
+    }
+    
+    .pagar__payment-info__methods {
+        gap: 1.5em;
+    }
+    
+    .pagar__payment-info__icon {
+        width: 3em;
+    }
+}
+
+@media screen and (min-width: 60em) {
+    .pagar {
+        padding: 2em;
+        gap: 3em;
+    }
+    
+    .pagar__title {
+        font-size: 2em;
+    }
+    
+    .pagar__subtitle {
+        font-size: 1.1em;
+    }
+    
+    .pagar__content {
+        gap: 3em;
+    }
+    
+    .pagar__formulario {
+        padding: 1.5em;
+        max-width: 45em;
+    }
+    
+    .pagar__formulario__title {
+        font-size: 1.3em;
+    }
+    
+    .pagar__form__section {
+        padding: 1.5em;
+    }
+    
+    .pagar__form__section__title {
+        font-size: 1.1em;
+    }
+    
+    .pagar__form__row {
+        gap: 1.5em;
+    }
+    
+    .pagar__form__label {
+        font-size: 1em;
+    }
+    
+    .pagar__form__input {
+        padding: 1em;
+        font-size: 1em;
+    }
+    
+    .pagar__form__terms {
+        padding: 1.5em;
+    }
+    
+    .pagar__form__terms__text {
+        font-size: 0.9em;
+    }
+    
+    .pagar__form__btn {
+        padding: 1.25em 2em;
+        font-size: 1em;
+    }
+    
+    .pagar__payment-info {
+        padding: 2em;
+    }
+    
+    .pagar__payment-info__title {
+        font-size: 1.1em;
+    }
+    
+    .pagar__payment-info__methods {
+        gap: 2em;
+    }
+    
+    .pagar__payment-info__icon {
+        width: 3.5em;
+    }
+}
