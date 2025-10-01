@@ -1,4 +1,109 @@
 .main__login {
   display: flex;
   flex-direction: column;
+  background: var(--philippine-silver);
+}
+
+.main__login__info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  background: var(--philippine-silver);
+}
+
+.main__login__info__logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.main__login__info__logo__img {
+  width: 5em;
+}
+
+.main__login__info__logo__name {
+  font-size: x-large;
+}
+
+.main__login__section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--whihte);
+  border-radius: 10px 10px 0 0;
+  padding: 1em;
+  padding-bottom: 2em;
+  text-align: center;
+  gap: 1em;
+}
+
+.main__login__section__welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25em;
+}
+
+.main__login__section__welcome__title {
+  color: var(--air-force-blue);
+}
+
+.main__login__section__welcome__p {
+  text-wrap: pretty;
+}
+
+.main__login__section__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.main__login__section__form input {
+  background: var(--air-force-blue);
+  color: var(--whihte);
+  border: none;
+  font-size: 1em;
+  border-radius: 50px;
+  text-align: center;
+  padding: 0.45em;
+}
+.main__login__section__form input::placeholder {
+  color: var(--whihte);
+}
+
+.main__login__section__form__inputs__btn {
+  text-decoration: none;
+  color: var(--whihte);
+  background: var(--auburn);
+  padding: 0.5em 0.75em;
+  border-radius: 500px;
+  margin-top: 0.5em;
+}
+.main__login__section__form__inputs__btn:hover {
+  background: var(--coral-red);
+}
+
+@media screen and (min-width: 60em) {
+  .main__login {
+    flex-direction: row;
+    justify-content: center;
+    padding: 3em;
+    background: none;
+  }
+  .main__login__info {
+    width: 100%;
+    min-height: 300px;
+    border-radius: 10px 0 0 10px;
+  }
+  .main__login__section {
+    justify-content: space-evenly;
+    width: 100%;
+    border-radius: 0 10px 10px 0;
+  }
+  .main__login__section__form {
+    gap: 1em;
+  }
 }
