@@ -11,7 +11,7 @@ export const COURSES = [
     },
     {
         id: 2,
-        name: "Introducción a Python",
+        name: "Programación con Python",
         description: "Domina los fundamentos de Python desde cero. Ideal para principiantes",
         price: 49.99,
         duration: 80,
@@ -35,7 +35,7 @@ export const COURSES = [
     },
     {
         id: 5,
-        name: "React.js Avanzado",
+        name: "Programación React.js Avanzado",
         description: "Construye aplicaciones complejas con React, hooks y context API",
         price: 149.99,
         duration: 180,
@@ -51,7 +51,7 @@ export const COURSES = [
     },
     {
         id: 7,
-        name: "Machine Learning con TensorFlow",
+        name: "Programación con Machine Learning",
         description: "Implementa modelos de inteligencia artificial y aprendizaje automático",
         price: 199.99,
         duration: 200,
@@ -67,7 +67,7 @@ export const COURSES = [
     },
     {
         id: 9,
-        name: "Desarrollo de Apps Móviles",
+        name: "Programación de Apps Móviles",
         description: "Crea aplicaciones para iOS y Android con React Native",
         price: 159.99,
         duration: 160,
@@ -99,7 +99,7 @@ export const COURSES = [
     },
     {
         id: 13,
-        name: "Node.js y Express",
+        name: "Programación Backend con Node.js",
         description: "Desarrollo de servidores y APIs RESTful con Node.js",
         price: 139.99,
         duration: 140,
@@ -107,7 +107,7 @@ export const COURSES = [
     },
     {
         id: 14,
-        name: "Diseño UX/UI",
+        name: "Diseño UX/UI Profesional",
         description: "Principios de experiencia y diseño de interfaces de usuario",
         price: 109.99,
         duration: 130,
@@ -123,7 +123,7 @@ export const COURSES = [
     },
     {
         id: 16,
-        name: "Video Marketing y YouTube",
+        name: "Marketing con Videos y YouTube",
         description: "Crea contenido viral, edita videos profesionales y haz crecer tu canal",
         price: 89.99,
         duration: 95,
@@ -131,7 +131,7 @@ export const COURSES = [
     },
     {
         id: 17,
-        name: "Base de Datos SQL y NoSQL",
+        name: "Programación de Bases de Datos",
         description: "Aprende MySQL, PostgreSQL, MongoDB y optimización de consultas",
         price: 129.99,
         duration: 125,

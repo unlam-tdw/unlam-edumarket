@@ -15,7 +15,7 @@ export class Header {
             <div class="header__logo">
                 <img class="header__logo-img" src="./assets/logo.png" alt="Unlam EduMarket">
             </div>
-            <form action="./busqueda/index.html" method="GET" class="header__search">
+            <form action="/busqueda" method="GET" class="header__search">
                 <input required id="search" name="query" type="text" class="header__search-input"
                     placeholder="Buscar...">
                 <button type="submit" class="header__search-btn">🔍</button>
