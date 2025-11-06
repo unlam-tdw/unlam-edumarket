@@ -37,19 +37,19 @@ export class Footer {
             <div class="footer__section">
                 <ul>
                     <li>
-                        <h3 class="footer__title"><a href="./index.html">Inicio</a></h3>
+                        <h3 class="footer__title"><a href="../index.html">Inicio</a></h3>
                     </li>
                     <li>
-                        <h3 class="footer__title"><a href="./gift-card/index.html">Gift Card</a></h3>
+                        <h3 class="footer__title"><a href="../gift-card/index.html">Gift Card</a></h3>
                     </li>
                     <li>
-                        <h3 class="footer__title"><a href="./contacto/index.html">Contacto</a></h3>
+                        <h3 class="footer__title"><a href="../contacto/index.html">Contacto</a></h3>
                     </li>
                     <li>
-                        <h3 class="footer__title"><a href="./terminos-y-condiciones/index.html">Terminos y condiciones</a></h3>
+                        <h3 class="footer__title"><a href="../terminos-y-condiciones/index.html">Terminos y condiciones</a></h3>
                     </li>
                     <li>
-                        <h3 class="footer__title"><a href="./preguntas-frecuentes/index.html">Preguntas frecuentes</a></h3>
+                        <h3 class="footer__title"><a href="../preguntas-frecuentes/index.html">Preguntas frecuentes</a></h3>
                     </li>
                 </ul>
             </div>
