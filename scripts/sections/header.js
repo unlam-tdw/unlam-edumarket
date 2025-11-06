@@ -1,3 +1,5 @@
+import { CartService } from "../cart-service.js";
+
 export class Header {
     constructor() {}
 
@@ -8,6 +10,9 @@ export class Header {
             console.warn("No se encontró el elemento con id 'header'.");
             return;
         }
+
+        const cartService = new CartService();
+        const cartLength = cartService.getCartLength();
 
         header.classList.add("header");
         header.innerHTML = `
@@ -23,7 +28,7 @@ export class Header {
             <div class="header__cart">
                 <a class="header__cart-btn" href="../carrito/index.html">
                     🛒
-                    <span class="header__cart-count">3</span>
+                    <span class="header__cart-count">${cartLength}</span>
                 </a>
             </div>
             <div class="header__user">
@@ -39,5 +44,13 @@ export class Header {
             </div>
         </nav>
         `;
+
+        document.addEventListener(CartService.cartAddedEventKey, () => {
+            this.render();
+        });
+
+        document.addEventListener(CartService.cartRemovedEventKey, () => {
+            this.render();
+        });
     }
 }

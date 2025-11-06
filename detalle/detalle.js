@@ -1,4 +1,5 @@
 import { CoursesService } from "../scripts/courses-service.js";
+import { CartService } from "../scripts/cart-service.js";
 
 export class Detalle {
     static course;
@@ -33,7 +34,7 @@ export class Detalle {
                     </div>
                     <div class="course-detail__hero__actions">
                         <a class="course-detail__hero__btn course-detail__hero__btn--primary" href="/inscripcion">INSCRIBIRSE</a>
-                        <a class="course-detail__hero__btn course-detail__hero__btn--secondary" href="/carrito">AGREGAR AL CARRITO</a>
+                        <a class="course-detail__hero__btn course-detail__hero__btn--secondary" href="/carrito" id="add-to-cart-btn" data-course-id="${this.course.id}">AGREGAR AL CARRITO</a>
                         <a class="course-detail__hero__btn course-detail__hero__btn--tertiary" href="/pagar">COMPRAR</a>
                     </div>
                 </div>
@@ -179,6 +180,13 @@ export class Detalle {
             ${this.#renderRelated()}
         </section>
         `;
+
+        const addToCartBtn = main.querySelector('#add-to-cart-btn');
+            addToCartBtn.addEventListener('click', () => {
+                const courseId = parseInt(addToCartBtn.getAttribute('data-course-id'));
+                const cartService = new CartService();
+                cartService.addToCart(courseId);
+            });
     }
 }
 

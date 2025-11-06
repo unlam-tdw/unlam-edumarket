@@ -17,25 +17,17 @@ export class StorageService {
     }
 
     getItem(key) {
-        return localStorage.getItem(this.#withPrefix(key));
+        const value = localStorage.getItem(this.#withPrefix(key));
+        if (value === null) return null;
+        return JSON.parse(value);
     }
 
     setItem(key, value) {
-        localStorage.setItem(this.#withPrefix(key), value);
+        const stringValue = typeof value === 'string' ? value : JSON.stringify(value);
+        localStorage.setItem(this.#withPrefix(key), stringValue);
     }
 
     removeItem(key) {
         localStorage.removeItem(this.#withPrefix(key));
-    }
-
-    updateItem(key, value) {
-        localStorage.setItem(this.#withPrefix(key), value);
-    }
-
-    granularUpdate(key, value, options) {
-        const { merge = false } = options;
-        const currentValue = this.getItem(key);
-        const newValue = merge ? { ...currentValue, ...value } : value;
-        this.setItem(this.#withPrefix(key), newValue);
     }
 }
