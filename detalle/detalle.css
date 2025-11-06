@@ -409,7 +409,7 @@
 }
 
 .course-detail__related__card__duration {
-    display: flex;
+    display: none;
     align-items: baseline;
     gap: 0.25em;
 }
@@ -597,12 +597,17 @@
 
     .course-detail__related__item {
         max-width: none;
+        width: 100%;
+        min-width: 0;
+        display: flex;
     }
 
     .course-detail__related__card {
+        width: 100%;
         padding: 1.25em;
         gap: 1.25em;
         min-height: 18em;
+        box-sizing: border-box;
     }
 
     .course-detail__related__card__title {
@@ -728,12 +733,24 @@
     .course-detail__related__list {
         grid-template-columns: repeat(4, 1fr);
         gap: 2.5em;
+        max-width: 100%;
+    }
+
+    .course-detail__related__item {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        display: flex;
     }
 
     .course-detail__related__card {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
         padding: 1.5em;
         gap: 1.5em;
         min-height: 20em;
+        box-sizing: border-box;
     }
 
     .course-detail__related__card__duration__number {

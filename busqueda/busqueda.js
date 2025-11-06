@@ -35,11 +35,11 @@ export class Busqueda {
                                     </div>
                                     <div class="search__results__card__details">
                                         <h3 class="search__results__card__title">${item.name}</h3>
-                                        <a class="search__results__card__link" href="../detalle/index.html">Ver detalle</a>
+                                        <a class="search__results__card__link" href="/detalle/?courseId=${item.id}">Ver detalle</a>
                                     </div>
                                 </div>
                                 <div class="search__results__card__actions">
-                                    <a class="search__results__card__btn" href="../pagar/index.html">Comprar</a>
+                                    <a class="search__results__card__btn" href="/pagar/">Comprar</a>
                                 </div>
                             </div>
                         </article>
