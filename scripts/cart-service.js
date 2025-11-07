@@ -26,18 +26,15 @@ export class CartService {
         const cartKey = this.#getCartKey(targetUserId);
         let cart = storageService.getItem(cartKey);
         
-        // Migrate old cart format (key: 'cart') to new format (key: 'cart:0' for guests)
         if (!Array.isArray(cart) && targetUserId === 0) {
             const oldCart = storageService.getItem('cart');
             if (Array.isArray(oldCart) && oldCart.length > 0) {
-                // Migrate old cart to guest cart (id:0)
                 storageService.setItem(cartKey, oldCart);
                 storageService.removeItem('cart');
                 cart = oldCart;
             }
         }
         
-        // If user is authenticated and has no cart, show guest cart (id:0)
         if (userId === null && currentUserId !== 0) {
             const userCart = Array.isArray(cart) ? cart : [];
             if (userCart.length === 0) {
@@ -58,7 +55,6 @@ export class CartService {
         const storageService = StorageService.getOrCreateInstance();
         const currentUserId = this.#getUserId();
         
-        // If user is authenticated and has no cart, migrate guest cart first
         if (currentUserId !== 0) {
             const userCartKey = this.#getCartKey(currentUserId);
             const userCart = storageService.getItem(userCartKey);
@@ -98,7 +94,6 @@ export class CartService {
             return;
         }
 
-        // Merge carts, avoiding duplicates
         const mergedCart = [...toCart];
         fromCart.forEach(courseId => {
             if (!mergedCart.includes(courseId)) {
@@ -106,15 +101,12 @@ export class CartService {
             }
         });
 
-        // Save merged cart to new user
         const toCartKey = this.#getCartKey(toUserId);
         storageService.setItem(toCartKey, mergedCart);
 
-        // Clear old cart
         const fromCartKey = this.#getCartKey(fromUserId);
         storageService.setItem(fromCartKey, []);
 
-        // Dispatch event if current user is the target
         if (toUserId === this.#getUserId()) {
             document.dispatchEvent(new CustomEvent(this.constructor.cartAddedEventKey));
         }

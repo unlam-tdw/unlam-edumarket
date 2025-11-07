@@ -17,9 +17,7 @@ export class Header {
         const isAuthenticated = sessionService.isAuthenticated();
         const cartLength = cartService.getCartLength();
 
-        const href = isAuthenticated ? "/profile" : "/sign-in";
-
-        console.log(isAuthenticated);
+        const href = isAuthenticated ? "/perfil" : "/sign-in";
 
         header.classList.add("header");
         header.innerHTML = `

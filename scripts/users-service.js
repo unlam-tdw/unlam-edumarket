@@ -29,6 +29,40 @@ export class UsersService {
         return this.users.find(user => user.email === email);
     }
 
+    getUserById(id) {
+        return this.users.find(user => user.id === id);
+    }
+
+    updateUser(userId, updatedData) {
+        const users = this.storageService.getItem(UsersService.usersStorageKey) || [];
+        const userIndex = users.findIndex(user => user.id === userId);
+        
+        if (userIndex === -1) {
+            console.error("Usuario no encontrado");
+            return false;
+        }
+
+        users[userIndex] = { ...users[userIndex], ...updatedData };
+        this.storageService.setItem(UsersService.usersStorageKey, users);
+        this.users = users;
+        return true;
+    }
+
+    deleteUser(userId) {
+        const users = this.storageService.getItem(UsersService.usersStorageKey) || [];
+        const userIndex = users.findIndex(user => user.id === userId);
+        
+        if (userIndex === -1) {
+            console.error("Usuario no encontrado");
+            return false;
+        }
+
+        users.splice(userIndex, 1);
+        this.storageService.setItem(UsersService.usersStorageKey, users);
+        this.users = users;
+        return true;
+    }
+
     getLastUserId() {
         return this.users.length + 1;
     }

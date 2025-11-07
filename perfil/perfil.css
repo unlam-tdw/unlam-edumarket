@@ -1,0 +1,146 @@
+.main__profile {
+  display: flex;
+  flex-direction: column;
+  background: var(--philippine-silver);
+  min-height: calc(100vh - 200px);
+}
+
+.main__profile__section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--whihte);
+  border-radius: 10px;
+  padding: 2em;
+  margin: 2em auto;
+  text-align: center;
+  gap: 1.5em;
+  max-width: 500px;
+  width: 90%;
+}
+
+.main__profile__section__welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25em;
+}
+
+.main__profile__section__welcome__title {
+  color: var(--air-force-blue);
+  font-size: 1.75em;
+}
+
+.main__profile__section__welcome__p {
+  text-wrap: pretty;
+  color: var(--philippine-silver);
+}
+
+.main__profile__section__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  width: 100%;
+}
+
+.main__profile__section__form input {
+  background: var(--air-force-blue);
+  color: var(--whihte);
+  border: none;
+  font-size: 1em;
+  border-radius: 50px;
+  text-align: center;
+  padding: 0.75em;
+  width: 100%;
+  max-width: 400px;
+}
+
+.main__profile__section__form input::placeholder {
+  color: var(--whihte);
+}
+
+.main__profile__section__form input[readonly] {
+  background: var(--philippine-silver);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.main__profile__section__form__btn {
+  text-decoration: none;
+  color: var(--whihte);
+  background: var(--auburn);
+  padding: 0.75em 1.5em;
+  border-radius: 500px;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+  margin-top: 0.5em;
+  width: 100%;
+  max-width: 400px;
+}
+
+.main__profile__section__form__btn:hover {
+  background: var(--coral-red);
+}
+
+.main__profile__section__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  width: 100%;
+  padding-top: 1em;
+  border-top: 1px solid var(--philippine-silver);
+}
+
+.main__profile__section__actions__btn {
+  text-decoration: none;
+  color: var(--whihte);
+  background: var(--philippine-silver);
+  padding: 0.75em 1.5em;
+  border-radius: 500px;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+  width: 100%;
+  max-width: 400px;
+}
+
+.main__profile__section__actions__btn:hover {
+  background: var(--air-force-blue);
+}
+
+.main__profile__section__actions__btn--logout {
+  background: var(--auburn);
+}
+
+.main__profile__section__actions__btn--logout:hover {
+  background: var(--coral-red);
+}
+
+.main__profile__section__actions__btn--delete {
+  background: var(--coral-red);
+}
+
+.main__profile__section__actions__btn--delete:hover {
+  background: var(--auburn);
+  opacity: 0.9;
+}
+
+@media screen and (min-width: 60em) {
+  .main__profile {
+    padding: 3em;
+    background: none;
+  }
+
+  .main__profile__section {
+    margin: 3em auto;
+    padding: 3em;
+  }
+
+  .main__profile__section__form {
+    gap: 1.5em;
+  }
+}
+
