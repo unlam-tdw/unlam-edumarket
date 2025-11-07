@@ -33,6 +33,9 @@ export class SignUp {
         }
 
         usersService.addUser(user);
+
+        const sessionService = SessionService.getOrCreateInstance();
+        sessionService.setSession(user.id);
         
         window.location.href = "/sign-in";
     }
