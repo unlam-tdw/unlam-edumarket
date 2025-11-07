@@ -7,7 +7,7 @@
     <meta name="description" content="Unlam EduMarket - Grupo L">
     <link rel="icon" href="../assets/favicon.ico">
     <link rel="stylesheet" href="../globals.css">
-    <link rel="stylesheet" href="../login/login.css">
+    <link rel="stylesheet" href="../sign-in/sign-in.css">
     <title>UNLaM | EduMarket</title>
 </head>
 
@@ -28,11 +28,13 @@
                 <h2 class="main__login__section__welcome__title">Bienvenido/a</h2>
                 <p class="main__login__section__welcome__p">Inicia sesión para ver tus cursos</p>
             </div>
-            <form class="main__login__section__form" action="../index.html" method="GET">
-                <input name="email" required placeholder="Email" type="email">
-                <input name="password" required placeholder="Password" type="password">
-                <button type="submit" class="main__login__section__form__inputs__btn" href="../index.html">Iniciar Sesión</button>
+            <form class="main__login__section__form" id="sign-in-form" method="GET">
+                <input name="email" required placeholder="Email" type="email" id="email">
+                <input name="password" required placeholder="Password" type="password" id="password">
+                <button type="submit" class="main__login__section__form__inputs__btn" id="sign-in-btn">Iniciar Sesión</button>
             </form>
+            <hr />
+            <a href="/sign-up">Registrarse</a>
 
         </section>
     </main>
@@ -42,6 +44,7 @@
 
     <!-- Scripts -->
     <script src="../globals.js" type="module"></script>
+    <script src="../sign-in/sign-in.js" type="module"></script>
 </body>
 
 </html>

@@ -1,4 +1,5 @@
 import { CartService } from "../cart-service.js";
+import { SessionService } from "../session-service.js";
 
 export class Header {
     constructor() {}
@@ -12,7 +13,13 @@ export class Header {
         }
 
         const cartService = new CartService();
+        const sessionService = SessionService.getOrCreateInstance();
+        const isAuthenticated = sessionService.isAuthenticated();
         const cartLength = cartService.getCartLength();
+
+        const href = isAuthenticated ? "/profile" : "/sign-in";
+
+        console.log(isAuthenticated);
 
         header.classList.add("header");
         header.innerHTML = `
@@ -32,7 +39,7 @@ export class Header {
                 </a>
             </div>
             <div class="header__user">
-                <a class="header__user-btn" href="../login/index.html">👤</a>
+                <a class="header__user-btn" href="${href}">👤</a>
             </div>
         </div>
         <nav class="header__nav">

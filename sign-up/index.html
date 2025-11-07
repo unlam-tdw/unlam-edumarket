@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Unlam EduMarket - Grupo L">
+    <link rel="icon" href="../assets/favicon.ico">
+    <link rel="stylesheet" href="../globals.css">
+    <link rel="stylesheet" href="../sign-up/sign-up.css">
+    <title>UNLaM | EduMarket</title>
+</head>
+
+<body>
+    <!-- Main Content -->
+    <main class="main__login">
+        <section class="main__login__section">
+            <div class="main__login__section__welcome">
+                <h2 class="main__login__section__welcome__title">Crear Cuenta</h2>
+                <p class="main__login__section__welcome__p">Regístrate para comenzar</p>
+            </div>
+            <form class="main__login__section__form" id="sign-up-form" method="GET">
+                <input name="nombre" required placeholder="Nombre" type="text" id="nombre">
+                <input name="email" required placeholder="Email" type="email" id="email">
+                <input name="password" required placeholder="Password" type="password" id="password">
+                <button type="submit" class="main__login__section__form__inputs__btn" id="sign-up-btn">Registrarse</button>
+            </form>
+            <hr />
+            <a href="/sign-in">Iniciar Sesión</a>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer"></footer>
+
+    <!-- Scripts -->
+    <script src="../globals.js" type="module"></script>
+    <script src="../sign-up/sign-up.js" type="module"></script>
+</body>
+
+</html>
