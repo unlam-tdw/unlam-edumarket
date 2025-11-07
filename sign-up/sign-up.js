@@ -1,5 +1,6 @@
 import { UsersService } from "../scripts/users-service.js";
 import { SessionService } from "../scripts/session-service.js";
+import { CartService } from "../scripts/cart-service.js";
 
 export class SignUp {
     constructor() {}
@@ -36,6 +37,10 @@ export class SignUp {
 
         const sessionService = SessionService.getOrCreateInstance();
         sessionService.setSession(user.id);
+
+        // Migrate cart items from guest (id:0) to new user
+        const cartService = new CartService();
+        cartService.migrateCart(0, user.id);
         
         window.location.href = "/sign-in";
     }
