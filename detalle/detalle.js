@@ -189,8 +189,7 @@ export class Detalle {
         buyBtn.addEventListener('click', () => {
             const courseId = parseInt(buyBtn.getAttribute('data-course-id'));
             const paymentService = PaymentService.getOrCreateInstance();
-            const course = courses.getCourseById(courseId);
-            paymentService.setPayment(course.price);
+            paymentService.setPayment([courseId]);
             window.location.href = "/pagar";
         });
     }

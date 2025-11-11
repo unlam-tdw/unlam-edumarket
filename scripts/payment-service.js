@@ -1,4 +1,5 @@
 import { StorageService } from "./storage-service.js";
+import { CoursesService } from "./courses-service.js";
 
 export class PaymentService {
     paymentStorageKey = 'payment';
@@ -12,15 +13,20 @@ export class PaymentService {
         return PaymentService.instance;
     }
 
-    setPayment(paymentAmount) {
+    setPayment(courseIds) {
         const storageService = StorageService.getOrCreateInstance();
-        storageService.setItem(this.paymentStorageKey, paymentAmount);
+        storageService.setItem(this.paymentStorageKey, courseIds);
     }
 
-    getPaymentAmount() {
+    getPaymentTotal() {
         const storageService = StorageService.getOrCreateInstance();
-        const paymentAmount = storageService.getItem(this.paymentStorageKey);
-        return paymentAmount ? parseFloat(paymentAmount) : 0;
+        const courseIds = storageService.getItem(this.paymentStorageKey);
+        const courses = new CoursesService();
+        const total = courseIds.reduce((acc, courseId) => {
+            const course = courses.getCourseById(courseId);
+            return acc + (course ? course.price : 0);
+        }, 0);
+        return total;
     }
 
     clearPayment() {

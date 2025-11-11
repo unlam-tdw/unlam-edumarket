@@ -136,7 +136,7 @@ export class Carrito {
                         </div>
                                 
                         <div class="cart__summary__actions">
-                            <a class="cart__summary__btn cart__summary__btn--primary" href="/pagar" id="buy-btn" data-total-amount="${finalTotal}">
+                            <a class="cart__summary__btn cart__summary__btn--primary" href="/pagar" id="buy-btn">
                                 Proceder al pago
                             </a>
                             <a class="cart__summary__btn cart__summary__btn--secondary" href="/">
@@ -167,14 +167,15 @@ export class Carrito {
 
     const buyBtn = element.querySelector("#buy-btn");
     buyBtn.addEventListener("click", () => {
-      const totalAmount = parseFloat(buyBtn.getAttribute("data-total-amount"));
-      if (isNaN(totalAmount)) {
+      const paymentService = PaymentService.getOrCreateInstance();
+      const cartService = new CartService();
+      const cart = cartService.getCart();
+      if (cart.length === 0) {
         return;
       }
-      const paymentService = PaymentService.getOrCreateInstance();
-      paymentService.setPayment(totalAmount);
+      paymentService.setPayment(cart);
       window.location.href = "/pagar";
-    });
+    }); 
   }
 
   static #renderCartRecommendations() {

@@ -52,11 +52,7 @@ export class Index {
             btn.addEventListener('click', (event) => {
                 event.preventDefault();
                 const courseId = parseInt(btn.getAttribute('data-course-id'));
-                const course = courses.getCourseById(courseId);
-                if (!course) {
-                    return;
-                }
-                paymentService.setPayment(course.price);
+                paymentService.setPayment([courseId]);
                 window.location.href = "/pagar";
             });
         });

@@ -14,14 +14,14 @@ export class Pagar {
     }
 
     const paymentService = PaymentService.getOrCreateInstance();
-    const paymentAmount = paymentService.getPaymentAmount();
+    const paymentTotal = paymentService.getPaymentTotal();
 
     const paymentAmountElement = document.getElementById("payment-amount");
     if (paymentAmountElement) {
-      paymentAmountElement.textContent = paymentAmount.toFixed(2);
+      paymentAmountElement.textContent = paymentTotal.toFixed(2);
     }
 
-    if (paymentAmount === 0) {
+    if (paymentTotal === 0) {
       window.location.href = "/";
       return;
     }
