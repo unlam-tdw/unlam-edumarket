@@ -166,16 +166,18 @@ export class Carrito {
         : "";
 
     const buyBtn = element.querySelector("#buy-btn");
-    buyBtn.addEventListener("click", () => {
-      const paymentService = PaymentService.getOrCreateInstance();
-      const cartService = new CartService();
-      const cart = cartService.getCart();
-      if (cart.length === 0) {
-        return;
-      }
-      paymentService.setPayment(cart);
-      window.location.href = "/pagar";
-    });
+    if (buyBtn) {
+      buyBtn.addEventListener("click", () => {
+        const paymentService = PaymentService.getOrCreateInstance();
+        const cartService = new CartService();
+        const cart = cartService.getCart();
+        if (cart.length === 0) {
+          return;
+        }
+        paymentService.setPayment(cart);
+        window.location.href = "/pagar";
+      });
+    }
   }
 
   static #renderCartRecommendations() {
