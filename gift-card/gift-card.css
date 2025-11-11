@@ -34,11 +34,24 @@
     position: absolute;
     background-color: var(--black);
     color: var(--whitesmoke);
-    top: 0em;
-    right: 0em;
+    top: 0%;
+    right: 0%;
     padding: 0.5em 1em;
 }
 
+/* Posiciones de la etiqueta monto precio */
+.arriba-izquierda {
+    top: 0%;
+    left: 0%;
+    right: auto;
+}
+
+.abajo-izquierda {
+    bottom: 0%;
+    left: 0%;
+    top: auto;
+    right: auto;
+}
 .main__section__form__input {
     margin: 1em 0;
     padding: 1em;
