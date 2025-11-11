@@ -26,7 +26,7 @@
             <div class="pagar__content">
                 <section class="pagar__formulario">
                     <h2 class="pagar__formulario__title">Datos de Pago</h2>
-                    <form class="pagar__form" action="../pagar/success/index.html" method="GET">
+                    <form id="pagar-form" class="pagar__form" action="/" method="GET">
                         <fieldset class="pagar__form__section">
                             <legend class="pagar__form__section__title">Información Personal</legend>
                             <div class="pagar__form__row">
@@ -92,7 +92,7 @@
 
                         <div class="pagar__form__actions">
                             <button type="submit" class="pagar__form__btn pagar__form__btn--primary">
-                                Procesar Pago - $25.000
+                                Procesar Pago - $<span id="payment-amount"></span>
                             </button>
                         </div>
                     </form>
@@ -115,11 +115,15 @@
         </div>
     </main>
 
+    <!-- Modal Parent -->
+    <div id="modal-parent"></div>
+
     <!-- Footer -->
     <footer id="footer"></footer>
 
     <!-- Scripts -->
     <script src="../globals.js" type="module"></script>
+    <script src="../pagar/pagar.js" type="module"></script>
 </body>
 
 </html>

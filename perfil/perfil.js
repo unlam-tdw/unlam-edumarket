@@ -1,7 +1,7 @@
 import { UsersService } from "../scripts/users-service.js";
 import { SessionService } from "../scripts/session-service.js";
-import { CartService } from "../scripts/cart-service.js";
 import { StorageService } from "../scripts/storage-service.js";
+import { ModalService } from "../scripts/modal-service.js";
 
 export class Perfil {
     constructor() {}
@@ -9,10 +9,11 @@ export class Perfil {
     static updateProfile(event) {
         event.preventDefault();
 
+        const modalService = new ModalService("modal-parent");
+
         const nombre = document.getElementById("nombre").value;
 
         if (!nombre) {
-            console.error("El nombre es requerido");
             return;
         }
 
@@ -20,7 +21,6 @@ export class Perfil {
         const userId = sessionService.getSession();
 
         if (!userId) {
-            console.error("No hay sesión activa");
             window.location.href = "/sign-in";
             return;
         }
@@ -29,7 +29,6 @@ export class Perfil {
         const currentUser = usersService.getUserById(userId);
 
         if (!currentUser) {
-            console.error("Usuario no encontrado");
             window.location.href = "/sign-in";
             return;
         }
@@ -41,10 +40,21 @@ export class Perfil {
         const success = usersService.updateUser(userId, updatedData);
 
         if (success) {
-            alert("Perfil actualizado correctamente");
-            window.location.reload();
+            modalService.buildModal(
+                "Perfil actualizado correctamente",
+                "Tu perfil ha sido actualizado correctamente",
+                "success",
+                () => window.location.reload()
+            );
+            modalService.openModal();
         } else {
-            console.error("Error al actualizar el perfil");
+            modalService.buildModal(
+                "Error",
+                "Error al actualizar el perfil",
+                "error",
+                () => window.location.reload()
+            );
+            modalService.openModal();
         }
     }
 
@@ -55,41 +65,40 @@ export class Perfil {
     }
 
     static deleteAccount() {
+        const modalService = new ModalService("modal-parent");
         const confirmMessage = "¿Estás seguro de que deseas eliminar tu cuenta? Esta acción no se puede deshacer.";
         
-        if (!confirm(confirmMessage)) {
-            return;
-        }
+        modalService.buildConfirmationModal(
+            "Confirmar Eliminación",
+            confirmMessage,
+            () => {
+                const sessionService = SessionService.getOrCreateInstance();
+                const userId = sessionService.getSession();
 
-        const sessionService = SessionService.getOrCreateInstance();
-        const userId = sessionService.getSession();
+                if (!userId) {
+                    return;
+                }
 
-        if (!userId) {
-            console.error("No hay sesión activa");
-            window.location.href = "/sign-in";
-            return;
-        }
+                const usersService = new UsersService();
+                usersService.deleteUser(userId);
 
-        const usersService = new UsersService();
-        const success = usersService.deleteUser(userId);
+                const storageService = StorageService.getOrCreateInstance();
+                const cartKey = `cart:${userId}`;
+                storageService.removeItem(cartKey);
 
-        if (!success) {
-            console.error("Error al eliminar la cuenta");
-            alert("Error al eliminar la cuenta. Por favor, intenta nuevamente.");
-            return;
-        }
+                sessionService.removeSession();
 
-        // Clear user's cart
-        const cartService = new CartService();
-        const storageService = StorageService.getOrCreateInstance();
-        const cartKey = `cart:${userId}`;
-        storageService.removeItem(cartKey);
-
-        // Clear session
-        sessionService.removeSession();
-
-        alert("Tu cuenta ha sido eliminada correctamente.");
-        window.location.href = "/";
+                modalService.buildModal(
+                    "Cuenta Eliminada",
+                    "Tu cuenta ha sido eliminada correctamente.",
+                    "success",
+                    () => window.location.href = "/"
+                );
+                modalService.openModal();
+            },
+            null
+        );
+        modalService.openModal();
     }
 
     static render() {
@@ -105,7 +114,6 @@ export class Perfil {
         const user = usersService.getUserById(userId);
 
         if (!user) {
-            console.error("Usuario no encontrado");
             window.location.href = "/sign-in";
             return;
         }
