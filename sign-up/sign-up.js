@@ -13,7 +13,6 @@ export class SignUp {
         const password = document.getElementById("password").value;
 
         if (!nombre || !email || !password) {
-            console.error("Todos los campos son requeridos");
             return;
         }
 
@@ -22,7 +21,6 @@ export class SignUp {
         const existsUser = usersService.existsUser(email);
 
         if (existsUser) {
-            console.error("Este email ya está registrado. Por favor, use otro email o inicie sesión.");
             return;
         }
 

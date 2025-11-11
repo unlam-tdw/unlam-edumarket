@@ -8,7 +8,6 @@ export class Header {
         const header = document.getElementById("header");
 
         if (!header) {
-            console.warn("No se encontró el elemento con id 'header'.");
             return;
         }
 

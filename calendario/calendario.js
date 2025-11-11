@@ -3,7 +3,6 @@ export class Calendario {
   constructor() {}
 
   static render() {
-    console.log("Inicio JS");
     const courses = new CoursesService();
     const cursoUno = courses.getCourseById(3);
     const cursoDos = courses.getCourseById(6);

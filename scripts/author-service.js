@@ -9,7 +9,6 @@ export class AuthorService {
         const author = this.authors.find(author => author.id === id);
 
         if (!author) {
-            console.warn(`No se encontró el autor con ID ${id}.`);
             return null;
         }
         

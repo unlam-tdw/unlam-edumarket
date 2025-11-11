@@ -38,7 +38,6 @@ export class UsersService {
         const userIndex = users.findIndex(user => user.id === userId);
         
         if (userIndex === -1) {
-            console.error("Usuario no encontrado");
             return false;
         }
 
@@ -53,7 +52,6 @@ export class UsersService {
         const userIndex = users.findIndex(user => user.id === userId);
         
         if (userIndex === -1) {
-            console.error("Usuario no encontrado");
             return false;
         }
 

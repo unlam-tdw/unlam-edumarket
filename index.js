@@ -10,7 +10,6 @@ export class Index {
 
         const mainCoursesList = document.getElementById('main-curses-list');
         if (!mainCoursesList) {
-            console.warn("No se encontró el elemento con id 'main-curses-list'.");
             return;
         }
 

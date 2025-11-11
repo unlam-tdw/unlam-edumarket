@@ -22,7 +22,6 @@ export class CoursesService {
         const course = this.courses.find(course => course.id === id);
 
         if (!course) {
-            console.warn(`No se encontró el curso con ID ${id}.`);
             return null;
         }
 
