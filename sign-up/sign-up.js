@@ -1,6 +1,7 @@
 import { UsersService } from "../scripts/users-service.js";
 import { SessionService } from "../scripts/session-service.js";
 import { CartService } from "../scripts/cart-service.js";
+import { ModalService } from "../scripts/modal-service.js";
 
 export class SignUp {
     constructor() {}
@@ -16,11 +17,20 @@ export class SignUp {
             return;
         }
 
+        const modalService = new ModalService("modal-parent");
+
         const usersService = new UsersService();
 
         const existsUser = usersService.existsUser(email);
 
         if (existsUser) {
+            modalService.buildModal(
+                "Error",
+                "Este email ya está registrado. Por favor, use otro email o inicie sesión.",
+                "error",
+                () => {}
+            );
+            modalService.openModal();
             return;
         }
 
