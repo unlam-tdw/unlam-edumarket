@@ -1,5 +1,6 @@
 import { CoursesService } from "../scripts/courses-service.js";
 import { CartService } from "../scripts/cart-service.js";
+import { PaymentService } from "../scripts/payment-service.js";
 
 export class Detalle {
     static course;
@@ -35,7 +36,7 @@ export class Detalle {
                     <div class="course-detail__hero__actions">
                         <a class="course-detail__hero__btn course-detail__hero__btn--primary" href="/inscripcion">INSCRIBIRSE</a>
                         <a class="course-detail__hero__btn course-detail__hero__btn--secondary" href="/carrito" id="add-to-cart-btn" data-course-id="${this.course.id}">AGREGAR AL CARRITO</a>
-                        <a class="course-detail__hero__btn course-detail__hero__btn--tertiary" href="/pagar">COMPRAR</a>
+                        <a class="course-detail__hero__btn course-detail__hero__btn--tertiary" href="/pagar" id="buy-btn" data-course-id="${this.course.id}">COMPRAR</a>
                     </div>
                 </div>
             </div>
@@ -183,6 +184,15 @@ export class Detalle {
                 const cartService = new CartService();
                 cartService.addToCart(courseId);
             });
+
+        const buyBtn = main.querySelector('#buy-btn');
+        buyBtn.addEventListener('click', () => {
+            const courseId = parseInt(buyBtn.getAttribute('data-course-id'));
+            const paymentService = PaymentService.getOrCreateInstance();
+            const course = courses.getCourseById(courseId);
+            paymentService.setPayment(course.price);
+            window.location.href = "/pagar";
+        });
     }
 }
 

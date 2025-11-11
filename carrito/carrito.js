@@ -1,6 +1,7 @@
 import { CartService } from "../scripts/cart-service.js";
 import { CoursesService } from "../scripts/courses-service.js";
 import { ModalService } from "../scripts/modal-service.js";
+import { PaymentService } from "../scripts/payment-service.js";
 
 export class Carrito {
     static #renderCartItems() {
@@ -119,9 +120,9 @@ export class Carrito {
                                 <span class="cart__summary__value cart__summary__value--total">$${finalTotal}.-</span>
                             </div>
                         </div>
-                        
+                                
                         <div class="cart__summary__actions">
-                            <a class="cart__summary__btn cart__summary__btn--primary" href="/pagar">
+                            <a class="cart__summary__btn cart__summary__btn--primary" href="/pagar" id="buy-btn" data-total-amount="${finalTotal}">
                                 Proceder al pago
                             </a>
                             <a class="cart__summary__btn cart__summary__btn--secondary" href="/">
@@ -148,6 +149,17 @@ export class Carrito {
                         </div>
                     </div>
         ` : '';
+
+        const buyBtn = element.querySelector('#buy-btn');
+        buyBtn.addEventListener('click', () => {
+            const totalAmount = parseFloat(buyBtn.getAttribute('data-total-amount'));
+            if (isNaN(totalAmount)) {
+                return;
+            }
+            const paymentService = PaymentService.getOrCreateInstance();
+            paymentService.setPayment(totalAmount);
+            window.location.href = "/pagar";   
+        });
     }
 
     static #renderCartRecommendations() {
