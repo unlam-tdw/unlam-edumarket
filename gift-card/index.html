@@ -23,10 +23,10 @@
 
         <!--Tarjeta GiftCard Gris-->
         <section class="main__section">
-            <div class="main__section__img">
+            <div class="main__section__img" id="giftcardGrande">
                 <h3>GIFT CARD para</h3>
                 <h1>DESTINATARIO</h1>
-                <span class="main__section__img__span">$100.-</span>
+                <span class="main__section__img__span" id="etiquetaPrecio"><p id="montoTexto">$100.-</p></span>
             </div>
             <h3>Vista previa de resultado de personalizacion</h3>
 
@@ -39,7 +39,7 @@
 
                 <!--Nombre-->
                 <input required class="main__section__form__input" type="text" name="nombreDestinatario" id="nombreDestinatario"
-                    size="30" placeholder="Nombre Destinatario">
+                    size="15" placeholder="Nombre Destinatario">
 
                 <!-- Color-->
                 <h3>Color</h3>
@@ -189,8 +189,10 @@
 
     <!-- Scripts -->
     <script src="../globals.js" type="module"></script>
+    <script src="./gift-card.js"> </script>
 </body>
 
 
 </html>
+
 
