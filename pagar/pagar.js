@@ -1,36 +1,70 @@
 import { ModalService } from "../scripts/modal-service.js";
+import { SessionService } from "../scripts/session-service.js";
+import { PaymentService } from "../scripts/payment-service.js";
+import { UsersService } from "../scripts/users-service.js";
 
 export class Pagar {
-    constructor() {}
+  constructor() {}
 
-    static render() {
-        const modalService = new ModalService("modal-parent");
-        const form = document.getElementById('pagar-form');
+  static render() {
+    const sessionService = SessionService.getOrCreateInstance();
 
-        if (!form) {
-            return;
-        }
-
-        form.addEventListener('submit', (event) => {
-            event.preventDefault();
-            modalService.buildConfirmationModal(
-                "Confirmación de pago",
-                "¿Estás seguro de que deseas procesar el pago?",
-                () => {
-                    modalService.buildModal(
-                        "Pago procesado",
-                        "El pago ha sido procesado correctamente.",
-                        "success",
-                        () => {
-                            window.location.href = "/";
-                        }
-                    );
-                    modalService.openModal();
-                },
-            );
-            modalService.openModal();
-        });
+    if (!sessionService.isAuthenticated()) {
+      window.location.href = "/sign-in";
+      return;
     }
+
+    const paymentService = PaymentService.getOrCreateInstance();
+    const paymentTotal = paymentService.getPaymentTotal();
+
+    const paymentAmountElement = document.getElementById("payment-amount");
+    if (paymentAmountElement) {
+      paymentAmountElement.textContent = paymentTotal.toFixed(2);
+    }
+
+    if (paymentTotal === 0) {
+      window.location.href = "/";
+      return;
+    }
+
+    const modalService = new ModalService("modal-parent");
+    const form = document.getElementById("pagar-form");
+
+    if (!form) {
+      return;
+    }
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      modalService.buildConfirmationModal(
+        "Confirmación de pago",
+        "¿Estás seguro de que deseas procesar el pago?",
+        () => {
+          modalService.buildModal(
+            "Pago procesado",
+            "El pago ha sido procesado correctamente.",
+            "success",
+            () => {
+              const courseIds = paymentService.getPayment();
+              const usersService = new UsersService();
+              const userId = sessionService.getSession();
+              
+              if (courseIds && Array.isArray(courseIds)) {
+                courseIds.forEach(courseId => {
+                  usersService.addCourseToUser(userId, courseId);
+                });
+              }
+              
+              paymentService.clearPayment();
+              window.location.href = "/";
+            }
+          );
+          modalService.openModal();
+        }
+      );
+      modalService.openModal();
+    });
+  }
 }
 
 Pagar.render();

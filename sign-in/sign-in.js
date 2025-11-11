@@ -12,7 +12,6 @@ export class SignIn {
         const password = document.getElementById("password").value;
 
         if (!email || !password) {
-            console.error("Email y contraseña son requeridos");
             return;
         }
 
@@ -20,14 +19,12 @@ export class SignIn {
         const existsUser = usersService.existsUser(email);
 
         if (!existsUser) {
-            console.error("Usuario no encontrado");
             return;
         }
 
         const user = usersService.getUserByEmail(email);
 
         if (user.password !== password) {
-            console.error("Contraseña incorrecta");
             return;
         }
 

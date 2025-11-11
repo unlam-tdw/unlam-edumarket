@@ -1,4 +1,5 @@
 import { CoursesService } from "./scripts/courses-service.js";
+import { PaymentService } from "./scripts/payment-service.js";
 
 export class Index {
     constructor() {}
@@ -9,7 +10,6 @@ export class Index {
 
         const mainCoursesList = document.getElementById('main-curses-list');
         if (!mainCoursesList) {
-            console.warn("No se encontró el elemento con id 'main-curses-list'.");
             return;
         }
 
@@ -39,13 +39,23 @@ export class Index {
                             </div>
                             <div class="main__cursos__list__item__card__bottom__buy">
                                 <a class="main__cursos__list__item__card__bottom__buy__btn"
-                                    href="/pagar/">Comprar</a>
+                                    href="/pagar/" id="buy-btn" data-course-id="${course.id}">Comprar</a>
                             </div>
                         </div>
                     </article>
                 </li>
             `).join('');
-        return;
+
+        const paymentService = PaymentService.getOrCreateInstance();
+        const buyBtns = mainCoursesList.querySelectorAll('.main__cursos__list__item__card__bottom__buy__btn');
+        buyBtns.forEach(btn => {
+            btn.addEventListener('click', (event) => {
+                event.preventDefault();
+                const courseId = parseInt(btn.getAttribute('data-course-id'));
+                paymentService.setPayment([courseId]);
+                window.location.href = "/pagar";
+            });
+        });
     }
 }
 

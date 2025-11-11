@@ -4,7 +4,6 @@ export class Footer {
     static render() {
         const footer = document.getElementById("footer");
         if (!footer) {
-            console.warn("No se encontró el elemento con id 'footer'.");
             return;
         }
         footer.classList.add("footer");

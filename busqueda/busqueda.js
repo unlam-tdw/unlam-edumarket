@@ -51,7 +51,6 @@ export class Busqueda {
         const searchResults = document.getElementById("search-results");
 
         if (!searchResults) {
-            console.warn("No se encontró el elemento con id 'search-results'.");
             return;
         }
 

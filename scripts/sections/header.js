@@ -8,7 +8,6 @@ export class Header {
         const header = document.getElementById("header");
 
         if (!header) {
-            console.warn("No se encontró el elemento con id 'header'.");
             return;
         }
 
@@ -43,7 +42,7 @@ export class Header {
         <nav class="header__nav">
             <div class="header__nav-container">
                 <a href="../index.html" class="header__nav-link">INICIO</a>
-                <a href="../calendario/index.html" class="header__nav-link">CALENDARIO</a>
+                ${isAuthenticated ? `<a href="../calendario/index.html" class="header__nav-link">CALENDARIO</a>` : ""}
                 <a href="../contacto/index.html" class="header__nav-link">CONTACTO</a>
                 <a href="../gift-card/index.html" class="header__nav-link">GIFT-CARD</a>
             </div>

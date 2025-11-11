@@ -3,26 +3,45 @@
     width: 100%;
 }
 
+.calendario h1 {
+    font-size: 1em;
+}
+
 .calendario ol {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     list-style: none;
     text-align: left;
-    margin: 1em;
     background: var(--gainsboro);
+    margin: 0.5em;
+}
+
+span {
+    font-size: 0.5em;
+    border-radius: 0.5em;
+    background-color: var(--air-force-blue);
+    color: var(--whihte);
+    padding: 0.2em;
+
 }
 
 .calendario li {
+    text-align: right;
     padding: 0.2em;
     border: 0.1em solid black;
+    font-size: 0.5em;
+
 }
 
 .dias {
-    background: var(--gainsboro);
     font-weight: bold;
     text-align: center;
-    background: var(--air-force-blue);
-
+    font-size: 0.5em;
+    padding: 1em;
+    border-radius: 0.3em;
+    background-color: var(--medium-gray);
+    color: var(--whihte);
+    font-size: 1rem;
 
 }
 
@@ -34,13 +53,86 @@
 
 }
 
+div .cursos {
+    display: flex;
+    align-items: flex-end;
+    text-align: center;
+
+}
+
+.cursos a {
+    all: initial;
+    width: 100%;
+    padding: 1em;
+    border-radius: 0.5em;
+    background-color: var(--medium-gray);
+    color: var(--whihte);
+    font-size: 0.5rem;
+    cursor: pointer;
+}
+
 /* Vista Tablet*/
-@media screen and (min-width: 47em) {}
+@media screen and (min-width: 47em) {
+
+    .calendario ol {
+        margin: 1em;
+    }
+
+    .calendario li {
+        padding: 1em;
+        font-size: 0.6em;
+
+
+        .cursos a {
+
+            padding: 0.5em;
+        }
+
+
+    }
+}
+
 
 /* Vista escritorio */
 @media screen and (min-width: 60em) {
 
-    .calendario li {
-        padding: 2em;
+    .calendario h1 {
+        font-size: 2em;
     }
+
+    .calendario li {
+        text-align: right;
+        border: 0.1em solid black;
+        padding: 1.5em;
+        font-size: 1em;
+
+
+    }
+
+    .calendario ol {
+
+        margin: 3em;
+
+
+    }
+
+    .cursos a {
+        all: initial;
+        width: 100%;
+        padding: 1em;
+        border-radius: 0.5em;
+        background-color: var(--medium-gray);
+        color: var(--whihte);
+        font-size: 1em;
+        cursor: pointer;
+    }
+
+    span {
+        font-size: 0.7em;
+    }
+
+
+
+
+
 }
