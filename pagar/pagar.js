@@ -1,6 +1,7 @@
 import { ModalService } from "../scripts/modal-service.js";
 import { SessionService } from "../scripts/session-service.js";
 import { PaymentService } from "../scripts/payment-service.js";
+import { UsersService } from "../scripts/users-service.js";
 
 export class Pagar {
   constructor() {}
@@ -44,8 +45,18 @@ export class Pagar {
             "El pago ha sido procesado correctamente.",
             "success",
             () => {
-              window.location.href = "/";
+              const courseIds = paymentService.getPayment();
+              const usersService = new UsersService();
+              const userId = sessionService.getSession();
+              
+              if (courseIds && Array.isArray(courseIds)) {
+                courseIds.forEach(courseId => {
+                  usersService.addCourseToUser(userId, courseId);
+                });
+              }
+              
               paymentService.clearPayment();
+              window.location.href = "/";
             }
           );
           modalService.openModal();

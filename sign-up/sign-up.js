@@ -29,6 +29,7 @@ export class SignUp {
             nombre,
             email,
             password,
+            courses: [],
         }
 
         usersService.addUser(user);

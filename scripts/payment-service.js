@@ -18,9 +18,17 @@ export class PaymentService {
         storageService.setItem(this.paymentStorageKey, courseIds);
     }
 
+    getPayment() {
+        const storageService = StorageService.getOrCreateInstance();
+        return storageService.getItem(this.paymentStorageKey) || [];
+    }
+
     getPaymentTotal() {
         const storageService = StorageService.getOrCreateInstance();
         const courseIds = storageService.getItem(this.paymentStorageKey);
+        if (!courseIds || courseIds.length === 0) {
+            return 0;
+        }
         const courses = new CoursesService();
         const total = courseIds.reduce((acc, courseId) => {
             const course = courses.getCourseById(courseId);

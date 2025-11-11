@@ -64,4 +64,21 @@ export class UsersService {
     getLastUserId() {
         return this.users.length + 1;
     }
+
+    addCourseToUser(userId, courseId) {
+        const users = this.storageService.getItem(UsersService.usersStorageKey) || [];
+        const userIndex = users.findIndex(user => user.id === userId);
+        if (userIndex === -1) {
+            return false;
+        }
+        if (!users[userIndex].courses) {
+            users[userIndex].courses = [];
+        }
+        if (!users[userIndex].courses.includes(courseId)) {
+            users[userIndex].courses.push(courseId);
+        }
+        this.storageService.setItem(UsersService.usersStorageKey, users);
+        this.users = users;
+        return true;
+    }
 }
