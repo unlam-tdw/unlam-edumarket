@@ -3,37 +3,39 @@ import { CoursesService } from "../scripts/courses-service.js";
 import { ModalService } from "../scripts/modal-service.js";
 
 export class Carrito {
-    static #renderCartItems() {
-        const modalService = new ModalService("modal-parent");
-        const cartService = new CartService();
-        const coursesService = new CoursesService();
-        const cart = cartService.getCart();
-        const coursesInCart = cart.map(id => coursesService.getCourseById(id));
+  static #renderCartItems() {
+    const modalService = new ModalService("modal-parent");
+    const cartService = new CartService();
+    const coursesService = new CoursesService();
+    const cart = cartService.getCart();
+    const coursesInCart = cart.map((id) => coursesService.getCourseById(id));
 
-        const element = document.getElementById('cart-items');
+    const element = document.getElementById("cart-items");
 
-        if (!element) {
-            modalService.buildModal(
-                "Error",
-                "No se encontró el elemento con id 'cart-items'.",
-                "error",
-                () => {}
-            );
-            modalService.openModal();
-            return;
-        }
+    if (!element) {
+      modalService.buildModal(
+        "Error",
+        "No se encontró el elemento con id 'cart-items'.",
+        "error",
+        () => {}
+      );
+      modalService.openModal();
+      return;
+    }
 
-        if (coursesInCart.length === 0) {
-            element.innerHTML = `
+    if (coursesInCart.length === 0) {
+      element.innerHTML = `
             <div class="cart__item">
                 <p>No hay cursos en el carrito.</p>
             </div>
             `;
-            return;
-        }
-        
-        element.innerHTML = `
-        ${coursesInCart.map(course => `
+      return;
+    }
+
+    element.innerHTML = `
+        ${coursesInCart
+          .map(
+            (course) => `
         <div class="cart__item">
                         <div class="cart__item__image">
                             <img class="cart__item__img" 
@@ -52,68 +54,80 @@ export class Carrito {
                             <button class="cart__item__remove" id="remove-from-cart-btn" type="button" data-course-id="${course.id}">🗑️</button>
                         </div>
                     </div>
-        `).join('')}
+        `
+          )
+          .join("")}
         `;
 
-        const removeFromCartBtns = element.querySelectorAll('#remove-from-cart-btn');
-        removeFromCartBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const courseId = parseInt(btn.getAttribute('data-course-id'));
-                const cartServiceInstance = new CartService();
-                cartServiceInstance.removeFromCart(courseId);
-                modalService.buildModal(
-                    "Curso eliminado del carrito",
-                    "El curso ha sido eliminado del carrito correctamente.",
-                    "success",
-                    () => {}
-                );
-                modalService.openModal();
-            });
-        });
+    const removeFromCartBtns = element.querySelectorAll(
+      "#remove-from-cart-btn"
+    );
+    removeFromCartBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const courseId = parseInt(btn.getAttribute("data-course-id"));
+        const cartServiceInstance = new CartService();
+        cartServiceInstance.removeFromCart(courseId);
+        modalService.buildModal(
+          "Curso eliminado del carrito",
+          "El curso ha sido eliminado del carrito correctamente.",
+          "success",
+          () => {}
+        );
+        modalService.openModal();
+      });
+    });
+  }
+
+  static #renderCartSummary() {
+    const modalService = new ModalService("modal-parent");
+    const cartService = new CartService();
+    const coursesService = new CoursesService();
+    const cart = cartService.getCart();
+    const total = cart.reduce((acc, id) => {
+      const course = coursesService.getCourseById(id);
+      return acc + (course ? course.price : 0);
+    }, 0);
+    const element = document.getElementById("cart-summary");
+
+    if (!element) {
+      modalService.buildModal(
+        "Error",
+        "No se encontró el elemento con id 'cart-summary'.",
+        "error",
+        () => {}
+      );
+      modalService.openModal();
+      return;
     }
 
-    static #renderCartSummary() {
-        const modalService = new ModalService("modal-parent");
-        const cartService = new CartService();
-        const coursesService = new CoursesService();
-        const cart = cartService.getCart();
-        const total = cart.reduce((acc, id) => {
-            const course = coursesService.getCourseById(id);
-            return acc + (course ? course.price : 0);
-        }, 0);
-        const element = document.getElementById('cart-summary');
+    const subtotal = total.toFixed(2);
+    const discount = cart.length >= 3 ? 10.0 : 0.0;
+    const finalTotal = (subtotal - discount).toFixed(2);
+    const courseCount = cart.length;
 
-        if (!element) {
-            modalService.buildModal(
-                "Error",
-                "No se encontró el elemento con id 'cart-summary'.",
-                "error",
-                () => {}
-            );
-            modalService.openModal();
-            return;
-        }
-
-        const subtotal = total.toFixed(2);
-        const discount = cart.length >= 3 ? 10.00 : 0.00;
-        const finalTotal = (subtotal - discount).toFixed(2);
-        const courseCount = cart.length;
-        
-        element.innerHTML = cart.length > 0 ? `
+    element.innerHTML =
+      cart.length > 0
+        ? `
                     <div class="cart__summary__content">
                         <h2 class="cart__summary__title">Resumen del pedido</h2>
                         
                         <div class="cart__summary__details">
                             <div class="cart__summary__line">
-                                <span class="cart__summary__label">Subtotal (${courseCount} ${courseCount === 1 ? 'curso' : 'cursos'}):</span>
+                                <span class="cart__summary__label">Subtotal (${courseCount} ${
+            courseCount === 1 ? "curso" : "cursos"
+          }):</span>
                                 <span class="cart__summary__value">$${subtotal}.-</span>
                             </div>
-                            ${discount > 0 ? `
+                            ${
+                              discount > 0
+                                ? `
                             <div class="cart__summary__line">
                                 <span class="cart__summary__label">Descuento:</span>
                                 <span class="cart__summary__value cart__summary__value--discount">-$${discount}.-</span>
                             </div>
-                            ` : ''}
+                            `
+                                : ""
+                            }
                             <div class="cart__summary__line cart__summary__line--total">
                                 <span class="cart__summary__label">Total:</span>
                                 <span class="cart__summary__value cart__summary__value--total">$${finalTotal}.-</span>
@@ -147,28 +161,31 @@ export class Carrito {
                             </div>
                         </div>
                     </div>
-        ` : '';
+        `
+        : "";
+  }
+
+  static #renderCartRecommendations() {
+    const modalService = new ModalService("modal-parent");
+    const coursesService = new CoursesService();
+    const coursesInCart = coursesService.getRandomCourses(3);
+    const element = document.getElementById("cart-recommendations");
+
+    if (!element) {
+      modalService.buildModal(
+        "Error",
+        "No se encontró el elemento con id 'cart-recommendations'.",
+        "error",
+        () => {}
+      );
+      modalService.openModal();
+      return;
     }
 
-    static #renderCartRecommendations() {
-        const modalService = new ModalService("modal-parent");
-        const coursesService = new CoursesService();
-        const coursesInCart = coursesService.getRandomCourses(3);
-        const element = document.getElementById('cart-recommendations');
-
-        if (!element) {
-            modalService.buildModal(
-                "Error",
-                "No se encontró el elemento con id 'cart-recommendations'.",
-                "error",
-                () => {}
-            );
-            modalService.openModal();
-            return;
-        }
-
-        element.innerHTML = `
-        ${coursesInCart.map(course => `
+    element.innerHTML = `
+        ${coursesInCart
+          .map(
+            (course) => `
                     <li class="cart__recommendations__item">
                         <article class="cart__recommendations__card">
                             <div class="cart__recommendations__card__top">
@@ -196,42 +213,44 @@ export class Carrito {
                             </div>
                         </article>
                     </li>
-        `).join('')}
+        `
+          )
+          .join("")}
         `;
 
-        const addToCartBtns = element.querySelectorAll('#add-to-cart-btn');
-        addToCartBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const courseId = parseInt(btn.getAttribute('data-course-id'));
-                const cartServiceInstance = new CartService();
-                cartServiceInstance.addToCart(courseId);
-                modalService.buildModal(
-                    "Curso agregado al carrito",
-                    "El curso ha sido agregado al carrito correctamente.",
-                    "success",
-                    () => {}
-                );
-                modalService.openModal();
-            });
-        });
-    }
+    const addToCartBtns = element.querySelectorAll("#add-to-cart-btn");
+    addToCartBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const courseId = parseInt(btn.getAttribute("data-course-id"));
+        const cartServiceInstance = new CartService();
+        cartServiceInstance.addToCart(courseId);
+        modalService.buildModal(
+          "Curso agregado al carrito",
+          "El curso ha sido agregado al carrito correctamente.",
+          "success",
+          () => {}
+        );
+        modalService.openModal();
+      });
+    });
+  }
 
-    static paintAndUpdate() {
-        this.#renderCartItems();
-        this.#renderCartSummary();
+  static paintAndUpdate() {
+    this.#renderCartItems();
+    this.#renderCartSummary();
 
-        document.addEventListener(CartService.cartAddedEventKey, () => {
-            this.paintAndUpdate();
-        });
+    document.addEventListener(CartService.cartAddedEventKey, () => {
+      this.paintAndUpdate();
+    });
 
-        document.addEventListener(CartService.cartRemovedEventKey, () => {
-            this.paintAndUpdate();
-        });
-    }
+    document.addEventListener(CartService.cartRemovedEventKey, () => {
+      this.paintAndUpdate();
+    });
+  }
 
-    static render() {
-        this.paintAndUpdate();
-        this.#renderCartRecommendations();
-    }
+  static render() {
+    this.paintAndUpdate();
+    this.#renderCartRecommendations();
+  }
 }
 Carrito.render();
