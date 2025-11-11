@@ -43,7 +43,7 @@ export class Perfil {
       modalService.buildModal(
         "Perfil actualizado correctamente",
         "Tu perfil ha sido actualizado correctamente",
-        "error",
+        "success",
         () => window.location.reload()
       );
       modalService.openModal();

@@ -6,7 +6,6 @@ import { PaymentService } from "../scripts/payment-service.js";
 export class Carrito {
   static #renderCartItems() {
     const modalService = new ModalService("modal-parent");
-    const modalService = new ModalService("modal-parent");
     const cartService = new CartService();
     const coursesService = new CoursesService();
     const cart = cartService.getCart();
@@ -15,13 +14,6 @@ export class Carrito {
     const element = document.getElementById("cart-items");
 
     if (!element) {
-      modalService.buildModal(
-        "Error",
-        "No se encontró el elemento con id 'cart-items'.",
-        "error",
-        () => {}
-      );
-      modalService.openModal();
       modalService.buildModal(
         "Error",
         "No se encontró el elemento con id 'cart-items'.",
@@ -83,19 +75,11 @@ export class Carrito {
           () => {}
         );
         modalService.openModal();
-        modalService.buildModal(
-          "Curso eliminado del carrito",
-          "El curso ha sido eliminado del carrito correctamente.",
-          "success",
-          () => {}
-        );
-        modalService.openModal();
       });
     });
   }
 
   static #renderCartSummary() {
-    const modalService = new ModalService("modal-parent");
     const modalService = new ModalService("modal-parent");
     const cartService = new CartService();
     const coursesService = new CoursesService();
@@ -107,13 +91,6 @@ export class Carrito {
     const element = document.getElementById("cart-summary");
 
     if (!element) {
-      modalService.buildModal(
-        "Error",
-        "No se encontró el elemento con id 'cart-summary'.",
-        "error",
-        () => {}
-      );
-      modalService.openModal();
       modalService.buildModal(
         "Error",
         "No se encontró el elemento con id 'cart-summary'.",
@@ -202,19 +179,11 @@ export class Carrito {
 
   static #renderCartRecommendations() {
     const modalService = new ModalService("modal-parent");
-    const modalService = new ModalService("modal-parent");
     const coursesService = new CoursesService();
     const coursesInCart = coursesService.getRandomCourses(3);
     const element = document.getElementById("cart-recommendations");
 
     if (!element) {
-      modalService.buildModal(
-        "Error",
-        "No se encontró el elemento con id 'cart-recommendations'.",
-        "error",
-        () => {}
-      );
-      modalService.openModal();
       modalService.buildModal(
         "Error",
         "No se encontró el elemento con id 'cart-recommendations'.",
@@ -267,13 +236,6 @@ export class Carrito {
         const courseId = parseInt(btn.getAttribute("data-course-id"));
         const cartServiceInstance = new CartService();
         cartServiceInstance.addToCart(courseId);
-        modalService.buildModal(
-          "Curso agregado al carrito",
-          "El curso ha sido agregado al carrito correctamente.",
-          "success",
-          () => {}
-        );
-        modalService.openModal();
         modalService.buildModal(
           "Curso agregado al carrito",
           "El curso ha sido agregado al carrito correctamente.",
