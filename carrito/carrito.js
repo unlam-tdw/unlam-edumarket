@@ -1,8 +1,10 @@
 import { CartService } from "../scripts/cart-service.js";
 import { CoursesService } from "../scripts/courses-service.js";
+import { ModalService } from "../scripts/modal-service.js";
 
 export class Carrito {
     static #renderCartItems() {
+        const modalService = new ModalService("modal-parent");
         const cartService = new CartService();
         const coursesService = new CoursesService();
         const cart = cartService.getCart();
@@ -11,7 +13,13 @@ export class Carrito {
         const element = document.getElementById('cart-items');
 
         if (!element) {
-            console.warn("No se encontró el elemento con id 'cart-items'.");
+            modalService.buildModal(
+                "Error",
+                "No se encontró el elemento con id 'cart-items'.",
+                "error",
+                () => {}
+            );
+            modalService.openModal();
             return;
         }
 
@@ -53,11 +61,19 @@ export class Carrito {
                 const courseId = parseInt(btn.getAttribute('data-course-id'));
                 const cartServiceInstance = new CartService();
                 cartServiceInstance.removeFromCart(courseId);
+                modalService.buildModal(
+                    "Curso eliminado del carrito",
+                    "El curso ha sido eliminado del carrito correctamente.",
+                    "success",
+                    () => {}
+                );
+                modalService.openModal();
             });
         });
     }
 
     static #renderCartSummary() {
+        const modalService = new ModalService("modal-parent");
         const cartService = new CartService();
         const coursesService = new CoursesService();
         const cart = cartService.getCart();
@@ -68,7 +84,13 @@ export class Carrito {
         const element = document.getElementById('cart-summary');
 
         if (!element) {
-            console.warn("No se encontró el elemento con id 'cart-summary'.");
+            modalService.buildModal(
+                "Error",
+                "No se encontró el elemento con id 'cart-summary'.",
+                "error",
+                () => {}
+            );
+            modalService.openModal();
             return;
         }
 
@@ -129,12 +151,19 @@ export class Carrito {
     }
 
     static #renderCartRecommendations() {
+        const modalService = new ModalService("modal-parent");
         const coursesService = new CoursesService();
         const coursesInCart = coursesService.getRandomCourses(3);
         const element = document.getElementById('cart-recommendations');
 
         if (!element) {
-            console.warn("No se encontró el elemento con id 'cart-recommendations'.");
+            modalService.buildModal(
+                "Error",
+                "No se encontró el elemento con id 'cart-recommendations'.",
+                "error",
+                () => {}
+            );
+            modalService.openModal();
             return;
         }
 
@@ -176,6 +205,13 @@ export class Carrito {
                 const courseId = parseInt(btn.getAttribute('data-course-id'));
                 const cartServiceInstance = new CartService();
                 cartServiceInstance.addToCart(courseId);
+                modalService.buildModal(
+                    "Curso agregado al carrito",
+                    "El curso ha sido agregado al carrito correctamente.",
+                    "success",
+                    () => {}
+                );
+                modalService.openModal();
             });
         });
     }

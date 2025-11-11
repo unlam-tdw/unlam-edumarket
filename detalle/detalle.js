@@ -146,12 +146,10 @@ export class Detalle {
     }
 
     static render() {
-
         const courseId = new URLSearchParams(window.location.search).get("courseId");
         const main = document.getElementById("course-detail");
 
         if (!main) {
-            console.warn("No se encontró el elemento con id 'course-detail'.");
             return;
         }
 
@@ -159,8 +157,6 @@ export class Detalle {
         this.course = courses.getCourseById(Number(courseId));
 
         if (!this.course) {
-            console.warn(`No se encontró el curso con ID ${courseId}.`);
-
             main.innerHTML = `
                     <section class="course-detail">
                         <div style="text-align: center; padding: 2rem;">
