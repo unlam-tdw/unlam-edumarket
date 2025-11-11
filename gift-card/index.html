@@ -35,7 +35,7 @@
         <!--Personalizacion Gift Card-->
         <section class="main__section">
             <h2>Personalizacion de Gift Card</h2>
-            <form class="main__section__form" method="GET" action="../pagar/index.html">
+            <form id="form-gift-card" class="main__section__form" method="GET" action="/">
 
                 <!--Nombre-->
                 <input required class="main__section__form__input" type="text" name="nombreDestinatario" id="nombreDestinatario"
@@ -184,12 +184,15 @@
         </section>
     </main>
 
+    <!-- Modal Parent -->
+    <div id="modal-parent"></div>
+
     <!-- Footer -->
     <footer id="footer"></footer>
 
     <!-- Scripts -->
     <script src="../globals.js" type="module"></script>
-    <script src="./gift-card.js"> </script>
+    <script src="../gift-card/gift-card.js" type="module"></script>
 </body>
 
 

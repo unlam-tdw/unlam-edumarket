@@ -1,4 +1,4 @@
-
+import { ModalService } from "../scripts/modal-service.js";
 //*********** NOMBRE-DESTINATARIO
 
 //selecciona el input 
@@ -68,3 +68,19 @@ document.getElementById("fondo2").onchange = () => colorFondo.style.backgroundCo
 document.getElementById("fondo3").onchange = () => colorFondo.style.backgroundColor = "var(--greenyellow)";
 document.getElementById("fondo4").onchange = () => colorFondo.style.backgroundColor = "var(--blueviolet)";
 document.getElementById("fondo5").onchange = () => colorFondo.style.backgroundColor = "var(--yellow)";
+
+//********FORMULARIO****
+
+const formGiftCard = document.getElementById("form-gift-card");
+
+formGiftCard.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const modalService = new ModalService("modal-parent");
+    modalService.buildModal(
+        "Gift Card generada",
+        "La gift card ha sido generada correctamente.",
+        "success",
+        () => window.location.href = "/pagar"
+    );
+    modalService.openModal();
+});
