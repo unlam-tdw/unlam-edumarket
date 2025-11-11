@@ -2,6 +2,7 @@ import { UsersService } from "../scripts/users-service.js";
 import { SessionService } from "../scripts/session-service.js";
 import { StorageService } from "../scripts/storage-service.js";
 import { ModalService } from "../scripts/modal-service.js";
+import { CoursesService } from "../scripts/courses-service.js";
 
 export class Perfil {
   constructor() {}
@@ -132,6 +133,49 @@ export class Perfil {
 
     const deleteAccountBtn = document.getElementById("delete-account-btn");
     deleteAccountBtn.addEventListener("click", () => Perfil.deleteAccount());
+
+    Perfil.renderPurchasedCourses(user);
+  }
+
+  static renderPurchasedCourses(user) {
+    const coursesList = document.getElementById("purchased-courses-list");
+    if (!coursesList) {
+      return;
+    }
+
+    const coursesService = new CoursesService();
+    const purchasedCourseIds = user.courses || [];
+
+    if (purchasedCourseIds.length === 0) {
+      coursesList.innerHTML = `
+        <div class="main__profile__courses__empty">
+          <p>No has comprado ningún curso aún.</p>
+          <a href="/" class="main__profile__courses__empty__link">Explorar cursos</a>
+        </div>
+      `;
+      return;
+    }
+
+    const purchasedCourses = purchasedCourseIds
+      .map(courseId => coursesService.getCourseById(courseId))
+      .filter(course => course !== null);
+
+    coursesList.innerHTML = purchasedCourses.map(course => `
+      <div class="main__profile__courses__item">
+        <div class="main__profile__courses__item__image">
+          <img class="main__profile__courses__item__img" 
+               src="${course.image}" 
+               alt="${course.name}">
+        </div>
+        <div class="main__profile__courses__item__details">
+          <h3 class="main__profile__courses__item__title">${course.name}</h3>
+          <p class="main__profile__courses__item__duration">${course.duration} horas de contenido</p>
+        </div>
+        <div class="main__profile__courses__item__actions">
+          <a class="main__profile__courses__item__btn" href="/detalle/?courseId=${course.id}">Acceder al curso</a>
+        </div>
+      </div>
+    `).join('');
   }
 }
 

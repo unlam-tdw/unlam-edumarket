@@ -17,21 +17,30 @@
 
     <!-- Main Content -->
     <main class="main__profile">
-        <section class="main__profile__section">
-            <div class="main__profile__section__welcome">
-                <h2 class="main__profile__section__welcome__title">Mi Perfil</h2>
-                <p class="main__profile__section__welcome__p">Gestiona tu información personal</p>
-            </div>
-            <form class="main__profile__section__form" id="profile-form" method="GET">
-                <input name="nombre" required placeholder="Nombre" type="text" id="nombre">
-                <input name="email" placeholder="Email" type="email" id="email" readonly>
-                <button type="submit" class="main__profile__section__form__btn" id="update-btn">Actualizar Perfil</button>
-            </form>
-            <div class="main__profile__section__actions">
-                <button type="button" class="main__profile__section__actions__btn main__profile__section__actions__btn--logout" id="logout-btn">Cerrar Sesión</button>
-                <button type="button" class="main__profile__section__actions__btn main__profile__section__actions__btn--delete" id="delete-account-btn">Eliminar Cuenta</button>
-            </div>
-        </section>
+        <div class="main__profile__container">
+            <section class="main__profile__section">
+                <div class="main__profile__section__welcome">
+                    <h2 class="main__profile__section__welcome__title">Mi Perfil</h2>
+                    <p class="main__profile__section__welcome__p">Gestiona tu información personal</p>
+                </div>
+                <form class="main__profile__section__form" id="profile-form" method="GET">
+                    <input name="nombre" required placeholder="Nombre" type="text" id="nombre">
+                    <input name="email" placeholder="Email" type="email" id="email" readonly>
+                    <button type="submit" class="main__profile__section__form__btn" id="update-btn">Actualizar Perfil</button>
+                </form>
+                <div class="main__profile__section__actions">
+                    <button type="button" class="main__profile__section__actions__btn main__profile__section__actions__btn--logout" id="logout-btn">Cerrar Sesión</button>
+                    <button type="button" class="main__profile__section__actions__btn main__profile__section__actions__btn--delete" id="delete-account-btn">Eliminar Cuenta</button>
+                </div>
+            </section>
+            <section class="main__profile__courses">
+                <div class="main__profile__courses__header">
+                    <h2 class="main__profile__courses__title">Mis Cursos Comprados</h2>
+                    <p class="main__profile__courses__subtitle">Accede a todos tus cursos adquiridos</p>
+                </div>
+            <div class="main__profile__courses__list" id="purchased-courses-list"></div>
+            </section>
+        </div>
     </main>
 
     <!-- Modal Parent -->
