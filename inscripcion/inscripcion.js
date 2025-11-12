@@ -70,6 +70,7 @@ export class Inscripcion {
 
             const storageService = StorageService.getOrCreateInstance();
 
+            const inscriptionTotal = (contadorDeInscripciones * course.price).toFixed(2);
             storageService.setItem("inscription-total", inscriptionTotal);
 
             const modalService = new ModalService("modal-parent");
