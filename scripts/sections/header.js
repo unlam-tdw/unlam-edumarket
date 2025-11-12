@@ -21,9 +21,9 @@ export class Header {
         header.classList.add("header");
         header.innerHTML = `
         <div class="header__container">
-            <div class="header__logo">
+            <a href="../index.html" class="header__logo">
                 <img class="header__logo-img" src="../assets/logo.png" alt="Unlam EduMarket">
-            </div>
+            </a>
             <form action="/busqueda/" method="GET" class="header__search">
                 <input required id="search" name="query" type="text" class="header__search-input"
                     placeholder="Buscar...">
@@ -41,7 +41,7 @@ export class Header {
         </div>
         <nav class="header__nav">
             <div class="header__nav-container">
-                <a href="../index.html" class="header__nav-link">INICIO</a>
+                <a href="../catalogo/index.html" class="header__nav-link">CATÁLOGO</a>
                 ${isAuthenticated ? `<a href="../calendario/index.html" class="header__nav-link">CALENDARIO</a>` : ""}
                 <a href="../contacto/index.html" class="header__nav-link">CONTACTO</a>
                 <a href="../gift-card/index.html" class="header__nav-link">GIFT-CARD</a>
