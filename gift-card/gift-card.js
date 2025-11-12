@@ -1,4 +1,5 @@
 import { ModalService } from "../scripts/modal-service.js";
+import { StorageService } from "../scripts/storage-service.js";
 //*********** NOMBRE-DESTINATARIO
 
 //selecciona el input
