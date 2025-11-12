@@ -89,6 +89,10 @@ const formGiftCard = document.getElementById("form-gift-card");
 formGiftCard.addEventListener("submit", (event) => {
   event.preventDefault();
   const modalService = new ModalService("modal-parent");
+
+  const storageService = StorageService.getOrCreateInstance();
+  storageService.setItem("gift-card-total", inputMontoEscrito.value);
+
   modalService.buildModal(
     "Gift Card generada",
     "La gift card ha sido generada correctamente.",

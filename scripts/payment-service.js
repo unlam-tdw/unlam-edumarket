@@ -29,9 +29,12 @@ export class PaymentService {
         const storageService = StorageService.getOrCreateInstance();
 
         const inscriptionTotal = storageService.getItem("inscription-total");
+        const giftCardTotal = storageService.getItem("gift-card-total");
 
         if (inscriptionTotal) {
             total = parseFloat(inscriptionTotal);
+        } else if (giftCardTotal) {
+            total = parseFloat(giftCardTotal);
         } else {
             const courseIds = storageService.getItem(this.paymentStorageKey);
             if (!courseIds || courseIds.length === 0) {
