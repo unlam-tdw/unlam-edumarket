@@ -10,14 +10,23 @@
 .calendario ol {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
+    grid-auto-rows: 3em;
     list-style: none;
     text-align: left;
     background: var(--gainsboro);
-    margin: 0.5em;
+}
+
+.dia-actual p {
+    border-radius: 50%;
+    color: var(--whihte);
+    background-color: var(--air-force-blue);
+    display: inline-block;
+    padding: 0.2em;
 }
 
 span {
-    font-size: 0.5em;
+
+    font-size: 0.1em;
     border-radius: 0.5em;
     background-color: var(--air-force-blue);
     color: var(--whihte);
@@ -37,7 +46,6 @@ span {
     font-weight: bold;
     text-align: center;
     font-size: 0.5em;
-    padding: 1em;
     border-radius: 0.3em;
     background-color: var(--medium-gray);
     color: var(--whihte);
@@ -63,11 +71,10 @@ div .cursos {
 .cursos a {
     all: initial;
     width: 100%;
-    padding: 1em;
     border-radius: 0.5em;
     background-color: var(--medium-gray);
     color: var(--whihte);
-    font-size: 0.5rem;
+    font-size: 0.4rem;
     cursor: pointer;
 }
 
@@ -76,6 +83,8 @@ div .cursos {
 
     .calendario ol {
         margin: 1em;
+        grid-auto-rows: 1fr;
+
     }
 
     .calendario li {
@@ -112,6 +121,7 @@ div .cursos {
     .calendario ol {
 
         margin: 3em;
+        grid-auto-rows: 1fr;
 
 
     }
