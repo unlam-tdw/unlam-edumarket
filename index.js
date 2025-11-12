@@ -58,5 +58,36 @@ export class Index {
         });
     }
 }
+// agarra todas las img
+let slides = document.querySelectorAll(".slide");
+
+// aempieza por la primera img
+let actual = 0;
+
+// muestra la primera img
+slides[actual].style.display = "block";
+
+// función para mostrar la siguiente img
+function siguiente() {
+  slides[actual].style.display = "none";
+  actual = actual + 1;
+  if (actual >= slides.length) actual = 0;
+  slides[actual].style.display = "block";
+}
+
+// función para mostrar la anterior img
+function anterior() {
+  slides[actual].style.display = "none";
+  actual = actual - 1;
+  if (actual < 0) actual = slides.length - 1;
+  slides[actual].style.display = "block";
+}
+
+// botones
+document.querySelector(".main__carousel__btn.right").onclick = siguiente;
+document.querySelector(".main__carousel__btn:not(.right)").onclick = anterior;
+
+// que se mueva solo cada 7 segundos
+setInterval(siguiente, 7000);
 
 Index.renderCourses();
