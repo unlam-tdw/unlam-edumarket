@@ -46,16 +46,23 @@ ol {
 .right {
   right: 0;
 }
-
+.slide {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
+}
 .main__carousel__btn__img {
   width: 2.5em;
 }
 
 .main__carousel__content {
-  display: flex;
+ display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
+  height: 100%;
+  overflow: hidden;
   background-color: var(--auburn);
 }
 
