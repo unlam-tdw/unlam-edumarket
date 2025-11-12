@@ -19,11 +19,11 @@
     <h3>INSCRIPCIÓN</h3>
 
     <!-- Persona 1 -->
-   <form action="../pagar/index.html" method="GET">
+   <form action="/" method="GET" id="subscribe-form">
     <div class="file">
-        <input type="text" placeholder="Nombre" required>
-        <input type="text" placeholder="Apellido" required>
-        <input type="number" placeholder="DNI" min="1000000" max="99999999" required>
+        <input id="nombre-0" type="text" placeholder="Nombre" required />
+        <input id="apellido-0" type="text" placeholder="Apellido" required />
+        <input id="dni-0" type="number" placeholder="DNI" min="1000000" max="99999999" required />
         <button class="btn-" type="button">−</button>
       </div>
   
@@ -37,11 +37,14 @@
   
       <!-- Caja de monto -->
       <div class="cost">
-        <h6>$000.-</h6>
+        <h6 id="inscription-total"></h6>
         <button class="register" type="submit">INSCRIBIRSE</button>
       </div>
    </form>
   </main>
+
+    <!-- Modal Parent -->
+    <div id="modal-parent"></div>
 
     <!-- Footer -->
     <footer id="footer"></footer>
