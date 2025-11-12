@@ -189,6 +189,14 @@ ol {
   border-radius: 5px;
 }
 
+.main__cursos__link {
+  padding: 1em;
+  background-color: var(--auburn);
+  color: var(--whihte);
+  border-radius: 5px;
+  align-self: center;
+}
+
 .main__payments {
   display: flex;
   flex-direction: column;
