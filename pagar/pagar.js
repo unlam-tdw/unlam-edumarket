@@ -2,6 +2,7 @@ import { ModalService } from "../scripts/modal-service.js";
 import { SessionService } from "../scripts/session-service.js";
 import { PaymentService } from "../scripts/payment-service.js";
 import { UsersService } from "../scripts/users-service.js";
+import { GiftCardService } from "../scripts/gift-card-service.js";
 
 export class Pagar {
   constructor() {}
@@ -244,9 +245,17 @@ export class Pagar {
       paymentAmountElement.textContent = paymentTotal.toFixed(2);
     }
 
-    if (paymentTotal === 0) {
-      window.location.href = "/";
-      return;
+    // Solo redirigir si realmente no hay nada que pagar (sin cursos ni gift cards)
+    if (paymentTotal <= 0) {
+      const giftCardService = new GiftCardService();
+      const giftCards = giftCardService.getGiftCards();
+      const courseIds = paymentService.getPayment();
+      
+      // Si no hay cursos ni gift cards, redirigir
+      if ((!courseIds || courseIds.length === 0) && (!giftCards || giftCards.length === 0)) {
+        window.location.href = "/";
+        return;
+      }
     }
 
     const modalService = new ModalService("modal-parent");

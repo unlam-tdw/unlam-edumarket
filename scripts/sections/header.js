@@ -1,5 +1,4 @@
 import { CartService } from "../cart-service.js";
-import { ModalService } from "../modal-service.js";
 import { SessionService } from "../session-service.js";
 import { CoursesService } from "../courses-service.js";
 import { GiftCardService } from "../gift-card-service.js";
@@ -14,7 +13,6 @@ export class Header {
       return;
     }
 
-    const modalService = new ModalService("modal-parent");
     const cartService = new CartService();
     const sessionService = SessionService.getOrCreateInstance();
     const coursesService = new CoursesService();
@@ -173,13 +171,6 @@ export class Header {
         const courseId = parseInt(btn.getAttribute("data-course-id"));
         const cartServiceInstance = new CartService();
         cartServiceInstance.removeFromCart(courseId);
-        modalService.buildModal(
-          "Curso eliminado del carrito",
-          "El curso ha sido eliminado del carrito correctamente.",
-          "success",
-          () => {}
-        );
-        modalService.openModal();
       });
     });
 
@@ -194,14 +185,6 @@ export class Header {
         const giftCardToRemove = giftCards.find(gc => gc.id === giftCardId);
         if (giftCardToRemove) {
           giftCardServiceInstance.removeGiftCard(giftCardToRemove);
-          modalService.buildModal(
-            "Gift Card eliminada del carrito",
-            "La gift card ha sido eliminada del carrito correctamente.",
-            "success",
-            () => {}
-          );
-          modalService.openModal();
-          this.render();
         }
       });
     });
@@ -220,6 +203,14 @@ export class Header {
     });
 
     document.addEventListener(CartService.cartRemovedEventKey, () => {
+      this.render();
+    });
+
+    document.addEventListener(GiftCardService.giftCardAddedEventKey, () => {
+      this.render();
+    });
+
+    document.addEventListener(GiftCardService.giftCardRemovedEventKey, () => {
       this.render();
     });
   }

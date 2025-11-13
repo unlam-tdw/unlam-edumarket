@@ -156,6 +156,7 @@
 .search__results__card__actions {
     display: flex;
     justify-content: flex-end;
+    gap: 1em;
 }
 
 .search__results__card__btn {

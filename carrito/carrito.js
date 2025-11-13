@@ -1,12 +1,10 @@
 import { CartService } from "../scripts/cart-service.js";
 import { CoursesService } from "../scripts/courses-service.js";
-import { ModalService } from "../scripts/modal-service.js";
-import { PaymentService } from "../scripts/payment-service.js";
 import { GiftCardService } from "../scripts/gift-card-service.js";
+import { PaymentService } from "../scripts/payment-service.js";
 
 export class Carrito {
   static #renderCartItems() {
-    const modalService = new ModalService("modal-parent");
     const giftCardService = new GiftCardService();
     const cartService = new CartService();
     const coursesService = new CoursesService();
@@ -18,13 +16,6 @@ export class Carrito {
     const element = document.getElementById("cart-items");
 
     if (!element) {
-      modalService.buildModal(
-        "Error",
-        "No se encontró el elemento con id 'cart-items'.",
-        "error",
-        () => {}
-      );
-      modalService.openModal();
       return;
     }
 
@@ -99,13 +90,6 @@ export class Carrito {
         const courseId = parseInt(btn.getAttribute("data-course-id"));
         const cartServiceInstance = new CartService();
         cartServiceInstance.removeFromCart(courseId);
-        modalService.buildModal(
-          "Curso eliminado del carrito",
-          "El curso ha sido eliminado del carrito correctamente.",
-          "success",
-          () => {}
-        );
-        modalService.openModal();
       });
     });
 
@@ -120,21 +104,12 @@ export class Carrito {
         const giftCardToRemove = giftCards.find(gc => gc.id === giftCardId);
         if (giftCardToRemove) {
           giftCardServiceInstance.removeGiftCard(giftCardToRemove);
-          modalService.buildModal(
-            "Gift Card eliminada del carrito",
-            "La gift card ha sido eliminada del carrito correctamente.",
-            "success",
-            () => {}
-          );
-          modalService.openModal();
-          this.paintAndUpdate();
         }
       });
     });
   }
 
   static #renderCartSummary() {
-    const modalService = new ModalService("modal-parent");
     const giftCardService = new GiftCardService();
     const cartService = new CartService();
     const coursesService = new CoursesService();
@@ -152,13 +127,6 @@ export class Carrito {
     const element = document.getElementById("cart-summary");
 
     if (!element) {
-      modalService.buildModal(
-        "Error",
-        "No se encontró el elemento con id 'cart-summary'.",
-        "error",
-        () => {}
-      );
-      modalService.openModal();
       return;
     }
 
@@ -230,30 +198,34 @@ export class Carrito {
       buyBtn.addEventListener("click", () => {
         const paymentService = PaymentService.getOrCreateInstance();
         const cartService = new CartService();
+        const giftCardService = new GiftCardService();
         const cart = cartService.getCart();
-        if (cart.length === 0) {
+        const giftCards = giftCardService.getGiftCards();
+        
+        // Permitir proceder al pago si hay cursos o gift cards
+        if (cart.length === 0 && giftCards.length === 0) {
           return;
         }
-        paymentService.setPayment(cart);
+        
+        // Solo guardar cursos si hay cursos en el carrito
+        if (cart.length > 0) {
+          paymentService.setPayment(cart);
+        } else {
+          // Si no hay cursos, guardar un array vacío para que el payment service pueda calcular el total con gift cards
+          paymentService.setPayment([]);
+        }
+        
         window.location.href = "/pagar";
       });
     }
   }
 
   static #renderCartRecommendations() {
-    const modalService = new ModalService("modal-parent");
     const coursesService = new CoursesService();
     const coursesInCart = coursesService.getRandomCourses(3);
     const element = document.getElementById("cart-recommendations");
 
     if (!element) {
-      modalService.buildModal(
-        "Error",
-        "No se encontró el elemento con id 'cart-recommendations'.",
-        "error",
-        () => {}
-      );
-      modalService.openModal();
       return;
     }
 
@@ -282,9 +254,6 @@ export class Carrito {
                                        href="/detalle/?courseId=${course.id}">Ver detalle</a>
                                 </div>
                                 <div class="cart__recommendations__card__actions">
-                                    <a class="cart__recommendations__card__btn cart__recommendations__card__btn--buy" 
-                                       href="/pagar/" 
-                                       data-course-id="${course.id}">Comprar</a>
                                     <a class="cart__recommendations__card__btn cart__recommendations__card__btn--subscribe" 
                                        href="/inscripcion/?courseId=${course.id}" 
                                        data-course-id="${course.id}">Inscribirse</a>
@@ -304,24 +273,6 @@ export class Carrito {
         const courseId = parseInt(btn.getAttribute("data-course-id"));
         const cartServiceInstance = new CartService();
         cartServiceInstance.addToCart(courseId);
-        modalService.buildModal(
-          "Curso agregado al carrito",
-          "El curso ha sido agregado al carrito correctamente.",
-          "success",
-          () => {}
-        );
-        modalService.openModal();
-      });
-    });
-
-    const buyBtns = element.querySelectorAll(".cart__recommendations__card__btn--buy");
-    buyBtns.forEach((btn) => {
-      btn.addEventListener("click", (e) => {
-        e.preventDefault();
-        const courseId = parseInt(btn.getAttribute("data-course-id"));
-        const paymentService = PaymentService.getOrCreateInstance();
-        paymentService.setPayment([courseId]);
-        window.location.href = "/pagar";
       });
     });
   }
@@ -339,6 +290,14 @@ export class Carrito {
     });
 
     document.addEventListener(CartService.cartClearedEventKey, () => {
+      this.paintAndUpdate();
+    });
+
+    document.addEventListener(GiftCardService.giftCardAddedEventKey, () => {
+      this.paintAndUpdate();
+    });
+
+    document.addEventListener(GiftCardService.giftCardRemovedEventKey, () => {
       this.paintAndUpdate();
     });
   }

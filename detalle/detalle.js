@@ -1,6 +1,5 @@
 import { CoursesService } from "../scripts/courses-service.js";
 import { CartService } from "../scripts/cart-service.js";
-import { PaymentService } from "../scripts/payment-service.js";
 
 export class Detalle {
     static course;
@@ -36,7 +35,6 @@ export class Detalle {
                     <div class="course-detail__hero__actions">
                         <a class="course-detail__hero__btn course-detail__hero__btn--primary" href="/inscripcion/?courseId=${this.course.id}" id="subscribe-btn" data-course-id="${this.course.id}">INSCRIBIRSE</a>
                         <a class="course-detail__hero__btn course-detail__hero__btn--secondary" href="/carrito" id="add-to-cart-btn" data-course-id="${this.course.id}">AGREGAR AL CARRITO</a>
-                        <a class="course-detail__hero__btn course-detail__hero__btn--tertiary" href="/pagar" id="buy-btn" data-course-id="${this.course.id}">COMPRAR</a>
                     </div>
                 </div>
             </div>
@@ -140,9 +138,6 @@ export class Detalle {
                                        href="/detalle/?courseId=${relatedCourse.id}">Ver detalle</a>
                                 </div>
                                 <div class="course-detail__related__card__actions">
-                                    <a class="course-detail__related__card__btn course-detail__related__card__btn--buy" 
-                                       href="/pagar/" 
-                                       data-course-id="${relatedCourse.id}">Comprar</a>
                                     <a class="course-detail__related__card__btn course-detail__related__card__btn--subscribe" 
                                        href="/inscripcion/?courseId=${relatedCourse.id}" 
                                        data-course-id="${relatedCourse.id}">Inscribirse</a>
@@ -199,18 +194,6 @@ export class Detalle {
             });
         }
 
-        const buyBtn = main.querySelector('#buy-btn');
-        if (buyBtn) {
-            buyBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const courseId = parseInt(buyBtn.getAttribute('data-course-id'));
-                const paymentService = PaymentService.getOrCreateInstance();
-                paymentService.setPayment([courseId]);
-                window.location.href = "/pagar";
-            });
-        }
-
-        // Related courses buttons
         const relatedCartBtns = main.querySelectorAll('.course-detail__related__card__btn--cart');
         relatedCartBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
@@ -218,17 +201,6 @@ export class Detalle {
                 const courseId = parseInt(btn.getAttribute('data-course-id'));
                 const cartService = new CartService();
                 cartService.addToCart(courseId);
-            });
-        });
-
-        const relatedBuyBtns = main.querySelectorAll('.course-detail__related__card__btn--buy');
-        relatedBuyBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const courseId = parseInt(btn.getAttribute('data-course-id'));
-                const paymentService = PaymentService.getOrCreateInstance();
-                paymentService.setPayment([courseId]);
-                window.location.href = "/pagar";
             });
         });
     }

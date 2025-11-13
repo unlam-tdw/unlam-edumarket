@@ -35,10 +35,7 @@ export class PaymentService {
         if (inscriptionTotal) {
             total = parseFloat(inscriptionTotal);
         } else {
-            const courseIds = storageService.getItem(this.paymentStorageKey);
-            if (!courseIds || courseIds.length === 0) {
-                return 0;
-            }
+            const courseIds = storageService.getItem(this.paymentStorageKey) || [];
             const courses = new CoursesService();
             const giftCardService = new GiftCardService();
             const giftCardsTotal = giftCardService.getGiftCards().reduce((acc, giftCard) => {

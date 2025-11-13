@@ -1,5 +1,6 @@
 import { StorageService } from "./storage-service.js";
 import { SessionService } from "./session-service.js";
+import { ModalService } from "./modal-service.js";
 
 export class CartService {
     cartStorageKeyPrefix = 'cart';
@@ -75,6 +76,15 @@ export class CartService {
             storageService.setItem(cartKey, cart);
             document.dispatchEvent(new CustomEvent(this.constructor.cartAddedEventKey));
         }
+
+        const modalService = new ModalService("modal-parent");
+        modalService.buildModal(
+            "Curso agregado al carrito",
+            "El curso ha sido agregado al carrito correctamente.",
+            "success",
+            () => {}
+        );
+        modalService.openModal();
     }
 
     removeFromCart(courseId) {
@@ -84,6 +94,14 @@ export class CartService {
         const cartKey = this.#getCartKey();
         storageService.setItem(cartKey, filteredCart);
         document.dispatchEvent(new CustomEvent(this.constructor.cartRemovedEventKey));
+        const modalService = new ModalService("modal-parent");
+        modalService.buildModal(
+            "Curso eliminado del carrito",
+            "El curso ha sido eliminado del carrito correctamente.",
+            "success",
+            () => {}
+        );
+        modalService.openModal();
     }
 
     migrateCart(fromUserId, toUserId) {

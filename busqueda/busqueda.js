@@ -1,4 +1,5 @@
 import { CoursesService } from "../scripts/courses-service.js";
+import { CartService } from "../scripts/cart-service.js";
 
 export class Busqueda {
     static #getQuery() {
@@ -39,7 +40,12 @@ export class Busqueda {
                                     </div>
                                 </div>
                                 <div class="search__results__card__actions">
-                                    <a class="search__results__card__btn" href="/pagar/">Comprar</a>
+                                    <a class="search__results__card__btn search__results__card__btn--subscribe" 
+                                       href="/inscripcion/" 
+                                       data-course-id="${item.id}">Inscribirse</a>
+                                    <a class="search__results__card__btn search__results__card__btn--cart" 
+                                       href="/carrito/" 
+                                       data-course-id="${item.id}">🛒</a>
                                 </div>
                             </div>
                         </article>
@@ -62,6 +68,27 @@ export class Busqueda {
         searchResults.innerHTML = `<ul class="search__results__list">
             ${results.map(result => this.#renderResultItem(result)).join("")}
         </ul>`;
+
+        // Add event listeners for cart and subscribe buttons
+        const addToCartBtns = searchResults.querySelectorAll('.search__results__card__btn--cart');
+        const subscribeBtns = searchResults.querySelectorAll('.search__results__card__btn--subscribe');
+        
+        addToCartBtns.forEach(btn => {
+            btn.addEventListener('click', (event) => {
+                event.preventDefault();
+                const courseId = parseInt(btn.getAttribute('data-course-id'));
+                const cartService = new CartService();
+                cartService.addToCart(courseId);
+            });
+        });
+        
+        subscribeBtns.forEach(btn => {
+            btn.addEventListener('click', (event) => {
+                event.preventDefault();
+                const courseId = parseInt(btn.getAttribute('data-course-id'));
+                window.location.href = `/inscripcion/?courseId=${courseId}`;
+            });
+        });
     }
 }
 

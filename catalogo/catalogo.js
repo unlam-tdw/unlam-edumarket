@@ -1,5 +1,4 @@
 import { CoursesService } from "../scripts/courses-service.js";
-import { PaymentService } from "../scripts/payment-service.js";
 import { CartService } from "../scripts/cart-service.js";
 
 export class Catalogo {
@@ -41,8 +40,6 @@ export class Catalogo {
                                 </div>
                             </div>
                             <div class="main__cursos__list__item__card__bottom__buy">
-                                <a class="main__cursos__list__item__card__bottom__buy__btn"
-                                    href="/pagar/" id="buy-btn" data-course-id="${course.id}">Comprar</a>
                                 <a class="main__cursos__list__item__card__bottom__subscribe__btn"
                                     href="/inscripcion/" id="subscribe-btn" data-course-id="${course.id}">Inscribirse</a>
                                 <a class="main__cursos__list__item__card__bottom__cart__btn"
@@ -55,20 +52,9 @@ export class Catalogo {
       )
       .join("");
 
-    const paymentService = PaymentService.getOrCreateInstance();
-    const buyBtns = coursesList.querySelectorAll('.main__cursos__list__item__card__bottom__buy__btn');
     const addToCartBtns = coursesList.querySelectorAll('.main__cursos__list__item__card__bottom__cart__btn');
     const subscribeBtns = coursesList.querySelectorAll('.main__cursos__list__item__card__bottom__subscribe__btn');
     
-    buyBtns.forEach((btn) => {
-      btn.addEventListener("click", (event) => {
-        event.preventDefault();
-        const courseId = parseInt(btn.getAttribute("data-course-id"));
-        paymentService.setPayment([courseId]);
-        window.location.href = "/pagar";
-      });
-    });
-
     addToCartBtns.forEach(btn => {
       btn.addEventListener('click', (event) => {
         event.preventDefault();
