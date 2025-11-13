@@ -7,15 +7,85 @@ import { CoursesService } from "../scripts/courses-service.js";
 export class Perfil {
   constructor() {}
 
+  static validators = {
+    dni: /^\d{7,8}$/,
+  };
+
+  static errorMessages = {
+    dni: "El DNI debe contener 7 u 8 dígitos",
+  };
+
+  static validateField(fieldName, value) {
+    const validator = this.validators[fieldName];
+    if (!validator) return true;
+    return validator.test(value);
+  }
+
+  static showFieldError(input, message) {
+    input.classList.add('perfil__form__input--error');
+    let errorElement = input.parentElement.querySelector('.perfil__form__error');
+    
+    if (!errorElement) {
+      errorElement = document.createElement('span');
+      errorElement.className = 'perfil__form__error';
+      input.parentElement.appendChild(errorElement);
+    }
+    
+    errorElement.textContent = message;
+  }
+
+  static hideFieldError(input) {
+    input.classList.remove('perfil__form__input--error');
+    const errorElement = input.parentElement.querySelector('.perfil__form__error');
+    if (errorElement) {
+      errorElement.remove();
+    }
+  }
+
+  static setupFieldValidation(form) {
+    const dniInput = form.querySelector('[name="dni"]');
+    if (dniInput) {
+      dniInput.addEventListener('input', (e) => {
+        e.target.value = e.target.value.replace(/\D/g, '');
+        const value = e.target.value.trim();
+        if (value === '') {
+          this.hideFieldError(e.target);
+        } else if (!this.validateField('dni', value)) {
+          this.showFieldError(e.target, this.errorMessages.dni);
+        } else {
+          this.hideFieldError(e.target);
+        }
+      });
+
+      dniInput.addEventListener('blur', (e) => {
+        const value = e.target.value.trim();
+        if (value !== '' && !this.validateField('dni', value)) {
+          this.showFieldError(e.target, this.errorMessages.dni);
+        }
+      });
+    }
+  }
+
   static updateProfile(event) {
     event.preventDefault();
 
+    const form = event.target;
     const modalService = new ModalService("modal-parent");
 
     const nombre = document.getElementById("nombre").value;
+    const apellido = document.getElementById("apellido").value;
+    const dni = document.getElementById("dni").value.trim();
 
-    if (!nombre) {
+    if (!nombre || !apellido || !dni) {
       return;
+    }
+
+    const dniInput = form.querySelector('[name="dni"]');
+    if (!this.validateField('dni', dni)) {
+      this.showFieldError(dniInput, this.errorMessages.dni);
+      return;
+    } else {
+      this.hideFieldError(dniInput);
     }
 
     const sessionService = SessionService.getOrCreateInstance();
@@ -36,6 +106,8 @@ export class Perfil {
 
     const updatedData = {
       nombre,
+      apellido,
+      dni,
     };
 
     const success = usersService.updateUser(userId, updatedData);
@@ -121,9 +193,12 @@ export class Perfil {
     }
 
     document.getElementById("nombre").value = user.nombre || "";
+    document.getElementById("apellido").value = user.apellido || "";
+    document.getElementById("dni").value = user.dni || "";
     document.getElementById("email").value = user.email || "";
 
     const profileForm = document.getElementById("profile-form");
+    this.setupFieldValidation(profileForm);
     profileForm.addEventListener("submit", (event) =>
       Perfil.updateProfile(event)
     );
