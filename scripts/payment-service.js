@@ -1,6 +1,7 @@
 import { StorageService } from "./storage-service.js";
 import { CoursesService } from "./courses-service.js";
 import { CartService } from "./cart-service.js";
+import { GiftCardService } from "./gift-card-service.js";
 
 export class PaymentService {
     paymentStorageKey = 'payment';
@@ -30,22 +31,31 @@ export class PaymentService {
         const storageService = StorageService.getOrCreateInstance();
 
         const inscriptionTotal = storageService.getItem("inscription-total");
-        const giftCardTotal = storageService.getItem("gift-card-total");
 
         if (inscriptionTotal) {
             total = parseFloat(inscriptionTotal);
-        } else if (giftCardTotal) {
-            total = parseFloat(giftCardTotal);
         } else {
             const courseIds = storageService.getItem(this.paymentStorageKey);
             if (!courseIds || courseIds.length === 0) {
                 return 0;
             }
             const courses = new CoursesService();
-            total = courseIds.reduce((acc, courseId) => {
+            const giftCardService = new GiftCardService();
+            const giftCardsTotal = giftCardService.getGiftCards().reduce((acc, giftCard) => {
+                return acc + (giftCard ? Number(giftCard.price) || 0 : 0);
+            }, 0)
+            const coursesTotal = courseIds.reduce((acc, courseId) => {
                 const course = courses.getCourseById(courseId);
                 return acc + (course ? course.price : 0);
-            }, 0);
+            }, 0)
+
+            let discount = 0;
+
+            if (courseIds.length >= 3) {
+                discount = 10;
+            }
+
+            total = coursesTotal + giftCardsTotal - discount;
         }
 
         return total;

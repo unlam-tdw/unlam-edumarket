@@ -1,5 +1,6 @@
 import { ModalService } from "../scripts/modal-service.js";
 import { StorageService } from "../scripts/storage-service.js";
+import { GiftCardService } from "../scripts/gift-card-service.js";
 //*********** NOMBRE-DESTINATARIO
 
 //selecciona el input
@@ -90,15 +91,22 @@ const formGiftCard = document.getElementById("form-gift-card");
 formGiftCard.addEventListener("submit", (event) => {
   event.preventDefault();
   const modalService = new ModalService("modal-parent");
+  const giftCardService = new GiftCardService();  
 
-  const storageService = StorageService.getOrCreateInstance();
-  storageService.setItem("gift-card-total", inputMontoEscrito.value);
+  giftCardService.addGiftCard({
+    recipientName: inputNombre.value,
+    price: parseFloat(inputMontoEscrito.value) || 0, 
+    fontSize: textoDestinatario.style.fontSize,
+    fontColor: textoDestinatario.style.color,
+    priceLocation: etiquetaPrecio.className,
+    backgroundColor: colorFondo.style.backgroundColor,
+  });
 
   modalService.buildModal(
     "Gift Card generada",
     "La gift card ha sido generada correctamente.",
     "success",
-    () => (window.location.href = "/pagar")
+    () => (window.location.href = "/carrito")
   );
   modalService.openModal();
 });
