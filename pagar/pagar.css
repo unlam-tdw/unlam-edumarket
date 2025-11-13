@@ -119,6 +119,24 @@
     color: var(--philippine-silver);
 }
 
+.pagar__form__input--error {
+    border-color: var(--auburn);
+    box-shadow: 0 0 0 0.125em rgba(139, 0, 0, 0.2);
+}
+
+.pagar__form__input--error:focus {
+    border-color: var(--auburn);
+    box-shadow: 0 0 0 0.125em rgba(139, 0, 0, 0.3);
+}
+
+.pagar__form__error {
+    color: var(--auburn);
+    font-size: 0.8em;
+    margin-top: 0.25em;
+    display: block;
+    font-weight: 500;
+}
+
 .pagar__form__terms {
     background-color: var(--antique-white);
     padding: 1em;
