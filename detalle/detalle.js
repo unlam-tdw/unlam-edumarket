@@ -82,6 +82,7 @@ export class Detalle {
                     <section class="course-detail__instructor">
                         <h2 class="course-detail__section-title">DOCENTE</h2>
                         <div class="course-detail__instructor__content">
+                            ${this.course.author ? `
                             <div class="course-detail__instructor__avatar">
                                 <img class="course-detail__instructor__img" 
                                      src="${this.course.author.image}" 
@@ -100,6 +101,11 @@ export class Detalle {
                                     ${this.course.author.description}
                                 </p>
                             </div>
+                            ` : `
+                            <div class="course-detail__instructor__info">
+                                <p>Información del docente no disponible.</p>
+                            </div>
+                            `}
                         </div>
                     </section>
                 </div>
