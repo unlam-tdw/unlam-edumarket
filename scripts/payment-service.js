@@ -63,7 +63,6 @@ export class PaymentService {
         const cartService = new CartService();
         storageService.removeItem(this.paymentStorageKey);
         storageService.removeItem("inscription-total");
-        storageService.removeItem("gift-card-total");
         cartService.clearCart();
     }
 }
