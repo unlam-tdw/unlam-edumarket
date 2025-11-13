@@ -142,6 +142,7 @@
 .sidebar-carrito {
   background-color: var(--sky-blue);
   position: fixed;
+  z-index: 5;
   top: 0;
   right: 0;
   height: 100dvh;
@@ -150,7 +151,6 @@
   padding-top: 8em;
   display: flex;
   flex-direction: column;
-  overflow-y: scroll;
   gap: 1em;
   transform: translateX(100%);
   transition: transform 0.4s ease-in-out;
@@ -158,6 +158,39 @@
 
 .sidebar-carrito.open {
   transform: translateX(0);
+}
+
+.cart-link,
+.cart-link:visited {
+  background-color: var(--auburn);
+  color: var(--whihte);
+  padding: 1em;
+  border-radius: 0.25em;
+}
+
+.cart__summary__value {
+  font-weight: 700;
+  color: var(--black);
+  font-size: 0.9em;
+}
+
+.cart__summary__value--total {
+  font-size: 1.2em;
+  color: var(--auburn);
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  overflow-y: auto;
+}
+
+.cart-end {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
 }
 
 .cart__item {
