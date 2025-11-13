@@ -62,7 +62,7 @@ export class Header {
     const main = document.querySelector("main");
 
     const sidebar = document.createElement("aside");
-
+    sidebar.id = "sidebar-carrito";
     sidebar.classList.add("sidebar-carrito");
 
     coursesInCart.map((course) => {
@@ -89,7 +89,9 @@ export class Header {
       sidebar.appendChild(div);
     });
 
-    main.appendChild(sidebar);
+    if (!document.getElementById("sidebar-carrito")) {
+      main.appendChild(sidebar);
+    }
 
     const removeFromCartBtns = sidebar.querySelectorAll(
       "#remove-from-cart-btn"
