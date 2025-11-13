@@ -1,6 +1,8 @@
 import { CoursesService } from "../scripts/courses-service.js";
 import { StorageService } from "../scripts/storage-service.js";
 import { ModalService } from "../scripts/modal-service.js";
+import { SessionService } from "../scripts/session-service.js";
+import { UsersService } from "../scripts/users-service.js";
 
 export class Inscripcion {
     constructor() { }
@@ -9,6 +11,12 @@ export class Inscripcion {
         const courseService = new CoursesService();
         const courseId = new URLSearchParams(window.location.search).get("courseId");
         const course = courseService.getCourseById(Number(courseId));
+
+        // Obtener información del usuario actual
+        const sessionService = SessionService.getOrCreateInstance();
+        const userId = sessionService.getSession();
+        const usersService = new UsersService();
+        const currentUser = userId ? usersService.getUserById(userId) : null;
 
         let contadorDeInscripciones = 1;
 
@@ -20,11 +28,20 @@ export class Inscripcion {
 
         const filaOriginal = document.querySelector(".file");
 
-        const btnOriginal = filaOriginal.querySelector(".btn-");
-
         const inscriptionTotalElement = document.getElementById("inscription-total");
 
         inscriptionTotalElement.textContent = `$ ${inscriptionTotalInitial}`;
+
+        // Poblar la primera fila con la información del usuario
+        if (currentUser) {
+            const nombreInput = document.getElementById("nombre-0");
+            const apellidoInput = document.getElementById("apellido-0");
+            const dniInput = document.getElementById("dni-0");
+
+            if (nombreInput) nombreInput.value = currentUser.nombre || "";
+            if (apellidoInput) apellidoInput.value = currentUser.apellido || "";
+            if (dniInput) dniInput.value = currentUser.dni || "";
+        }
 
 
         function agregarPersona() {
@@ -57,10 +74,6 @@ export class Inscripcion {
             });
         }
 
-        btnOriginal.addEventListener("click", () => {
-            const inputs = filaOriginal.querySelectorAll("input");
-            inputs.forEach(input => input.value = "");
-        });
 
         addBtn.addEventListener("click", agregarPersona);
 
