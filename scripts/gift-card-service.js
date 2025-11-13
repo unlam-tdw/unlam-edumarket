@@ -1,4 +1,5 @@
 import { StorageService } from "./storage-service.js";
+import { ModalService } from "./modal-service.js";
 
 export class GiftCardService {
     giftCardStorageKey = "gift-cards";
@@ -25,5 +26,13 @@ export class GiftCardService {
         this.giftCards = this.giftCards.filter(g => g.id !== giftCard.id);
         this.storageService.setItem(this.giftCardStorageKey, this.giftCards);
         document.dispatchEvent(new CustomEvent(this.constructor.giftCardRemovedEventKey));
+        const modalService = new ModalService("modal-parent");
+        modalService.buildModal(
+            "Gift Card eliminada del carrito",
+            "La gift card ha sido eliminada del carrito correctamente.",
+            "success",
+            () => {}
+        );
+        modalService.openModal();
     }
 }
