@@ -77,6 +77,12 @@ export class Header {
     sidebar.id = "sidebar-carrito";
     sidebar.classList.add("sidebar-carrito");
 
+    const closeBtn = document.createElement("button");
+    closeBtn.id = "sidebar-close-btn";
+    closeBtn.classList.add("sidebar-close-btn");
+    closeBtn.innerHTML = "✕";
+    closeBtn.setAttribute("aria-label", "Cerrar carrito");
+
     const cardContainer = document.createElement("ul");
     cardContainer.id = "cursos-container";
     cardContainer.classList.add("card-container");
@@ -155,6 +161,7 @@ export class Header {
     }
     
     header.appendChild(sidebar);
+    sidebar.appendChild(closeBtn);
     sidebar.appendChild(cardContainer);
     sidebar.appendChild(cartEnd);
 
@@ -202,6 +209,10 @@ export class Header {
     const cartBtn = document.getElementById("boton-cart");
     cartBtn.addEventListener("click", () => {
       sidebar.classList.toggle("open");
+    });
+
+    closeBtn.addEventListener("click", () => {
+      sidebar.classList.remove("open");
     });
 
     document.addEventListener(CartService.cartAddedEventKey, () => {
