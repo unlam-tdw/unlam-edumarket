@@ -20,6 +20,13 @@ export class Header {
     const isAuthenticated = sessionService.isAuthenticated();
     const cartLength = cartService.getCartLength();
     const cart = cartService.getCart();
+    const total = cart.reduce((acc, id) => {
+      const course = coursesService.getCourseById(id);
+      return acc + (course ? course.price : 0);
+    }, 0);
+    const subtotal = total.toFixed(2);
+    const discount = cart.length >= 3 ? 10.0 : 0.0;
+    const finalTotal = (subtotal - discount).toFixed(2);
     const coursesInCart = cart.map((id) => coursesService.getCourseById(id));
 
     const href = isAuthenticated ? "/perfil" : "/sign-in";
@@ -59,11 +66,21 @@ export class Header {
         </nav>
         `;
 
-    const main = document.querySelector("main");
-
     const sidebar = document.createElement("aside");
     sidebar.id = "sidebar-carrito";
     sidebar.classList.add("sidebar-carrito");
+
+    const cardContainer = document.createElement("ul");
+    cardContainer.id = "cursos-container";
+    cardContainer.classList.add("card-container");
+
+    const cartEnd = document.createElement("div");
+    cartEnd.id = "sidebar-links";
+    cartEnd.classList.add("cart-end");
+    cartEnd.innerHTML = `
+<a href="../../carrito/index.html" class="cart-link">Ir al Carrito</a>
+<span class="cart__summary__value cart__summary__value--total">$${finalTotal}</span>
+    `;
 
     coursesInCart.map((course) => {
       const div = document.createElement("div");
@@ -86,11 +103,17 @@ export class Header {
                 <button class="cart__item__remove" id="remove-from-cart-btn" type="button" data-course-id="${course.id}">🗑️</button>
             </div>
         `;
-      sidebar.appendChild(div);
+      cardContainer.appendChild(div);
     });
 
     if (!document.getElementById("sidebar-carrito")) {
-      main.appendChild(sidebar);
+      header.appendChild(sidebar);
+    }
+    if (!document.getElementById("cursos-container")) {
+      sidebar.appendChild(cardContainer);
+    }
+    if (!document.getElementById("sidebar-links")) {
+      sidebar.appendChild(cartEnd);
     }
 
     const removeFromCartBtns = sidebar.querySelectorAll(
