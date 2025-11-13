@@ -212,18 +212,22 @@ export class Carrito {
                                 </div>
                             </div>
                             <div class="cart__recommendations__card__content">
+                                <h3 class="cart__recommendations__card__title">${course.name}</h3>
                                 <div class="cart__recommendations__card__info">
-                                    <div class="cart__recommendations__card__duration">
-                                        <span class="cart__recommendations__card__duration__number">${course.duration}</span>
-                                        <span class="cart__recommendations__card__duration__text">hs</span>
-                                    </div>
-                                    <div class="cart__recommendations__card__details">
-                                        <h3 class="cart__recommendations__card__title">${course.name}</h3>
-                                        <a class="cart__recommendations__card__link" href="/detalle/?courseId=${course.id}">Ver detalle</a>
-                                    </div>
+                                    <a class="cart__recommendations__card__btn cart__recommendations__card__btn--cart" 
+                                       href="/carrito/" 
+                                       data-course-id="${course.id}"
+                                       aria-label="Agregar al carrito">🛒</a>
+                                    <a class="cart__recommendations__card__link" 
+                                       href="/detalle/?courseId=${course.id}">Ver detalle</a>
                                 </div>
                                 <div class="cart__recommendations__card__actions">
-                                    <div class="cart__recommendations__card__btn" id="add-to-cart-btn" data-course-id="${course.id}">Agregar al carrito</div>
+                                    <a class="cart__recommendations__card__btn cart__recommendations__card__btn--buy" 
+                                       href="/pagar/" 
+                                       data-course-id="${course.id}">Comprar</a>
+                                    <a class="cart__recommendations__card__btn cart__recommendations__card__btn--subscribe" 
+                                       href="/inscripcion/?courseId=${course.id}" 
+                                       data-course-id="${course.id}">Inscribirse</a>
                                 </div>
                             </div>
                         </article>
@@ -233,9 +237,10 @@ export class Carrito {
           .join("")}
         `;
 
-    const addToCartBtns = element.querySelectorAll("#add-to-cart-btn");
+    const addToCartBtns = element.querySelectorAll(".cart__recommendations__card__btn--cart");
     addToCartBtns.forEach((btn) => {
-      btn.addEventListener("click", () => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
         const courseId = parseInt(btn.getAttribute("data-course-id"));
         const cartServiceInstance = new CartService();
         cartServiceInstance.addToCart(courseId);
@@ -246,6 +251,17 @@ export class Carrito {
           () => {}
         );
         modalService.openModal();
+      });
+    });
+
+    const buyBtns = element.querySelectorAll(".cart__recommendations__card__btn--buy");
+    buyBtns.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const courseId = parseInt(btn.getAttribute("data-course-id"));
+        const paymentService = PaymentService.getOrCreateInstance();
+        paymentService.setPayment([courseId]);
+        window.location.href = "/pagar";
       });
     });
   }

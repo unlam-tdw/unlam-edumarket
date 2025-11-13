@@ -1,5 +1,6 @@
 import { CoursesService } from "./scripts/courses-service.js";
 import { PaymentService } from "./scripts/payment-service.js";
+import { CartService } from "./scripts/cart-service.js";
 
 export class Index {
     constructor() {}
@@ -40,6 +41,10 @@ export class Index {
                             <div class="main__cursos__list__item__card__bottom__buy">
                                 <a class="main__cursos__list__item__card__bottom__buy__btn"
                                     href="/pagar/" id="buy-btn" data-course-id="${course.id}">Comprar</a>
+                                <a class="main__cursos__list__item__card__bottom__subscribe__btn"
+                                    href="/inscripcion/" id="subscribe-btn" data-course-id="${course.id}">Inscribirse</a>
+                                <a class="main__cursos__list__item__card__bottom__cart__btn"
+                                    href="/carrito/" id="add-to-cart-btn" data-course-id="${course.id}">🛒</a>    
                             </div>
                         </div>
                     </article>
@@ -48,12 +53,32 @@ export class Index {
 
         const paymentService = PaymentService.getOrCreateInstance();
         const buyBtns = mainCoursesList.querySelectorAll('.main__cursos__list__item__card__bottom__buy__btn');
+        const addToCartBtns = mainCoursesList.querySelectorAll('.main__cursos__list__item__card__bottom__cart__btn');
+        const subscribeBtns = mainCoursesList.querySelectorAll('.main__cursos__list__item__card__bottom__subscribe__btn');
+        
         buyBtns.forEach(btn => {
             btn.addEventListener('click', (event) => {
                 event.preventDefault();
                 const courseId = parseInt(btn.getAttribute('data-course-id'));
                 paymentService.setPayment([courseId]);
                 window.location.href = "/pagar";
+            });
+        });
+
+        addToCartBtns.forEach(btn => {
+            btn.addEventListener('click', (event) => {
+                event.preventDefault();
+                const courseId = parseInt(btn.getAttribute('data-course-id'));
+                const cartService = new CartService();
+                cartService.addToCart(courseId);
+            });
+        });
+        
+        subscribeBtns.forEach(btn => {
+            btn.addEventListener('click', (event) => {
+                event.preventDefault();
+                const courseId = parseInt(btn.getAttribute('data-course-id'));
+                window.location.href = `/inscripcion/?courseId=${courseId}`;
             });
         });
     }

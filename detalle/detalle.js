@@ -118,24 +118,28 @@ export class Detalle {
                             <div class="course-detail__related__card__top">
                                 <img class="course-detail__related__card__img" 
                                      src="${relatedCourse.image}" 
-                                     alt="Curso relacionado">
+                                     alt="${relatedCourse.name}">
                                 <div class="course-detail__related__card__tag">
                                     <span class="course-detail__related__card__price">${relatedCourse.price}.-</span>
                                 </div>
                             </div>
                             <div class="course-detail__related__card__content">
+                                <h3 class="course-detail__related__card__title">${relatedCourse.name}</h3>
                                 <div class="course-detail__related__card__info">
-                                    <div class="course-detail__related__card__duration">
-                                        <span class="course-detail__related__card__duration__number">${relatedCourse.duration}</span>
-                                        <span class="course-detail__related__card__duration__text">hs</span>
-                                    </div>
-                                    <div class="course-detail__related__card__details">
-                                        <h3 class="course-detail__related__card__title">${relatedCourse.name}</h3>
-                                        <a class="course-detail__related__card__link" href="/detalle/?courseId=${relatedCourse.id}">Ver detalle</a>
-                                    </div>
+                                    <a class="course-detail__related__card__btn course-detail__related__card__btn--cart" 
+                                       href="/carrito/" 
+                                       data-course-id="${relatedCourse.id}"
+                                       aria-label="Agregar al carrito">🛒</a>
+                                    <a class="course-detail__related__card__link" 
+                                       href="/detalle/?courseId=${relatedCourse.id}">Ver detalle</a>
                                 </div>
                                 <div class="course-detail__related__card__actions">
-                                    <a class="course-detail__related__card__btn" href="/pagar/">Comprar</a>
+                                    <a class="course-detail__related__card__btn course-detail__related__card__btn--buy" 
+                                       href="/pagar/" 
+                                       data-course-id="${relatedCourse.id}">Comprar</a>
+                                    <a class="course-detail__related__card__btn course-detail__related__card__btn--subscribe" 
+                                       href="/inscripcion/?courseId=${relatedCourse.id}" 
+                                       data-course-id="${relatedCourse.id}">Inscribirse</a>
                                 </div>
                             </div>
                         </article>
@@ -178,19 +182,48 @@ export class Detalle {
         </section>
         `;
 
+        // Hero section buttons
         const addToCartBtn = main.querySelector('#add-to-cart-btn');
-            addToCartBtn.addEventListener('click', () => {
+        if (addToCartBtn) {
+            addToCartBtn.addEventListener('click', (e) => {
+                e.preventDefault();
                 const courseId = parseInt(addToCartBtn.getAttribute('data-course-id'));
                 const cartService = new CartService();
                 cartService.addToCart(courseId);
             });
+        }
 
         const buyBtn = main.querySelector('#buy-btn');
-        buyBtn.addEventListener('click', () => {
-            const courseId = parseInt(buyBtn.getAttribute('data-course-id'));
-            const paymentService = PaymentService.getOrCreateInstance();
-            paymentService.setPayment([courseId]);
-            window.location.href = "/pagar";
+        if (buyBtn) {
+            buyBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const courseId = parseInt(buyBtn.getAttribute('data-course-id'));
+                const paymentService = PaymentService.getOrCreateInstance();
+                paymentService.setPayment([courseId]);
+                window.location.href = "/pagar";
+            });
+        }
+
+        // Related courses buttons
+        const relatedCartBtns = main.querySelectorAll('.course-detail__related__card__btn--cart');
+        relatedCartBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const courseId = parseInt(btn.getAttribute('data-course-id'));
+                const cartService = new CartService();
+                cartService.addToCart(courseId);
+            });
+        });
+
+        const relatedBuyBtns = main.querySelectorAll('.course-detail__related__card__btn--buy');
+        relatedBuyBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const courseId = parseInt(btn.getAttribute('data-course-id'));
+                const paymentService = PaymentService.getOrCreateInstance();
+                paymentService.setPayment([courseId]);
+                window.location.href = "/pagar";
+            });
         });
     }
 }

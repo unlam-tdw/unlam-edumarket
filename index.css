@@ -187,9 +187,24 @@ ol {
 .main__cursos__list__item__card__bottom__buy {
   display: flex;
   flex-direction: row-reverse;
+  gap: 0.5em;
 }
 
 .main__cursos__list__item__card__bottom__buy__btn {
+  background-color: var(--auburn);
+  color: var(--whihte);
+  padding: 0.4em;
+  border-radius: 5px;
+}
+
+.main__cursos__list__item__card__bottom__subscribe__btn {
+  background-color: var(--auburn);
+  color: var(--whihte);
+  padding: 0.4em;
+  border-radius: 5px;
+}
+
+.main__cursos__list__item__card__bottom__cart__btn {
   background-color: var(--auburn);
   color: var(--whihte);
   padding: 0.4em;
