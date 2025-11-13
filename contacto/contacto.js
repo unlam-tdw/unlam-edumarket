@@ -37,6 +37,17 @@ export class Contacto {
           () => {}
         );
         modalService.openModal();
+      } else {
+        modalService.buildModal(
+          "Mensaje enviado",
+          "Tu mensaje ha sido enviado correctamente.",
+          "success",
+          () => {
+            formulario.reset();
+            window.location.href = "/";
+          }
+        );
+        modalService.openModal();
       }
     });
   }
