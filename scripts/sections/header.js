@@ -2,6 +2,7 @@ import { CartService } from "../cart-service.js";
 import { ModalService } from "../modal-service.js";
 import { SessionService } from "../session-service.js";
 import { CoursesService } from "../courses-service.js";
+import { GiftCardService } from "../gift-card-service.js";
 
 export class Header {
   constructor() {}
@@ -17,17 +18,23 @@ export class Header {
     const cartService = new CartService();
     const sessionService = SessionService.getOrCreateInstance();
     const coursesService = new CoursesService();
+    const giftCardService = new GiftCardService();
     const isAuthenticated = sessionService.isAuthenticated();
-    const cartLength = cartService.getCartLength();
     const cart = cartService.getCart();
-    const total = cart.reduce((acc, id) => {
+    const giftCardsInCart = giftCardService.getGiftCards();
+    const coursesInCart = cart.map((id) => coursesService.getCourseById(id));
+    const coursesTotal = cart.reduce((acc, id) => {
       const course = coursesService.getCourseById(id);
       return acc + (course ? course.price : 0);
     }, 0);
+    const giftCardsTotal = giftCardsInCart.reduce((acc, giftCard) => {
+      return acc + (giftCard ? Number(giftCard.price) || 0 : 0);
+    }, 0);
+    const total = coursesTotal + giftCardsTotal;
     const subtotal = total.toFixed(2);
     const discount = cart.length >= 3 ? 10.0 : 0.0;
     const finalTotal = (subtotal - discount).toFixed(2);
-    const coursesInCart = cart.map((id) => coursesService.getCourseById(id));
+    const cartLength = cart.length + giftCardsInCart.length;
 
     const href = isAuthenticated ? "/perfil" : "/sign-in";
 
@@ -82,7 +89,7 @@ export class Header {
 <span class="cart__summary__value cart__summary__value--total">$${finalTotal}</span>
     `;
 
-    if (coursesInCart.length === 0) {
+    if (coursesInCart.length === 0 && giftCardsInCart.length === 0) {
       cardContainer.innerHTML = `
             <div class="cart__item">
                 <p>No hay cursos en el carrito.</p>
@@ -112,17 +119,44 @@ export class Header {
         `;
         cardContainer.appendChild(div);
       });
+
+      giftCardsInCart.map((giftCard) => {
+        const div = document.createElement("div");
+        div.classList.add("cart__item");
+        div.innerHTML = `
+        <div class="cart__item__image">
+            <div class="cart__item__giftcard-preview" style="background-color: ${giftCard.backgroundColor || 'var(--light-gray)'}">
+                <h3 class="cart__item__giftcard-preview__label">GIFT CARD para</h3>
+                <h1 class="cart__item__giftcard-preview__name" style="color: ${giftCard.fontColor || 'var(--black)'}; font-size: ${giftCard.fontSize || '1em'}">${giftCard.recipientName || 'DESTINATARIO'}</h1>
+                <span class="cart__item__giftcard-preview__price ${giftCard.priceLocation || ''}" style="background-color: var(--black); color: var(--whitesmoke); padding: 0.3em 0.6em;">
+                    $${Number(giftCard.price).toFixed(2)}.-
+                </span>
+            </div>
+        </div>
+        <div class="cart__item__details">
+            <h3 class="cart__item__title">Gift Card</h3>
+            <p class="cart__item__duration">Para: ${giftCard.recipientName || 'DESTINATARIO'}</p>
+        </div>
+        <div class="cart__item__price">
+            <span class="cart__item__amount">$${Number(giftCard.price).toFixed(2)}.-</span>
+        </div>
+        <div class="cart__item__actions">
+            <button class="cart__item__remove" id="remove-giftcard-btn" type="button" data-giftcard-id="${giftCard.id}">🗑️</button>
+        </div>
+        `;
+        cardContainer.appendChild(div);
+      });
     }
 
-    if (!document.getElementById("sidebar-carrito")) {
-      header.appendChild(sidebar);
+    // Remove existing sidebar if it exists (from previous render)
+    const existingSidebar = document.getElementById("sidebar-carrito");
+    if (existingSidebar) {
+      existingSidebar.remove();
     }
-    if (!document.getElementById("cursos-container")) {
-      sidebar.appendChild(cardContainer);
-    }
-    if (!document.getElementById("sidebar-links")) {
-      sidebar.appendChild(cartEnd);
-    }
+    
+    header.appendChild(sidebar);
+    sidebar.appendChild(cardContainer);
+    sidebar.appendChild(cartEnd);
 
     const removeFromCartBtns = sidebar.querySelectorAll(
       "#remove-from-cart-btn"
@@ -139,6 +173,29 @@ export class Header {
           () => {}
         );
         modalService.openModal();
+      });
+    });
+
+    const removeGiftCardBtns = sidebar.querySelectorAll(
+      "#remove-giftcard-btn"
+    );
+    removeGiftCardBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const giftCardId = parseInt(btn.getAttribute("data-giftcard-id"));
+        const giftCardServiceInstance = new GiftCardService();
+        const giftCards = giftCardServiceInstance.getGiftCards();
+        const giftCardToRemove = giftCards.find(gc => gc.id === giftCardId);
+        if (giftCardToRemove) {
+          giftCardServiceInstance.removeGiftCard(giftCardToRemove);
+          modalService.buildModal(
+            "Gift Card eliminada del carrito",
+            "La gift card ha sido eliminada del carrito correctamente.",
+            "success",
+            () => {}
+          );
+          modalService.openModal();
+          this.render();
+        }
       });
     });
 
