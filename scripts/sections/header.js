@@ -2,24 +2,24 @@ import { CartService } from "../cart-service.js";
 import { SessionService } from "../session-service.js";
 
 export class Header {
-    constructor() {}
+  constructor() {}
 
-    static render() {
-        const header = document.getElementById("header");
+  static render() {
+    const header = document.getElementById("header");
 
-        if (!header) {
-            return;
-        }
+    if (!header) {
+      return;
+    }
 
-        const cartService = new CartService();
-        const sessionService = SessionService.getOrCreateInstance();
-        const isAuthenticated = sessionService.isAuthenticated();
-        const cartLength = cartService.getCartLength();
+    const cartService = new CartService();
+    const sessionService = SessionService.getOrCreateInstance();
+    const isAuthenticated = sessionService.isAuthenticated();
+    const cartLength = cartService.getCartLength();
 
-        const href = isAuthenticated ? "/perfil" : "/sign-in";
+    const href = isAuthenticated ? "/perfil" : "/sign-in";
 
-        header.classList.add("header");
-        header.innerHTML = `
+    header.classList.add("header");
+    header.innerHTML = `
         <div class="header__container">
             <a href="../index.html" class="header__logo">
                 <img class="header__logo-img" src="../assets/logo.png" alt="Unlam EduMarket">
@@ -42,19 +42,36 @@ export class Header {
         <nav class="header__nav">
             <div class="header__nav-container">
                 <a href="../catalogo/index.html" class="header__nav-link">CATÁLOGO</a>
-                ${isAuthenticated ? `<a href="../calendario/index.html" class="header__nav-link">CALENDARIO</a>` : ""}
+                ${
+                  isAuthenticated
+                    ? `<a href="../calendario/index.html" class="header__nav-link">CALENDARIO</a>`
+                    : ""
+                }
                 <a href="../contacto/index.html" class="header__nav-link">CONTACTO</a>
                 <a href="../gift-card/index.html" class="header__nav-link">GIFT-CARD</a>
             </div>
         </nav>
         `;
 
-        document.addEventListener(CartService.cartAddedEventKey, () => {
-            this.render();
-        });
+    document.addEventListener(CartService.cartAddedEventKey, () => {
+      this.render();
+    });
 
-        document.addEventListener(CartService.cartRemovedEventKey, () => {
-            this.render();
-        });
-    }
+    document.addEventListener(CartService.cartRemovedEventKey, () => {
+      this.render();
+    });
+  }
+
+  sidebar() {
+    const body = document.querySelector("body");
+
+    const sidebar = document.createElement("aside");
+
+    sidebar.style.position = "absolute";
+    sidebar.style.right = "0";
+    sidebar.style.height = "100%";
+    sidebar.style.width = "30%";
+    sidebar.style.display = "flex";
+    sidebar.style.flexDirection = "column";
+  }
 }
