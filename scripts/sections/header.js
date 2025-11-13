@@ -82,10 +82,17 @@ export class Header {
 <span class="cart__summary__value cart__summary__value--total">$${finalTotal}</span>
     `;
 
-    coursesInCart.map((course) => {
-      const div = document.createElement("div");
-      div.classList.add("cart__item");
-      div.innerHTML = `
+    if (coursesInCart.length === 0) {
+      cardContainer.innerHTML = `
+            <div class="cart__item">
+                <p>No hay cursos en el carrito.</p>
+            </div>
+            `;
+    } else {
+      coursesInCart.map((course) => {
+        const div = document.createElement("div");
+        div.classList.add("cart__item");
+        div.innerHTML = `
         <div class="cart__item__image">
             <img class="cart__item__img" 
                  src="${course.image}" 
@@ -103,8 +110,9 @@ export class Header {
                 <button class="cart__item__remove" id="remove-from-cart-btn" type="button" data-course-id="${course.id}">🗑️</button>
             </div>
         `;
-      cardContainer.appendChild(div);
-    });
+        cardContainer.appendChild(div);
+      });
+    }
 
     if (!document.getElementById("sidebar-carrito")) {
       header.appendChild(sidebar);
