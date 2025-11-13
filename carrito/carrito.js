@@ -261,6 +261,10 @@ export class Carrito {
     document.addEventListener(CartService.cartRemovedEventKey, () => {
       this.paintAndUpdate();
     });
+
+    document.addEventListener(CartService.cartClearedEventKey, () => {
+      this.paintAndUpdate();
+    });
   }
 
   static render() {

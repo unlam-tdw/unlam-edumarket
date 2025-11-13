@@ -5,6 +5,7 @@ export class CartService {
     cartStorageKeyPrefix = 'cart';
     static cartRemovedEventKey = 'cart:removed';
     static cartAddedEventKey = 'cart:added';
+    static cartClearedEventKey = 'cart:cleared';
     
     constructor() {}
 
@@ -110,5 +111,12 @@ export class CartService {
         if (toUserId === this.#getUserId()) {
             document.dispatchEvent(new CustomEvent(this.constructor.cartAddedEventKey));
         }
+    }
+
+    clearCart() {
+        const storageService = StorageService.getOrCreateInstance();
+        const cartKey = this.#getCartKey();
+        storageService.setItem(cartKey, []);
+        document.dispatchEvent(new CustomEvent(CartService.cartClearedEventKey));
     }
 }

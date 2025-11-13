@@ -1,5 +1,6 @@
 import { StorageService } from "./storage-service.js";
 import { CoursesService } from "./courses-service.js";
+import { CartService } from "./cart-service.js";
 
 export class PaymentService {
     paymentStorageKey = 'payment';
@@ -52,6 +53,10 @@ export class PaymentService {
 
     clearPayment() {
         const storageService = StorageService.getOrCreateInstance();
+        const cartService = new CartService();
         storageService.removeItem(this.paymentStorageKey);
+        storageService.removeItem("inscription-total");
+        storageService.removeItem("gift-card-total");
+        cartService.clearCart();
     }
 }
