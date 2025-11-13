@@ -12,6 +12,9 @@ export class Inscripcion {
         const courseId = new URLSearchParams(window.location.search).get("courseId");
         const course = courseService.getCourseById(Number(courseId));
 
+        const courseTitleElement = document.getElementById("course-title");
+        courseTitleElement.textContent = course.name;
+
         // Obtener información del usuario actual
         const sessionService = SessionService.getOrCreateInstance();
         const userId = sessionService.getSession();
@@ -25,8 +28,6 @@ export class Inscripcion {
         const addBtn = document.querySelector(".btnadd");
 
         const container = document.getElementById("personas-container");
-
-        const filaOriginal = document.querySelector(".file");
 
         const inscriptionTotalElement = document.getElementById("inscription-total");
 

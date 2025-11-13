@@ -13,12 +13,19 @@ export class Index {
             return;
         }
 
-        mainCoursesList.innerHTML = randomCourses.map(course => `
+        mainCoursesList.innerHTML = randomCourses.map(course => {
+            const kindLabel = course.kind === 'in-person' ? 'PRESENCIAL' : 'ONLINE';
+            const ctaButton = course.kind === 'in-person' ? 'INSCRIBIRSE' : 'COMPRAR';
+            const ctaButtonLink = course.kind === 'in-person' ? `/inscripcion/?courseId=${course.id}` : '/pagar';
+            return `
                             <li class="main__cursos__list__item">
                     <article class="main__cursos__list__item__card">
                         <div class="main__cursos__list__item__card__top">
                             <img class="main__cursos__list__item__card__top__img"
                                 src="${course.image}" alt="preview curso">
+                            <div class="main__cursos__list__item__card__top__kind-tag">
+                                <span class="main__cursos__list__item__card__top__kind-tag__kind">${kindLabel}</span>
+                            </div>
                             <div class="main__cursos__list__item__card__top__tag">
                                 <span class="main__cursos__list__item__card__top__tag__price">${course.price}.-</span>
                             </div>
@@ -39,17 +46,18 @@ export class Index {
                             </div>
                             <div class="main__cursos__list__item__card__bottom__buy">
                                 <a class="main__cursos__list__item__card__bottom__subscribe__btn"
-                                    href="/inscripcion/" id="subscribe-btn" data-course-id="${course.id}">Inscribirse</a>
+                                    href="${ctaButtonLink}" id="subscribe-btn" data-course-kind="${course.kind}" data-course-id="${course.id}">${ctaButton}</a>
                                 <a class="main__cursos__list__item__card__bottom__cart__btn"
                                     href="/carrito/" id="add-to-cart-btn" data-course-id="${course.id}">🛒</a>    
                             </div>
                         </div>
                     </article>
                 </li>
-            `).join('');
+            `;
+        }).join('');
 
         const addToCartBtns = mainCoursesList.querySelectorAll('.main__cursos__list__item__card__bottom__cart__btn');
-        const subscribeBtns = mainCoursesList.querySelectorAll('.main__cursos__list__item__card__bottom__subscribe__btn');
+        const ctaBtns = mainCoursesList.querySelectorAll('.main__cursos__list__item__card__bottom__subscribe__btn');
         
         addToCartBtns.forEach(btn => {
             btn.addEventListener('click', (event) => {
@@ -60,11 +68,13 @@ export class Index {
             });
         });
         
-        subscribeBtns.forEach(btn => {
+        ctaBtns.forEach(btn => {
             btn.addEventListener('click', (event) => {
                 event.preventDefault();
                 const courseId = parseInt(btn.getAttribute('data-course-id'));
-                window.location.href = `/inscripcion/?courseId=${courseId}`;
+                const courseKind = btn.getAttribute('data-course-kind');
+                const courseLink = courseKind === 'in-person' ? `/inscripcion/?courseId=${courseId}` : '/pagar';
+                window.location.href = courseLink;
             });
         });
     }

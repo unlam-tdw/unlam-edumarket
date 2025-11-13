@@ -3,6 +3,7 @@ export const BASE_IMG_URL = 'https://img-c.udemycdn.com/course/240x135/1565838_e
 export const COURSES = [
     {
         id: 1,
+        kind: 'online',
         name: "Curso de Programación Web",
         description: "Aprende a desarrollar aplicaciones web modernas con HTML, CSS y JavaScript",
         price: 89.99,
@@ -48,6 +49,7 @@ export const COURSES = [
     },
     {
         id: 2,
+        kind: 'in-person',
         name: "Programación con Python",
         description: "Domina los fundamentos de Python desde cero. Ideal para principiantes",
         price: 49.99,
@@ -85,6 +87,7 @@ export const COURSES = [
     },
     {
         id: 3,
+        kind: 'in-person',
         name: "Diseño Gráfico Profesional",
         description: "Crea diseños impactantes usando Photoshop, Illustrator y Figma",
         price: 129.99,
@@ -130,6 +133,7 @@ export const COURSES = [
     },
     {
         id: 4,
+        kind: 'in-person',
         name: "Marketing Digital Completo",
         description: "Estrategias de marketing en redes sociales, SEO y publicidad online",
         price: 99.99,
@@ -175,6 +179,7 @@ export const COURSES = [
     },
     {
         id: 5,
+        kind: 'online',
         name: "Programación React.js Avanzado",
         description: "Construye aplicaciones complejas con React, hooks y context API",
         price: 149.99,
@@ -220,6 +225,7 @@ export const COURSES = [
     },
     {
         id: 6,
+        kind: 'in-person',
         name: "Inglés para Negocios",
         description: "Mejora tu inglés profesional con enfoque en comunicación empresarial",
         price: 79.99,
@@ -257,6 +263,7 @@ export const COURSES = [
     },
     {
         id: 7,
+        kind: 'online',
         name: "Programación con Machine Learning",
         description: "Implementa modelos de inteligencia artificial y aprendizaje automático",
         price: 199.99,
@@ -302,6 +309,7 @@ export const COURSES = [
     },
     {
         id: 8,
+        kind: 'in-person',
         name: "Fotografía Digital",
         description: "Técnicas profesionales de fotografía, composición y edición",
         price: 69.99,
@@ -339,6 +347,7 @@ export const COURSES = [
     },
     {
         id: 9,
+        kind: 'online',
         name: "Programación de Apps Móviles",
         description: "Crea aplicaciones para iOS y Android con React Native",
         price: 159.99,
@@ -384,6 +393,7 @@ export const COURSES = [
     },
     {
         id: 10,
+        kind: 'online',
         name: "Gestión de Proyectos con Agile",
         description: "Metodologías ágiles, Scrum y Kanban para equipos de desarrollo",
         price: 119.99,
@@ -429,6 +439,7 @@ export const COURSES = [
     },
     {
         id: 11,
+        kind: 'in-person',
         name: "Ciberseguridad y Ethical Hacking",
         description: "Protege sistemas y aprende técnicas de hacking ético",
         price: 179.99,
@@ -474,6 +485,7 @@ export const COURSES = [
     },
     {
         id: 12,
+        kind: 'in-person',
         name: "Excel Avanzado y Análisis de Datos",
         description: "Domina fórmulas complejas, tablas dinámicas y visualización de datos",
         price: 59.99,
@@ -511,6 +523,7 @@ export const COURSES = [
     },
     {
         id: 13,
+        kind: 'online',
         name: "Programación Backend con Node.js",
         description: "Desarrollo de servidores y APIs RESTful con Node.js",
         price: 139.99,
@@ -556,6 +569,7 @@ export const COURSES = [
     },
     {
         id: 14,
+        kind: 'in-person',
         name: "Diseño UX/UI Profesional",
         description: "Principios de experiencia y diseño de interfaces de usuario",
         price: 109.99,
@@ -601,6 +615,7 @@ export const COURSES = [
     },
     {
         id: 15,
+        kind: 'online',
         name: "Blockchain y Criptomonedas",
         description: "Entiende la tecnología blockchain y el desarrollo de smart contracts",
         price: 189.99,
@@ -646,6 +661,7 @@ export const COURSES = [
     },
     {
         id: 16,
+        kind: 'in-person',
         name: "Marketing con Videos y YouTube",
         description: "Crea contenido viral, edita videos profesionales y haz crecer tu canal",
         price: 89.99,
@@ -691,6 +707,7 @@ export const COURSES = [
     },
     {
         id: 17,
+        kind: 'online',
         name: "Programación de Bases de Datos",
         description: "Aprende MySQL, PostgreSQL, MongoDB y optimización de consultas",
         price: 129.99,
@@ -736,6 +753,7 @@ export const COURSES = [
     },
     {
         id: 18,
+        kind: 'online',
         name: "Emprendimiento Digital",
         description: "De la idea al negocio: estrategias para startups y emprendimientos online",
         price: 99.99,
@@ -781,6 +799,7 @@ export const COURSES = [
     },
     {
         id: 19,
+        kind: 'online',
         name: "Docker y Kubernetes",
         description: "Containerización y orquestación de aplicaciones en la nube",
         price: 169.99,
@@ -826,6 +845,7 @@ export const COURSES = [
     },
     {
         id: 20,
+        kind: 'in-person',
         name: "Copywriting y Redacción Publicitaria",
         description: "Escribe textos persuasivos que convierten visitantes en clientes",
         price: 79.99,

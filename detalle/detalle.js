@@ -5,6 +5,8 @@ export class Detalle {
     static course;
 
     static #renderHero() {
+        const ctaButton = this.course.kind === 'in-person' ? 'INSCRIBIRSE' : 'COMPRAR';
+        const ctaButtonLink = this.course.kind === 'in-person' ? '/inscripcion/?courseId=${this.course.id}' : '/pagar';
         return `
             <div class="course-detail__hero">
                 <div class="course-detail__hero__image">
@@ -24,6 +26,10 @@ export class Detalle {
                             <span class="course-detail__hero__value">${this.course.duration} horas</span>
                         </div>
                         <div class="course-detail__hero__item">
+                            <span class="course-detail__hero__label">Tipo de curso:</span>
+                            <span class="course-detail__hero__value">${this.course.kind === 'online' ? 'Online' : 'Presencial'}</span>
+                        </div>
+                        <div class="course-detail__hero__item">
                             <span class="course-detail__hero__label">Descripción del curso:</span>
                             <span class="course-detail__hero__value">${this.course.description}</span>
                         </div>
@@ -33,7 +39,7 @@ export class Detalle {
                         </div>
                     </div>
                     <div class="course-detail__hero__actions">
-                        <a class="course-detail__hero__btn course-detail__hero__btn--primary" href="/inscripcion/?courseId=${this.course.id}" id="subscribe-btn" data-course-id="${this.course.id}">INSCRIBIRSE</a>
+                        <a class="course-detail__hero__btn course-detail__hero__btn--primary" href="${ctaButtonLink}" id="subscribe-btn" data-course-kind="${this.course.kind}" data-course-id="${this.course.id}">${ctaButton}</a>
                         <a class="course-detail__hero__btn course-detail__hero__btn--secondary" href="/carrito" id="add-to-cart-btn" data-course-id="${this.course.id}">AGREGAR AL CARRITO</a>
                     </div>
                 </div>
@@ -112,17 +118,30 @@ export class Detalle {
     }
 
     static #renderRelated() {
+        const relatedCourses = Array.isArray(this.course.relatedCourses) ? this.course.relatedCourses : [];
+        
+        if (relatedCourses.length === 0) {
+            return '';
+        }
+
         return `
             <section class="course-detail__related">
                 <h2 class="course-detail__section-title">Cursos Relacionados</h2>
                 <ul class="course-detail__related__list">
-                    ${this.course.relatedCourses.map(relatedCourse => `
+                    ${relatedCourses.map(relatedCourse => {
+                        const ctaButton = relatedCourse.kind === 'in-person' ? 'INSCRIBIRSE' : 'COMPRAR';
+                        const ctaButtonLink = relatedCourse.kind === 'in-person' ? `/inscripcion/?courseId=${relatedCourse.id}` : '/pagar';
+                        const kindLabel = relatedCourse.kind === 'in-person' ? 'PRESENCIAL' : 'ONLINE';
+                        return `
                     <li class="course-detail__related__item">
                         <article class="course-detail__related__card">
                             <div class="course-detail__related__card__top">
                                 <img class="course-detail__related__card__img" 
                                      src="${relatedCourse.image}" 
                                      alt="${relatedCourse.name}">
+                                <div class="course-detail__related__card__kind-tag">
+                                    <span class="course-detail__related__card__kind">${kindLabel}</span>
+                                </div>
                                 <div class="course-detail__related__card__tag">
                                     <span class="course-detail__related__card__price">${relatedCourse.price}.-</span>
                                 </div>
@@ -139,13 +158,15 @@ export class Detalle {
                                 </div>
                                 <div class="course-detail__related__card__actions">
                                     <a class="course-detail__related__card__btn course-detail__related__card__btn--subscribe" 
-                                       href="/inscripcion/?courseId=${relatedCourse.id}" 
-                                       data-course-id="${relatedCourse.id}">Inscribirse</a>
+                                       href="${ctaButtonLink}" 
+                                       data-course-kind="${relatedCourse.kind}"
+                                       data-course-id="${relatedCourse.id}">${ctaButton}</a>
                                 </div>
                             </div>
                         </article>
                     </li>
-                    `).join('')}
+                    `;
+                    }).join('')}
                 </ul>
             </section>
         `;

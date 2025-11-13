@@ -101,6 +101,7 @@ export class Header {
             `;
     } else {
       coursesInCart.map((course) => {
+        const kindLabel = course.kind === 'in-person' ? 'PRESENCIAL' : 'ONLINE';
         const div = document.createElement("div");
         div.classList.add("cart__item");
         div.innerHTML = `
@@ -108,6 +109,9 @@ export class Header {
             <img class="cart__item__img" 
                  src="${course.image}" 
                  alt="${course.name}">
+            <div class="cart__item__kind-tag">
+                <span class="cart__item__kind">${kindLabel}</span>
+            </div>
         </div>
         <div class="cart__item__details">
             <h3 class="cart__item__title">${course.name}</h3>

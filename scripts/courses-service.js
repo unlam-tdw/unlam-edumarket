@@ -1,4 +1,4 @@
-import { COURSES } from "./constants.js";
+import { COURSES } from "./CONSTANTS.js";
 import { AuthorService } from "./author-service.js";
 
 export class CoursesService {
@@ -25,13 +25,22 @@ export class CoursesService {
             return null;
         }
 
-        const relatedCourses = this.courses.filter(relatedCourse => course.relatedCourses.some(relatedCourseId => relatedCourseId === relatedCourse.id));
+        const courseCopy = { ...course };
 
-        course.relatedCourses = relatedCourses;
+        const relatedCoursesIds = Array.isArray(course.relatedCourses) ? course.relatedCourses : [];
+        const relatedCourses = this.courses
+            .filter(relatedCourse => 
+                relatedCoursesIds.includes(relatedCourse.id) && relatedCourse.id !== course.id
+            )
+            .map(relatedCourse => {
+                return { ...relatedCourse };
+            });
 
-        course.author = this.authorService.getAuthorById(course.author);
+        courseCopy.relatedCourses = relatedCourses;
 
-        return course;
+        courseCopy.author = this.authorService.getAuthorById(course.author);
+
+        return courseCopy;
     }
 
     getByQuery(query) {

@@ -18,12 +18,18 @@ export class Busqueda {
     }
 
     static #renderResultItem(item) {
+        const kindLabel = item.kind === 'in-person' ? 'PRESENCIAL' : 'ONLINE';
+        const ctaButton = item.kind === 'in-person' ? 'INSCRIBIRSE' : 'COMPRAR';
+        const ctaButtonLink = item.kind === 'in-person' ? `/inscripcion/?courseId=${item.id}` : '/pagar';
         return `
                         <article class="search__results__card">
                             <div class="search__results__card__top">
                                 <img class="search__results__card__img" 
                                      src="${item.image}" 
                                      alt="${item.name}">
+                                <div class="search__results__card__kind-tag">
+                                    <span class="search__results__card__kind">${kindLabel}</span>
+                                </div>
                                 <div class="search__results__card__tag">
                                     <span class="search__results__card__price">${item.price}.-</span>
                                 </div>
@@ -41,8 +47,9 @@ export class Busqueda {
                                 </div>
                                 <div class="search__results__card__actions">
                                     <a class="search__results__card__btn search__results__card__btn--subscribe" 
-                                       href="/inscripcion/" 
-                                       data-course-id="${item.id}">Inscribirse</a>
+                                        href="${ctaButtonLink}"
+                                        data-course-kind="${item.kind}"
+                                       data-course-id="${item.id}">${ctaButton}</a>
                                     <a class="search__results__card__btn search__results__card__btn--cart" 
                                        href="/carrito/" 
                                        data-course-id="${item.id}">🛒</a>
@@ -86,7 +93,9 @@ export class Busqueda {
             btn.addEventListener('click', (event) => {
                 event.preventDefault();
                 const courseId = parseInt(btn.getAttribute('data-course-id'));
-                window.location.href = `/inscripcion/?courseId=${courseId}`;
+                const courseKind = btn.getAttribute('data-course-kind');
+                const courseLink = courseKind === 'in-person' ? `/inscripcion/?courseId=${courseId}` : '/pagar';
+                window.location.href = courseLink;
             });
         });
     }

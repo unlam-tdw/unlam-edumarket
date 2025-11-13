@@ -385,6 +385,25 @@
     transform: scale(1.05);
 }
 
+.course-detail__related__card__kind-tag {
+    position: absolute;
+    left: 0.5em;
+    top: 0.5em;
+    background-color: var(--air-force-blue);
+    padding: 0.4em 0.6em;
+    border-radius: 0.25em;
+    box-shadow: 0 0.125em 0.25em rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.course-detail__related__card__kind {
+    color: var(--whihte);
+    font-weight: 700;
+    font-size: 0.75em;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
 .course-detail__related__card__tag {
     position: absolute;
     right: 0.5em;
@@ -393,6 +412,7 @@
     padding: 0.4em 0.6em;
     border-radius: 0.25em;
     box-shadow: 0 0.125em 0.25em rgba(0, 0, 0, 0.2);
+    z-index: 1;
 }
 
 .course-detail__related__card__price {

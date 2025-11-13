@@ -31,12 +31,17 @@ export class Carrito {
     element.innerHTML = `
         ${coursesInCart
           .map(
-            (course) => `
-        <div class="cart__item">
+            (course) => {
+                const kindLabel = course.kind === 'in-person' ? 'PRESENCIAL' : 'ONLINE';
+                return `
+                    <div class="cart__item">
                         <div class="cart__item__image">
                             <img class="cart__item__img" 
                                  src="${course.image}" 
                                  alt="${course.name}">
+                            <div class="cart__item__kind-tag">
+                                <span class="cart__item__kind">${kindLabel}</span>
+                            </div>
                         </div>
                         <div class="cart__item__details">
                             <h3 class="cart__item__title">${course.name}</h3>
@@ -50,7 +55,8 @@ export class Carrito {
                             <button class="cart__item__remove" id="remove-from-cart-btn" type="button" data-course-id="${course.id}">🗑️</button>
                         </div>
                     </div>
-        `
+        `;
+            }
           )
           .join("")}
         ${giftCardsInCart
@@ -202,16 +208,13 @@ export class Carrito {
         const cart = cartService.getCart();
         const giftCards = giftCardService.getGiftCards();
         
-        // Permitir proceder al pago si hay cursos o gift cards
         if (cart.length === 0 && giftCards.length === 0) {
           return;
         }
         
-        // Solo guardar cursos si hay cursos en el carrito
         if (cart.length > 0) {
           paymentService.setPayment(cart);
         } else {
-          // Si no hay cursos, guardar un array vacío para que el payment service pueda calcular el total con gift cards
           paymentService.setPayment([]);
         }
         
@@ -232,13 +235,20 @@ export class Carrito {
     element.innerHTML = `
         ${coursesInCart
           .map(
-            (course) => `
+            (course) => {
+                const kindLabel = course.kind === 'in-person' ? 'PRESENCIAL' : 'ONLINE';
+                const ctaButton = course.kind === 'in-person' ? 'INSCRIBIRSE' : 'COMPRAR';
+                const ctaButtonLink = course.kind === 'in-person' ? `/inscripcion/?courseId=${course.id}` : '/pagar';
+                return `
                     <li class="cart__recommendations__item">
                         <article class="cart__recommendations__card">
                             <div class="cart__recommendations__card__top">
                                 <img class="cart__recommendations__card__img" 
                                      src="${course.image}" 
                                      alt="${course.name}">
+                                <div class="cart__recommendations__card__kind-tag">
+                                    <span class="cart__recommendations__card__kind">${kindLabel}</span>
+                                </div>
                                 <div class="cart__recommendations__card__tag">
                                     <span class="cart__recommendations__card__price">${course.price}.-</span>
                                 </div>
@@ -255,13 +265,15 @@ export class Carrito {
                                 </div>
                                 <div class="cart__recommendations__card__actions">
                                     <a class="cart__recommendations__card__btn cart__recommendations__card__btn--subscribe" 
-                                       href="/inscripcion/?courseId=${course.id}" 
-                                       data-course-id="${course.id}">Inscribirse</a>
+                                       href="${ctaButtonLink}" 
+                                       data-course-kind="${course.kind}"
+                                       data-course-id="${course.id}">${ctaButton}</a>
                                 </div>
                             </div>
                         </article>
                     </li>
-        `
+        `;
+            }
           )
           .join("")}
         `;
