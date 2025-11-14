@@ -40,6 +40,24 @@ export class Inscripcion {
             if (nombreInput) nombreInput.value = currentUser.nombre || "";
             if (apellidoInput) apellidoInput.value = currentUser.apellido || "";
             if (dniInput) dniInput.value = currentUser.dni || "";
+
+            // Agregar botón para limpiar campos
+            const fileDiv = document.querySelector(".file");
+            if (fileDiv) {
+                const clearBtn = document.createElement("button");
+                clearBtn.type = "button";
+                clearBtn.className = "btn-clear";
+                clearBtn.textContent = "Limpiar";
+                clearBtn.title = "Limpiar campos";
+                
+                clearBtn.addEventListener("click", () => {
+                    if (nombreInput) nombreInput.value = "";
+                    if (apellidoInput) apellidoInput.value = "";
+                    if (dniInput) dniInput.value = "";
+                });
+
+                fileDiv.appendChild(clearBtn);
+            }
         }
 
 

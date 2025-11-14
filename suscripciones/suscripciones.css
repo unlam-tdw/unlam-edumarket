@@ -425,6 +425,25 @@
     background: var(--medium-gray);
 }
 
+/* Botón limpiar */
+.subscriptions__btn-clear {
+    font-weight: bold;
+    padding: 0.5em 1em;
+    border-radius: 0.25em;
+    border: none;
+    background: var(--raw-umber);
+    color: var(--whihte);
+    font-size: 0.9em;
+    cursor: pointer;
+    margin-top: 0.5em;
+    transition: background 0.2s ease;
+    font-family: var(--alan-sans);
+}
+
+.subscriptions__btn-clear:hover {
+    background: var(--dark-gray);
+}
+
 .subscriptions__form-add h6 {
     margin-left: 1em;
     font-size: 1em;
@@ -560,6 +579,11 @@
     .subscriptions__form-person input,
     .subscriptions__form-persons input {
         width: auto;
+    }
+
+    .subscriptions__btn-clear {
+        margin-top: 0;
+        margin-left: 0.5em;
     }
     
     .subscriptions__form-persons .persona {

@@ -72,6 +72,24 @@
   cursor: pointer;
 }
 
+/* Botón limpiar */
+.btn-clear {
+  font-weight: bold;
+  padding: 0.5em 1em;
+  border-radius: 0.25em;
+  border: none;
+  background: var(--raw-umber);
+  color: var(--whihte);
+  font-size: 0.9em;
+  cursor: pointer;
+  margin-top: 0.5em;
+  transition: background 0.2s ease;
+}
+
+.btn-clear:hover {
+  background: var(--dark-gray);
+}
+
 .add h6 {
   margin-left: 1em;
   font-size: 1em;
@@ -121,6 +139,10 @@
         flex-direction: row;
     }
 
+    .btn-clear {
+        margin-top: 0;
+        margin-left: 0.5em;
+    }
   }
 
 /* tamaño desktop*/

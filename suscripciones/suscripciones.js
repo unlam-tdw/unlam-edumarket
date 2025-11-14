@@ -84,9 +84,9 @@ export class Suscripciones {
                   <h4 class="subscriptions__form-title">INSCRIPCIÓN</h4>
                   
                   <div class="subscriptions__form-person file">
-                    <input id="nombre-${course.id}-0" type="text" placeholder="Nombre" required ${currentUser ? 'readonly' : ''} />
-                    <input id="apellido-${course.id}-0" type="text" placeholder="Apellido" required ${currentUser ? 'readonly' : ''} />
-                    <input id="dni-${course.id}-0" type="number" placeholder="DNI" min="1000000" max="99999999" required ${currentUser ? 'readonly' : ''} />
+                    <input id="nombre-${course.id}-0" type="text" placeholder="Nombre" required />
+                    <input id="apellido-${course.id}-0" type="text" placeholder="Apellido" required />
+                    <input id="dni-${course.id}-0" type="number" placeholder="DNI" min="1000000" max="99999999" required />
                   </div>
                   
                   <div id="personas-container-${course.id}" class="subscriptions__form-persons"></div>
@@ -116,6 +116,24 @@ export class Suscripciones {
         if (nombreInput) nombreInput.value = currentUser.nombre || "";
         if (apellidoInput) apellidoInput.value = currentUser.apellido || "";
         if (dniInput) dniInput.value = currentUser.dni || "";
+
+        // Agregar botón para limpiar campos
+        const fileDiv = document.querySelector(`[data-course-form="${course.id}"] .subscriptions__form-person`);
+        if (fileDiv) {
+          const clearBtn = document.createElement("button");
+          clearBtn.type = "button";
+          clearBtn.className = "subscriptions__btn-clear";
+          clearBtn.textContent = "Limpiar";
+          clearBtn.title = "Limpiar campos";
+          
+          clearBtn.addEventListener("click", () => {
+            if (nombreInput) nombreInput.value = "";
+            if (apellidoInput) apellidoInput.value = "";
+            if (dniInput) dniInput.value = "";
+          });
+
+          fileDiv.appendChild(clearBtn);
+        }
       });
     }
 
