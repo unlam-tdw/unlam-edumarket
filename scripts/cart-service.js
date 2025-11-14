@@ -1,6 +1,8 @@
 import { StorageService } from "./storage-service.js";
 import { SessionService } from "./session-service.js";
 import { ModalService } from "./modal-service.js";
+import { SubscriptionService } from "./subscription-service.js";
+import { CoursesService } from "./courses-service.js";
 
 export class CartService {
     cartStorageKeyPrefix = 'cart';
@@ -75,6 +77,13 @@ export class CartService {
             const cartKey = this.#getCartKey();
             storageService.setItem(cartKey, cart);
             document.dispatchEvent(new CustomEvent(this.constructor.cartAddedEventKey));
+            
+            const coursesService = new CoursesService();
+            const course = coursesService.getCourseById(courseId);
+            if (course && course.kind === 'in-person') {
+                const subscriptionService = new SubscriptionService();
+                subscriptionService.addSubscription(courseId);
+            }
         }
 
         const modalService = new ModalService("modal-parent");

@@ -35,4 +35,10 @@ export class GiftCardService {
         );
         modalService.openModal();
     }
+
+    clearGiftCards() {
+        this.giftCards = [];
+        this.storageService.setItem(this.giftCardStorageKey, this.giftCards);
+        document.dispatchEvent(new CustomEvent(this.constructor.giftCardRemovedEventKey));
+    }
 }

@@ -1,0 +1,652 @@
+.subscriptions {
+    padding: 1em;
+    max-width: 75em;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.subscriptions__header {
+    text-align: center;
+    padding-bottom: 1em;
+    border-bottom: 0.125em solid var(--air-force-blue);
+}
+
+.subscriptions__title {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 0.5em;
+    letter-spacing: 0.05em;
+}
+
+.subscriptions__subtitle {
+    font-size: 0.9em;
+    color: var(--raw-umber);
+    font-weight: 500;
+}
+
+.subscriptions__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.subscriptions__list {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.subscriptions__item {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--whihte);
+    border: 0.125em solid var(--air-force-blue);
+    border-radius: 0.5em;
+    padding: 1em;
+    padding-left: 2em;
+    gap: 1em;
+    box-shadow: 0 0.25em 0.5em var(--philippine-silver);
+    position: relative;
+}
+
+.subscriptions__item__kind-tag {
+    position: absolute;
+    left: 0.5em;
+    top: 0.5em;
+    background-color: var(--air-force-blue);
+    padding: 0.4em 0.6em;
+    border-radius: 0.25em;
+    box-shadow: 0 0.125em 0.25em rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.subscriptions__item__kind {
+    color: var(--whihte);
+    font-weight: 700;
+    font-size: 0.75em;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.subscriptions__item__image {
+    position: relative;
+    flex-shrink: 0;
+    align-self: center;
+}
+
+.subscriptions__item__img {
+    width: 100%;
+    max-width: 12em;
+    height: 7em;
+    object-fit: cover;
+    border-radius: 0.25em;
+}
+
+.subscriptions__item__details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.subscriptions__item__title {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--black);
+    line-height: 1.2;
+}
+
+.subscriptions__item__duration {
+    font-size: 0.85em;
+    color: var(--raw-umber);
+    font-weight: 500;
+}
+
+.subscriptions__item__description {
+    font-size: 0.85em;
+    color: var(--raw-umber);
+    line-height: 1.4;
+    margin-top: 0.25em;
+}
+
+.subscriptions__item__link {
+    font-size: 0.85em;
+    color: var(--air-force-blue);
+    text-decoration: underline;
+    font-weight: 500;
+    align-self: flex-start;
+    margin-top: 0.25em;
+}
+
+.subscriptions__item__link:hover {
+    color: var(--sky-blue);
+}
+
+.subscriptions__item__price {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5em 0;
+}
+
+.subscriptions__item__amount {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: var(--auburn);
+    letter-spacing: 0.05em;
+}
+
+.subscriptions__empty {
+    text-align: center;
+    padding: 2em;
+    background-color: var(--whihte);
+    border: 0.125em solid var(--air-force-blue);
+    border-radius: 0.5em;
+}
+
+.subscriptions__empty p {
+    font-size: 1em;
+    color: var(--raw-umber);
+    margin-bottom: 1em;
+}
+
+.subscriptions__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 1.5em;
+    background-color: var(--air-force-blue);
+    border-radius: 0.5em;
+}
+
+.subscriptions__btn {
+    padding: 1em;
+    border-radius: 0.25em;
+    font-weight: 600;
+    font-size: 0.9em;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    font-family: var(--alan-sans);
+    transition: all 0.2s ease;
+}
+
+.subscriptions__btn--primary {
+    background-color: var(--auburn);
+    color: var(--whihte);
+}
+
+.subscriptions__btn--primary:hover {
+    background-color: var(--coral-red);
+    transform: translateY(-0.0625em);
+    box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.15);
+}
+
+.subscriptions__btn--secondary {
+    background-color: var(--antique-white);
+    color: var(--black);
+    border: 0.125em solid var(--black);
+}
+
+.subscriptions__btn--secondary:hover {
+    background-color: var(--whihte);
+}
+
+/* Course Card Styles */
+.subscriptions__course-card {
+    background-color: var(--whihte);
+    border: 0.125em solid var(--air-force-blue);
+    border-radius: 0.5em;
+    padding: 1.5em;
+    box-shadow: 0 0.25em 0.5em var(--philippine-silver);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
+
+.subscriptions__course-header {
+    border-bottom: 0.125em solid var(--philippine-silver);
+    padding-bottom: 1em;
+}
+
+.subscriptions__course-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.subscriptions__course-image {
+    position: relative;
+    align-self: center;
+}
+
+.subscriptions__course-img {
+    width: 100%;
+    max-width: 12em;
+    height: 7em;
+    object-fit: cover;
+    border-radius: 0.25em;
+}
+
+.subscriptions__course-kind-tag {
+    position: absolute;
+    left: 0.5em;
+    top: 0.5em;
+    background-color: var(--air-force-blue);
+    padding: 0.4em 0.6em;
+    border-radius: 0.25em;
+    box-shadow: 0 0.125em 0.25em rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.subscriptions__course-kind {
+    color: var(--whihte);
+    font-weight: 700;
+    font-size: 0.75em;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.subscriptions__course-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.subscriptions__course-title {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: var(--black);
+    line-height: 1.2;
+}
+
+.subscriptions__course-duration {
+    font-size: 0.9em;
+    color: var(--raw-umber);
+    font-weight: 500;
+}
+
+.subscriptions__course-description {
+    font-size: 0.85em;
+    color: var(--raw-umber);
+    line-height: 1.4;
+    margin-top: 0.25em;
+}
+
+.subscriptions__course-link {
+    font-size: 0.85em;
+    color: var(--air-force-blue);
+    text-decoration: underline;
+    font-weight: 500;
+    align-self: flex-start;
+    margin-top: 0.25em;
+}
+
+.subscriptions__course-link:hover {
+    color: var(--sky-blue);
+}
+
+.subscriptions__course-price {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5em 0;
+}
+
+.subscriptions__course-amount {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: var(--auburn);
+    letter-spacing: 0.05em;
+}
+
+/* Form Styles */
+.subscriptions__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 1em;
+    background-color: var(--antique-white);
+    border-radius: 0.5em;
+}
+
+.subscriptions__form-title {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: var(--dark-gray);
+    margin-bottom: 0.5em;
+}
+
+.subscriptions__form-person,
+.subscriptions__form-persons .file {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    margin: 1em 0em;
+}
+
+.subscriptions__form-person input,
+.subscriptions__form-persons input {
+    flex: 1;
+    padding: 1em;
+    font-size: 1em;
+    width: 100%;
+    border: 0.125em solid var(--philippine-silver);
+    border-radius: 0.25em;
+    font-family: var(--alan-sans);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.subscriptions__form-person input.subscriptions__input--error,
+.subscriptions__form-persons input.subscriptions__input--error {
+    border-color: var(--coral-red);
+    box-shadow: 0 0 0 0.125em rgba(220, 53, 69, 0.25);
+    background-color: rgba(220, 53, 69, 0.05);
+}
+
+.subscriptions__form-person input[readonly],
+.subscriptions__form-persons input[readonly] {
+    background-color: var(--light-gray, #f5f5f5);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.subscriptions__form-persons .persona {
+    flex-direction: row;
+    align-items: center;
+}
+
+.subscriptions__form-persons .persona input {
+    width: auto;
+}
+
+/* Botones circulares */
+.btn- {
+    font-weight: bold;
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+    margin-right: 0.5em;
+    border: none;
+    background: var(--coral-red);
+    color: var(--whihte);
+    font-size: 1em;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.btn-:hover {
+    background: var(--medium-gray);
+}
+
+/* Botón agregar persona */
+.subscriptions__form-add {
+    display: flex;
+    align-items: center;
+    margin: 1.5em 0;
+}
+
+.subscriptions__btn-add {
+    font-weight: bold;
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+    border: none;
+    background: var(--sky-blue);
+    color: var(--white);
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.subscriptions__btn-add:hover {
+    background: var(--medium-gray);
+}
+
+.subscriptions__form-add h6 {
+    margin-left: 1em;
+    font-size: 1em;
+    color: var(--dark-gray);
+}
+
+/* Caja monto */
+.subscriptions__form-cost {
+    display: flex;
+    align-items: center;
+    padding: 1em;
+    justify-content: center;
+}
+
+.subscriptions__form-total {
+    font-weight: bold;
+    font-size: 1em;
+    background: var(--dark-gray);
+    color: var(--whihte);
+    border: none;
+    padding: 1em;
+    border-radius: 0.5em;
+    margin: 0;
+}
+
+/* Total General */
+.subscriptions__total {
+    padding: 1.5em;
+    background-color: var(--air-force-blue);
+    border-radius: 0.5em;
+    margin-top: 1em;
+}
+
+.subscriptions__total-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.subscriptions__total-title {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: var(--black);
+    text-align: center;
+    letter-spacing: 0.05em;
+}
+
+.subscriptions__total-amount {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+    background-color: var(--whihte);
+    border-radius: 0.25em;
+}
+
+.subscriptions__total-label {
+    font-weight: 600;
+    color: var(--black);
+    font-size: 1em;
+}
+
+.subscriptions__total-value {
+    font-weight: 700;
+    color: var(--auburn);
+    font-size: 1.5em;
+    letter-spacing: 0.05em;
+}
+
+@media screen and (min-width: 47em) {
+    .subscriptions {
+        padding: 1.5em;
+        gap: 2.5em;
+    }
+    
+    .subscriptions__title {
+        font-size: 1.75em;
+    }
+    
+    .subscriptions__subtitle {
+        font-size: 1em;
+    }
+    
+    .subscriptions__course-info {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    
+    .subscriptions__course-image {
+        align-self: flex-start;
+    }
+    
+    .subscriptions__course-img {
+        width: 8em;
+        height: 5em;
+    }
+    
+    .subscriptions__course-details {
+        flex: 1;
+        gap: 0.75em;
+    }
+    
+    .subscriptions__course-title {
+        font-size: 1.3em;
+    }
+    
+    .subscriptions__course-duration {
+        font-size: 1em;
+    }
+    
+    .subscriptions__course-description {
+        font-size: 0.9em;
+    }
+    
+    .subscriptions__course-link {
+        font-size: 0.9em;
+    }
+    
+    .subscriptions__course-price {
+        padding: 0;
+        align-self: flex-start;
+    }
+    
+    .subscriptions__course-amount {
+        font-size: 1.4em;
+    }
+    
+    .subscriptions__form-person,
+    .subscriptions__form-persons .file {
+        flex-direction: row;
+    }
+    
+    .subscriptions__form-person input,
+    .subscriptions__form-persons input {
+        width: auto;
+    }
+    
+    .subscriptions__actions {
+        flex-direction: row;
+        justify-content: center;
+    }
+    
+    .subscriptions__btn {
+        flex: 1;
+        max-width: 20em;
+    }
+    
+    .subscriptions__total-amount {
+        padding: 1.5em;
+    }
+    
+    .subscriptions__total-label {
+        font-size: 1.1em;
+    }
+    
+    .subscriptions__total-value {
+        font-size: 1.7em;
+    }
+}
+
+@media screen and (min-width: 60em) {
+    .subscriptions {
+        padding: 2em;
+        gap: 3em;
+    }
+    
+    .subscriptions__title {
+        font-size: 2em;
+    }
+    
+    .subscriptions__subtitle {
+        font-size: 1.1em;
+    }
+    
+    .subscriptions__course-card {
+        padding: 2em;
+        gap: 2em;
+    }
+    
+    .subscriptions__course-img {
+        width: 10em;
+        height: 6em;
+    }
+    
+    .subscriptions__course-title {
+        font-size: 1.4em;
+    }
+    
+    .subscriptions__course-duration {
+        font-size: 1.1em;
+    }
+    
+    .subscriptions__course-description {
+        font-size: 1em;
+    }
+    
+    .subscriptions__course-link {
+        font-size: 1em;
+    }
+    
+    .subscriptions__course-amount {
+        font-size: 1.5em;
+    }
+    
+    .subscriptions__form {
+        padding: 1.5em;
+    }
+    
+    .subscriptions__form-title {
+        font-size: 1.2em;
+    }
+    
+    .subscriptions__actions {
+        padding: 2em;
+    }
+    
+    .subscriptions__btn {
+        padding: 1.25em;
+        font-size: 1em;
+    }
+    
+    .subscriptions__total {
+        padding: 2em;
+    }
+    
+    .subscriptions__total-title {
+        font-size: 1.4em;
+    }
+    
+    .subscriptions__total-amount {
+        padding: 2em;
+    }
+    
+    .subscriptions__total-label {
+        font-size: 1.2em;
+    }
+    
+    .subscriptions__total-value {
+        font-size: 2em;
+    }
+}
+

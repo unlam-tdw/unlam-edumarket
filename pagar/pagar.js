@@ -3,6 +3,7 @@ import { SessionService } from "../scripts/session-service.js";
 import { PaymentService } from "../scripts/payment-service.js";
 import { UsersService } from "../scripts/users-service.js";
 import { GiftCardService } from "../scripts/gift-card-service.js";
+import { SubscriptionService } from "../scripts/subscription-service.js";
 
 export class Pagar {
   constructor() {}
@@ -294,6 +295,7 @@ export class Pagar {
             () => {
               const courseIds = paymentService.getPayment();
               const usersService = new UsersService();
+              const subscriptionService = new SubscriptionService();
               const userId = sessionService.getSession();
               
               if (courseIds && Array.isArray(courseIds)) {
@@ -303,6 +305,7 @@ export class Pagar {
               }
               
               paymentService.clearPayment();
+              subscriptionService.clearSubscriptions();
               window.location.href = "/";
             }
           );

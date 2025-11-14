@@ -1,5 +1,7 @@
 import { CoursesService } from "./scripts/courses-service.js";
 import { CartService } from "./scripts/cart-service.js";
+import { SubscriptionService } from "./scripts/subscription-service.js";
+import { PaymentService } from "./scripts/payment-service.js";
 
 export class Index {
     constructor() {}
@@ -73,8 +75,40 @@ export class Index {
                 event.preventDefault();
                 const courseId = parseInt(btn.getAttribute('data-course-id'));
                 const courseKind = btn.getAttribute('data-course-kind');
-                const courseLink = courseKind === 'in-person' ? `/inscripcion/?courseId=${courseId}` : '/pagar';
-                window.location.href = courseLink;
+                
+                // Si es un curso presencial, ir a inscripción
+                if (courseKind === 'in-person') {
+                    window.location.href = `/inscripcion/?courseId=${courseId}`;
+                    return;
+                }
+                
+                // Si es un curso online, verificar si hay cursos presenciales en el carrito
+                const cartService = new CartService();
+                const subscriptionService = new SubscriptionService();
+                const coursesService = new CoursesService();
+                const cart = cartService.getCart();
+                const subscriptions = subscriptionService.getSubscriptions();
+                
+                // Verificar si hay cursos presenciales en el carrito que también están en suscripciones
+                const presentialCoursesInCart = cart
+                    .map((id) => coursesService.getCourseById(id))
+                    .filter((course) => course && course.kind === 'in-person' && subscriptions.includes(course.id));
+                
+                // Si hay cursos presenciales en el carrito, redirigir a la vista de suscripciones
+                if (presentialCoursesInCart.length > 0) {
+                    window.location.href = "/suscripciones/";
+                    return;
+                }
+                
+                // Si no hay cursos presenciales, configurar el pago y redirigir
+                const paymentService = PaymentService.getOrCreateInstance();
+                if (cart.length > 0) {
+                    paymentService.setPayment(cart);
+                } else {
+                    paymentService.setPayment([courseId]);
+                }
+                
+                window.location.href = '/pagar';
             });
         });
     }

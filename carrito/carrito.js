@@ -2,6 +2,7 @@ import { CartService } from "../scripts/cart-service.js";
 import { CoursesService } from "../scripts/courses-service.js";
 import { GiftCardService } from "../scripts/gift-card-service.js";
 import { PaymentService } from "../scripts/payment-service.js";
+import { SubscriptionService } from "../scripts/subscription-service.js";
 
 export class Carrito {
   static #renderCartItems() {
@@ -170,9 +171,9 @@ export class Carrito {
                         </div>
                                 
                         <div class="cart__summary__actions">
-                            <a class="cart__summary__btn cart__summary__btn--primary" href="/pagar" id="buy-btn">
+                            <div class="cart__summary__btn cart__summary__btn--primary" id="buy-btn">
                                 Proceder al pago
-                            </a>
+                            </div>
                             <a class="cart__summary__btn cart__summary__btn--secondary" href="/">
                                 Seguir comprando
                             </a>
@@ -205,10 +206,24 @@ export class Carrito {
         const paymentService = PaymentService.getOrCreateInstance();
         const cartService = new CartService();
         const giftCardService = new GiftCardService();
+        const subscriptionService = new SubscriptionService();
+        const coursesService = new CoursesService();
         const cart = cartService.getCart();
         const giftCards = giftCardService.getGiftCards();
         
         if (cart.length === 0 && giftCards.length === 0) {
+          return;
+        }
+        
+        // Verificar si hay cursos presenciales en el carrito que también están en suscripciones
+        const subscriptions = subscriptionService.getSubscriptions();
+        const presentialCoursesInCart = cart
+          .map((id) => coursesService.getCourseById(id))
+          .filter((course) => course && course.kind === 'in-person' && subscriptions.includes(course.id));
+        
+        // Si hay cursos presenciales en el carrito, redirigir a la vista de suscripciones
+        if (presentialCoursesInCart.length > 0) {
+          window.location.href = "/suscripciones/";
           return;
         }
         
@@ -217,7 +232,7 @@ export class Carrito {
         } else {
           paymentService.setPayment([]);
         }
-        
+
         window.location.href = "/pagar";
       });
     }
