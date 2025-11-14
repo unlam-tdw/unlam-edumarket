@@ -6,6 +6,7 @@ import { SubscriptionService } from "./subscription-service.js";
 
 export class PaymentService {
     paymentStorageKey = 'payment';
+    paymentFromCartKey = 'payment-from-cart';
 
     constructor() {}
 
@@ -16,9 +17,10 @@ export class PaymentService {
         return PaymentService.instance;
     }
 
-    setPayment(courseIds) {
+    setPayment(courseIds, fromCart = false) {
         const storageService = StorageService.getOrCreateInstance();
         storageService.setItem(this.paymentStorageKey, courseIds);
+        storageService.setItem(this.paymentFromCartKey, fromCart);
     }
 
     getPayment() {
@@ -92,9 +94,17 @@ export class PaymentService {
         const cartService = new CartService();
         const subscriptionService = new SubscriptionService();
         const giftCardService = new GiftCardService();
+        const paymentFromCart = storageService.getItem(this.paymentFromCartKey);
+        
         storageService.removeItem(this.paymentStorageKey);
         storageService.removeItem("inscription-total");
-        cartService.clearCart();
+        storageService.removeItem(this.paymentFromCartKey);
+        
+        // Solo limpiar el carrito si la compra se realizó desde el carrito
+        if (paymentFromCart === true) {
+            cartService.clearCart();
+        }
+        
         subscriptionService.clearSubscriptions();
         giftCardService.clearGiftCards();
     }

@@ -451,9 +451,9 @@ export class Suscripciones {
         const cart = cartService.getCart();
         
         if (cart.length > 0) {
-          paymentService.setPayment(cart);
+          paymentService.setPayment(cart, true);
         } else {
-          paymentService.setPayment([]);
+          paymentService.setPayment([], true);
         }
         
         window.location.href = "/pagar";
