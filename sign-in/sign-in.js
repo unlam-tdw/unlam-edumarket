@@ -94,6 +94,14 @@ export class SignIn {
         const user = usersService.getUserByEmail(email);
 
         if (user.password !== password) {
+            const modalService = new ModalService("modal-parent");
+            modalService.buildModal(
+                "Error",
+                "La contraseña es incorrecta. Por favor, inténtelo de nuevo.",
+                "error",
+                () => {}
+            );
+            modalService.openModal();
             return;
         }
 
