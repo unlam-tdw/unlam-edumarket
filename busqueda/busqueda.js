@@ -76,7 +76,6 @@ export class Busqueda {
             ${results.map(result => this.#renderResultItem(result)).join("")}
         </ul>`;
 
-        // Add event listeners for cart and subscribe buttons
         const addToCartBtns = searchResults.querySelectorAll('.search__results__card__btn--cart');
         const subscribeBtns = searchResults.querySelectorAll('.search__results__card__btn--subscribe');
         

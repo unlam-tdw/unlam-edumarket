@@ -23,7 +23,6 @@ export class Suscripciones {
     const cart = cartService.getCart();
     const subscriptions = subscriptionService.getSubscriptions();
 
-    // Filtrar cursos que están tanto en el carrito como en suscripciones
     const presentialCoursesInCart = cart
       .map((id) => coursesService.getCourseById(id))
       .filter((course) => course && course.kind === 'in-person' && subscriptions.includes(course.id));
@@ -44,7 +43,6 @@ export class Suscripciones {
       return;
     }
 
-    // Inicializar contadores y datos para cada curso
     presentialCoursesInCart.forEach(course => {
       if (!this.courseCounters[course.id]) {
         this.courseCounters[course.id] = 1;
@@ -109,7 +107,6 @@ export class Suscripciones {
         .join("")}
     `;
 
-    // Poblar la primera fila con la información del usuario si está autenticado
     if (currentUser) {
       presentialCoursesInCart.forEach(course => {
         const nombreInput = document.getElementById(`nombre-${course.id}-0`);
@@ -122,7 +119,6 @@ export class Suscripciones {
       });
     }
 
-    // Configurar botones de agregar persona para cada curso
     presentialCoursesInCart.forEach(course => {
       const addBtn = document.querySelector(`[data-course-add="${course.id}"]`);
       if (addBtn) {
@@ -130,7 +126,6 @@ export class Suscripciones {
       }
     });
 
-    // Agregar validación en tiempo real para quitar errores cuando se complete un campo
     presentialCoursesInCart.forEach(course => {
       const count = this.courseCounters[course.id] || 1;
       for (let i = 0; i < count; i++) {
@@ -156,9 +151,7 @@ export class Suscripciones {
 
         if (dniInput) {
           dniInput.addEventListener('input', (e) => {
-            // Solo permitir números
             e.target.value = e.target.value.replace(/\D/g, '');
-            // Limitar a 8 dígitos
             if (e.target.value.length > 8) {
               e.target.value = e.target.value.substring(0, 8);
             }
@@ -178,10 +171,8 @@ export class Suscripciones {
       }
     });
 
-    // Actualizar total general
     this.updateTotal(presentialCoursesInCart);
 
-    // Configurar botón de proceder al pago
     const proceedBtn = document.getElementById("proceed-to-payment-btn");
     if (proceedBtn) {
       proceedBtn.addEventListener("click", () => {
@@ -233,7 +224,6 @@ export class Suscripciones {
       });
     }
 
-    // Agregar validación en tiempo real para los nuevos campos
     const nombreInput = div.querySelector(`#nombre-${courseId}-${this.courseCounters[courseId] - 1}`);
     const apellidoInput = div.querySelector(`#apellido-${courseId}-${this.courseCounters[courseId] - 1}`);
     const dniInput = div.querySelector(`#dni-${courseId}-${this.courseCounters[courseId] - 1}`);
@@ -256,9 +246,7 @@ export class Suscripciones {
 
     if (dniInput) {
       dniInput.addEventListener('input', (e) => {
-        // Solo permitir números
         e.target.value = e.target.value.replace(/\D/g, '');
-        // Limitar a 8 dígitos
         if (e.target.value.length > 8) {
           e.target.value = e.target.value.substring(0, 8);
         }
@@ -310,7 +298,6 @@ export class Suscripciones {
     let errors = [];
     let hasErrors = false;
 
-    // Primero validar que todos los inputs estén completos
     courses.forEach(course => {
       const count = this.courseCounters[course.id] || 1;
       
@@ -324,15 +311,12 @@ export class Suscripciones {
           const apellido = apellidoInput.value.trim();
           const dni = dniInput.value.trim();
 
-          // Validar formato del DNI
           const dniRegex = /^\d{7,8}$/;
           const dniValid = dni && dniRegex.test(dni);
           
-          // Validar que todos los campos estén completos y con formato correcto
           if (!nombre || !apellido || !dni || !dniValid) {
             hasErrors = true;
             
-            // Resaltar campos vacíos o con formato incorrecto
             if (!nombre) {
               nombreInput.classList.add('subscriptions__input--error');
               errors.push(`Curso "${course.name}" - Persona ${i + 1}: falta el nombre`);
@@ -357,7 +341,6 @@ export class Suscripciones {
               dniInput.classList.remove('subscriptions__input--error');
             }
           } else {
-            // Si todos los campos están completos y válidos, remover clases de error
             nombreInput.classList.remove('subscriptions__input--error');
             apellidoInput.classList.remove('subscriptions__input--error');
             dniInput.classList.remove('subscriptions__input--error');
@@ -366,11 +349,10 @@ export class Suscripciones {
       }
     });
 
-    // Si hay errores, mostrar mensaje y no continuar
     if (hasErrors) {
       let errorMessage = "Por favor, complete todos los campos requeridos:<br><br>";
       errors.forEach((error, index) => {
-        if (index < 5) { // Mostrar máximo 5 errores para no saturar
+        if (index < 5) {
           errorMessage += `• ${error}<br>`;
         }
       });
@@ -390,7 +372,6 @@ export class Suscripciones {
       return;
     }
 
-    // Si no hay errores, procesar los datos
     courses.forEach(course => {
       const count = this.courseCounters[course.id] || 1;
       const courseTotal = count * course.price;
@@ -407,7 +388,6 @@ export class Suscripciones {
           const apellido = apellidoInput.value.trim();
           const dni = dniInput.value.trim();
 
-          // Validar formato del DNI antes de agregar
           const dniRegex = /^\d{7,8}$/;
           if (nombre && apellido && dni && dniRegex.test(dni)) {
             coursePersons.push({ nombre, apellido, dni, courseId: course.id, courseName: course.name });
@@ -438,7 +418,6 @@ export class Suscripciones {
       return;
     }
 
-    // Guardar el total de inscripción
     storageService.setItem("inscription-total", totalInscription.toFixed(2));
 
     modalService.buildModal(

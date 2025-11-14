@@ -46,25 +46,19 @@ export class PaymentService {
         const courseIds = storageService.getItem(this.paymentStorageKey) || [];
         const cart = cartService.getCart();
 
-        // Obtener gift cards total
         const giftCardsTotal = giftCardService.getGiftCards().reduce((acc, giftCard) => {
             return acc + (giftCard ? Number(giftCard.price) || 0 : 0);
         }, 0);
 
         if (inscriptionAmount !== null) {
-            // Si hay inscription-total, sumar inscripciones + cursos online + gift cards
-            
-            // Obtener cursos online del carrito (los presenciales ya están en inscription-total)
             const onlineCoursesTotal = cart.reduce((acc, courseId) => {
                 const course = courses.getCourseById(courseId);
-                // Solo sumar cursos online (los presenciales ya están en inscription-total)
                 if (course && course.kind === 'online') {
                     return acc + (course ? Number(course.price) || 0 : 0);
                 }
                 return acc;
             }, 0);
 
-            // Calcular descuento basado en el total de cursos en el carrito
             let discount = 0;
             if (cart.length >= 3) {
                 discount = 10;
@@ -72,7 +66,6 @@ export class PaymentService {
 
             total = inscriptionAmount + onlineCoursesTotal + giftCardsTotal - discount;
         } else {
-            // Si no hay inscription-total, calcular normalmente
             const coursesTotal = courseIds.reduce((acc, courseId) => {
                 const course = courses.getCourseById(courseId);
                 return acc + (course ? Number(course.price) || 0 : 0);
@@ -100,7 +93,6 @@ export class PaymentService {
         storageService.removeItem("inscription-total");
         storageService.removeItem(this.paymentFromCartKey);
         
-        // Solo limpiar el carrito si la compra se realizó desde el carrito
         if (paymentFromCart === true) {
             cartService.clearCart();
         }

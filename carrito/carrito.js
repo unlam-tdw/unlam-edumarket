@@ -215,13 +215,11 @@ export class Carrito {
           return;
         }
         
-        // Verificar si hay cursos presenciales en el carrito que también están en suscripciones
         const subscriptions = subscriptionService.getSubscriptions();
         const presentialCoursesInCart = cart
           .map((id) => coursesService.getCourseById(id))
           .filter((course) => course && course.kind === 'in-person' && subscriptions.includes(course.id));
         
-        // Si hay cursos presenciales en el carrito, redirigir a la vista de suscripciones
         if (presentialCoursesInCart.length > 0) {
           window.location.href = "/suscripciones/";
           return;

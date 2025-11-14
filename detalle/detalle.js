@@ -204,7 +204,6 @@ export class Detalle {
         </section>
         `;
 
-        // Hero section buttons
         const addToCartBtn = main.querySelector('#add-to-cart-btn');
         if (addToCartBtn) {
             addToCartBtn.addEventListener('click', (e) => {

@@ -246,13 +246,11 @@ export class Pagar {
       paymentAmountElement.textContent = paymentTotal.toFixed(2);
     }
 
-    // Solo redirigir si realmente no hay nada que pagar (sin cursos ni gift cards)
     if (paymentTotal <= 0) {
       const giftCardService = new GiftCardService();
       const giftCards = giftCardService.getGiftCards();
       const courseIds = paymentService.getPayment();
       
-      // Si no hay cursos ni gift cards, redirigir
       if ((!courseIds || courseIds.length === 0) && (!giftCards || giftCards.length === 0)) {
         window.location.href = "/";
         return;

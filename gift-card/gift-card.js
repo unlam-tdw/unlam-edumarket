@@ -1,20 +1,14 @@
 import { ModalService } from "../scripts/modal-service.js";
 import { StorageService } from "../scripts/storage-service.js";
 import { GiftCardService } from "../scripts/gift-card-service.js";
-//*********** NOMBRE-DESTINATARIO
 
-//selecciona el input
 const inputNombre = document.getElementById("nombreDestinatario");
-//selecciona el texto destinatario h1 en la giftcard
 const textoDestinatario = document.querySelector(".main__section__img h1");
 
-//escucha al evento input (cuando escriben ahi)
 inputNombre.addEventListener("input", () => {
-  // si escriben texto lo muestra, si no, queda el original
   textoDestinatario.textContent = inputNombre.value || "DESTINATARIO";
 });
 
-//cuando se elige un color, se cambia el color del texto al elegido
 document.getElementById("color1").onchange = () =>
   (textoDestinatario.style.color = "var(--coral-red)");
 document.getElementById("color2").onchange = () =>
@@ -39,12 +33,8 @@ document.getElementById("fuente4").onchange = () =>
 document.getElementById("fuente5").onchange = () =>
   (textoDestinatario.style.fontSize = "60px");
 
-//********ETIQUETA PRECIO****
-
-// selecciona la etiqueta del monto en la giftcard
 const textoMonto = document.getElementById("etiquetaPrecio");
 
-// selecciona el input del monto en la giftcard
 const inputMontoEscrito = document.getElementById("monto");
 
 function cambiarMonto() {
@@ -53,8 +43,6 @@ function cambiarMonto() {
 
 inputMontoEscrito.oninput = cambiarMonto;
 
-//********UBICACION****
-
 const etiquetaPrecio = document.getElementById("etiquetaPrecio");
 
 document.getElementById("ubicacion1").onchange = () => {
@@ -62,17 +50,15 @@ document.getElementById("ubicacion1").onchange = () => {
 };
 
 document.getElementById("ubicacion2").onchange = () => {
-  etiquetaPrecio.className = "main__section__img__span"; // arriba derecha (default)
+  etiquetaPrecio.className = "main__section__img__span";
 };
 
 document.getElementById("ubicacion3").onchange = () => {
   etiquetaPrecio.className = "main__section__img__span abajo-izquierda";
 };
 
-// Selecciona la giftcard
 const colorFondo = document.getElementById("giftcardGrande");
 
-// Escucha los cambios en cada radio
 document.getElementById("fondo1").onchange = () =>
   (colorFondo.style.backgroundColor = "var(--coral-red)");
 document.getElementById("fondo2").onchange = () =>
@@ -83,8 +69,6 @@ document.getElementById("fondo4").onchange = () =>
   (colorFondo.style.backgroundColor = "var(--blueviolet)");
 document.getElementById("fondo5").onchange = () =>
   (colorFondo.style.backgroundColor = "var(--yellow)");
-
-//********FORMULARIO****
 
 const formGiftCard = document.getElementById("form-gift-card");
 

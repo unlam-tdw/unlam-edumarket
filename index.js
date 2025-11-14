@@ -76,22 +76,16 @@ export class Index {
                 const courseId = parseInt(btn.getAttribute('data-course-id'));
                 const courseKind = btn.getAttribute('data-course-kind');
                 
-                // Si es un curso presencial, ir a inscripción
                 if (courseKind === 'in-person') {
                     window.location.href = `/inscripcion/?courseId=${courseId}`;
                     return;
                 }
                 
-                // Si es un curso online, configurar el pago directamente
-                // No verificar suscripciones cuando se compra un curso online directamente
-                // En compra directa, solo usar el curso actual, no el carrito
                 const paymentService = PaymentService.getOrCreateInstance();
                 const storageService = StorageService.getOrCreateInstance();
                 
-                // Limpiar inscription-total si existe (para evitar que interfiera con el cálculo)
                 storageService.removeItem("inscription-total");
                 
-                // Configurar el pago solo con el curso actual
                 paymentService.setPayment([courseId]);
                 
                 window.location.href = '/pagar';
@@ -99,16 +93,12 @@ export class Index {
         });
     }
 }
-// agarra todas las img
 let slides = document.querySelectorAll(".slide");
 
-// aempieza por la primera img
 let actual = 0;
 
-// muestra la primera img
 slides[actual].style.display = "block";
 
-// función para mostrar la siguiente img
 function siguiente() {
   slides[actual].style.display = "none";
   actual = actual + 1;
@@ -116,7 +106,6 @@ function siguiente() {
   slides[actual].style.display = "block";
 }
 
-// función para mostrar la anterior img
 function anterior() {
   slides[actual].style.display = "none";
   actual = actual - 1;
@@ -124,11 +113,9 @@ function anterior() {
   slides[actual].style.display = "block";
 }
 
-// botones
 document.querySelector(".main__carousel__btn.right").onclick = siguiente;
 document.querySelector(".main__carousel__btn:not(.right)").onclick = anterior;
 
-// que se mueva solo cada 7 segundos
 setInterval(siguiente, 7000);
 
 Index.renderCourses();

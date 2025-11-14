@@ -156,7 +156,6 @@ export class Header {
       });
     }
 
-    // Remove existing sidebar if it exists (from previous render)
     const existingSidebar = document.getElementById("sidebar-carrito");
     if (existingSidebar) {
       existingSidebar.remove();

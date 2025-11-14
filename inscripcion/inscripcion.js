@@ -15,7 +15,6 @@ export class Inscripcion {
         const courseTitleElement = document.getElementById("course-title");
         courseTitleElement.textContent = course.name;
 
-        // Obtener información del usuario actual
         const sessionService = SessionService.getOrCreateInstance();
         const userId = sessionService.getSession();
         const usersService = new UsersService();
@@ -33,7 +32,6 @@ export class Inscripcion {
 
         inscriptionTotalElement.textContent = `$ ${inscriptionTotalInitial}`;
 
-        // Poblar la primera fila con la información del usuario
         if (currentUser) {
             const nombreInput = document.getElementById("nombre-0");
             const apellidoInput = document.getElementById("apellido-0");
