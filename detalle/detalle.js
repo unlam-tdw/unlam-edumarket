@@ -6,7 +6,7 @@ export class Detalle {
 
     static #renderHero() {
         const ctaButton = this.course.kind === 'in-person' ? 'INSCRIBIRSE' : 'COMPRAR';
-        const ctaButtonLink = this.course.kind === 'in-person' ? '/inscripcion/?courseId=${this.course.id}' : '/pagar';
+        const ctaButtonLink = this.course.kind === 'in-person' ? `/inscripcion/?courseId=${this.course.id}` : '/pagar';
         return `
             <div class="course-detail__hero">
                 <div class="course-detail__hero__image">
