@@ -73,7 +73,7 @@ export class PaymentService {
             // Si no hay inscription-total, calcular normalmente
             const coursesTotal = courseIds.reduce((acc, courseId) => {
                 const course = courses.getCourseById(courseId);
-                return acc + (course ? course.price : 0);
+                return acc + (course ? Number(course.price) || 0 : 0);
             }, 0);
 
             let discount = 0;

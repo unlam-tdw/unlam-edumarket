@@ -1,7 +1,7 @@
 import { CoursesService } from "./scripts/courses-service.js";
 import { CartService } from "./scripts/cart-service.js";
-import { SubscriptionService } from "./scripts/subscription-service.js";
 import { PaymentService } from "./scripts/payment-service.js";
+import { StorageService } from "./scripts/storage-service.js";
 
 export class Index {
     constructor() {}
@@ -82,31 +82,17 @@ export class Index {
                     return;
                 }
                 
-                // Si es un curso online, verificar si hay cursos presenciales en el carrito
-                const cartService = new CartService();
-                const subscriptionService = new SubscriptionService();
-                const coursesService = new CoursesService();
-                const cart = cartService.getCart();
-                const subscriptions = subscriptionService.getSubscriptions();
-                
-                // Verificar si hay cursos presenciales en el carrito que también están en suscripciones
-                const presentialCoursesInCart = cart
-                    .map((id) => coursesService.getCourseById(id))
-                    .filter((course) => course && course.kind === 'in-person' && subscriptions.includes(course.id));
-                
-                // Si hay cursos presenciales en el carrito, redirigir a la vista de suscripciones
-                if (presentialCoursesInCart.length > 0) {
-                    window.location.href = "/suscripciones/";
-                    return;
-                }
-                
-                // Si no hay cursos presenciales, configurar el pago y redirigir
+                // Si es un curso online, configurar el pago directamente
+                // No verificar suscripciones cuando se compra un curso online directamente
+                // En compra directa, solo usar el curso actual, no el carrito
                 const paymentService = PaymentService.getOrCreateInstance();
-                if (cart.length > 0) {
-                    paymentService.setPayment(cart);
-                } else {
-                    paymentService.setPayment([courseId]);
-                }
+                const storageService = StorageService.getOrCreateInstance();
+                
+                // Limpiar inscription-total si existe (para evitar que interfiera con el cálculo)
+                storageService.removeItem("inscription-total");
+                
+                // Configurar el pago solo con el curso actual
+                paymentService.setPayment([courseId]);
                 
                 window.location.href = '/pagar';
             });
